@@ -24,4 +24,6 @@ MochiMexa/
         |-css/
         |-js/
         |-assets/
+            -imagenes
+            -videos
     |-docs/
