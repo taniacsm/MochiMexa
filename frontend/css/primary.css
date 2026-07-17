@@ -46,3 +46,50 @@ html {
     margin: 0 auto;
     padding: 0 24px;
 }
+
+
+.card1{
+  margin: 1.25rem; 
+  border: 0.150rem solid  #8DBA76; 
+  padding: 0.938rem; 
+  border-radius: 1rem;
+  box-shadow: 0 30px 50px rgba(0, 0, 0, 0.2);
+  
+
+}
+  
+
+.descripcion1{
+  border-top:0.150rem solid  #8DBA76; 
+  
+ 
+}
+
+.card2{
+  margin: 1.25rem; 
+  border: 0.150rem solid #F4A3C1; 
+  padding: 0.938rem; 
+  border-radius: 1rem;
+  box-shadow: 0 30px 50px rgba(0, 0, 0, 0.2);
+
+}
+
+.descripcion2{
+  border-top:0.150rem solid #F4A3C1; 
+  
+}
+
+.card3{
+  margin: 1.25rem; 
+  border: 0.150rem solid  #FF8C00; 
+  padding: 0.938rem; 
+  border-radius: 1rem;
+  box-shadow: 0 30px 50px rgba(0, 0, 0, 0.2);
+  
+}
+
+.descripcion3{
+  border-top:0.150rem solid  #FF8C00; 
+
+}
+
