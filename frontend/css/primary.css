@@ -46,3 +46,35 @@ html {
     margin: 0 auto;
     padding: 0 24px;
 }
+
+
+/*PAGINA DE NOSOTROS*/
+
+/*Descripción del proyecto*/
+#descProyect .nosotrosLogo {
+    display: block;
+    max-width: 250px;
+    height: auto;
+    margin: 20px auto 0;
+    background-color: transparent;
+}
+
+#descProyect {
+    background-color: var(--neutral) ;
+    text-align: justify;
+    padding: 60px 24px 40px;
+}
+
+#descProyect h1 {
+    color: var(--primario);
+    font-weight: 800;
+    text-align: center;
+
+}
+
+#descProyect .texto-premium {
+    color: var(--color-texto);
+    font-size: 1.05rem;
+    line-height: 1.4;
+    margin-bottom: 32px;
+}
