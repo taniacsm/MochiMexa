@@ -80,48 +80,30 @@ html {
 }
 
 
-.card1{
-  margin: 1.25rem; 
-  border: 0.150rem solid  #8DBA76; 
-  padding: 0.938rem; 
-  border-radius: 1rem;
-  box-shadow: 0 30px 50px rgba(0, 0, 0, 0.2);
-  
+/* Estilo para card */
+        .custom-card {
+            background-color: var(--neutral) !important;
+            color: var(--color-texto);
+            
+            /* Borde con el color primario */
+            border: 2px solid var(--primario) !important;
+            border-radius: 12px; /* Esquinas sutilmente redondeadas */
+            
+            /* Sombreado del contorno */
+            box-shadow: 0 8px 24px rgba(141, 186, 118, 0.25); 
+            
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
 
-}
-  
+        /* Resalta al pasar el mouse por encima */
+        .custom-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(255, 140, 0, 0.3); /* Cambia al terciario en hover */
+            border-color: var(--terciario) !important;
+        }
 
-.descripcion1{
-  border-top:0.150rem solid  #8DBA76; 
-  
- 
-}
-
-.card2{
-  margin: 1.25rem; 
-  border: 0.150rem solid #F4A3C1; 
-  padding: 0.938rem; 
-  border-radius: 1rem;
-  box-shadow: 0 30px 50px rgba(0, 0, 0, 0.2);
-
-}
-
-.descripcion2{
-  border-top:0.150rem solid #F4A3C1; 
-  
-}
-
-.card3{
-  margin: 1.25rem; 
-  border: 0.150rem solid  #FF8C00; 
-  padding: 0.938rem; 
-  border-radius: 1rem;
-  box-shadow: 0 30px 50px rgba(0, 0, 0, 0.2);
-  
-}
-
-.descripcion3{
-  border-top:0.150rem solid  #FF8C00; 
-
-}
-
+        /* Estilos para texto utilizando */
+        .card-title {
+            color: var(--terciario);
+            font-weight: bold;
+        }
