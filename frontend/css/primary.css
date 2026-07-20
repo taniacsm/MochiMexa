@@ -1,10 +1,10 @@
 /*Identificamos la paleta de colores*/
 :root {
-    --primario: #8DBA76;
+    --primario: #8DBA76;  /* color titulo en figma  es: #40682E */
     --secundario: #F4A3C1;
     --terciario: #FF8C00;
     --neutral: #FDF9F2;
-    --color-texto: rgb(27, 32, 33);
+    --color-texto: rgb(27, 32, 33); /*  color texto Figma : #41493E */
 }
 
 body {
@@ -53,9 +53,9 @@ html {
 /*Descripción del proyecto*/
 #descProyect .nosotrosLogo {
     display: block;
-    max-width: 250px;
+    max-width: 170px;
     height: auto;
-    margin: 20px auto 0;
+    margin: 15px auto 0; 
     background-color: transparent;
 }
 
@@ -66,34 +66,90 @@ html {
 }
 
 #descProyect h1 {
-    color: var(--primario);
+    color: #40682E;
     font-weight: 800;
     text-align: center;
 
 }
 
 #descProyect .texto-premium {
-    color: var(--color-texto);
+    color: #41493E;
+    text-align: justify;
     font-size: 1.05rem;
     line-height: 1.4;
-    margin-bottom: 32px;
+    margin: 20px 20px 0px 20px;
 }
 
+/* --------Inicio de estilos de las tarjetas-------- */
+.descTeam {
+    padding: 20px 0 80px; /* Espacio entre contenido y borde de seccion de tarjetas */
+} 
 
-/* Estilo para card */
-        .custom-card {
-            background-color: var(--neutral) !important;
-            color: var(--color-texto);
+
+.custom-card { /* clase y estilos de la tarjeta en general*/
+    background-color: white;  /* Color de fondo blanco */
+    color: var(--color-texto); /* Color de texto */
             
-            /* Borde con el color primario */
-            border: 2px solid var(--primario) !important;
-            border-radius: 12px; /* Esquinas sutilmente redondeadas */
+   
+    border: none;  /* Sin borde */
+    border-radius: 13px !important; /* Esquinas sutilmente redondeadas, !important: prioriza a css en vez de bootstrap*/
+    overflow: hidden; /* (Para las img) Evita que el contenido se salga de la tarjeta, más no evita  que crezca ya que no hemos definido altura ni ancho fijo*/
+        
+    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.08); /* Sombreado de la tarjeta */
+
             
-            /* Sombreado del contorno */
-            box-shadow: 0 8px 24px rgba(141, 186, 118, 0.25); 
-            
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+    transition: 
+        transform 0.3s ease, /* suavidad en el mov */
+        box-shadow 0.3s ease;  /* Animación de transición, aquí se llama  para que el mov sea suave, y se activa y agrega el estilo con el hover debajo (sombreado, mov en eje y) */
+}
+
+.custom-card .team-img { /* clase y estilos de la img en las tarjetas */
+    width: 100%; /* ancho */
+    height: 250px; /* altura de la imagen */
+    object-fit: cover; /* La imagen llena todo el espacio y mantiene sus proporciones. Si sobra una parte, la recorta. */
+    object-position: center;  /* img centrada */
+}
+
+.custom-card .card-body { /* clase y estilos del contenido de la tarjeta, textos*/
+    display: flex; /* <------------ Sirve para acomodar los elementos hijos (de .card-body) con mucha más libertad, en este caso, el contenido de la tarjeta, titulo, texto y rol */ 
+    flex-direction: column; /* <----------- Acomoda los elementos en columna */
+
+    padding: 24px; /* espacio entre el contenido y el borde */
+    text-align: left; /* alinea el texto a la izquierda*/
+}
+
+.custom-card .card-title { /* clase y estilos del titulo de la tarjeta */
+    color: var(--color-texto);
+    font-size: 20px;
+    font-weight: 700; /* espesor de la letra */
+
+    margin-bottom: 14px; 
+}
+
+.custom-card .card-text { /* clase y estilos del texto de la tarjeta */
+    color: #555;
+    font-size: 14px;
+    line-height: 1.5p; /* espacio entre renglones */
+
+    margin-bottom: 24px;
+}
+
+.custom-card .team-role { /* clase y estilos del rol del integrante */ 
+    color: #777; 
+    font-size: 13px; /*  tamaño de letra */
+    font-weight: 600; /* espesor de la letra */
+    letter-spacing: 0.05rem; /* espacio entre letras*/
+
+    margin-top: auto; /* margen de arriba auto*/
+    margin-bottom: 0; /* margen de abajo del rol*/
+}
+
+.custom-card:hover {  /* Aquí especificamos el hover de las tarjetas que marcamos arriba, aqui se le especifica que movimiento hara, si tendra sombreado, etc para que se respete el ease de arriba*/
+    transform: translateY(-6px);  /*  mueve 6 px en el eje y (arriba, abajo) hacia arriba por ser negativo */
+    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.13); /* sombreado suave y con opacidad */
+}
+
+/* --------Fin de estilos para las tarjetas--------*/
 
 
 .descripcion1{
@@ -124,17 +180,4 @@ html {
 
 .descripcion3{
     border-top:0.150rem solid  #FF8C00; 
-
 }
-        /* Resalta al pasar el mouse por encima */
-        .custom-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 30px rgba(255, 140, 0, 0.3); /* Cambia al terciario en hover */
-            border-color: var(--terciario) !important;
-        }
-
-        /* Estilos para texto utilizando */
-        .card-title {
-            color: var(--terciario);
-            font-weight: bold;
-        }
