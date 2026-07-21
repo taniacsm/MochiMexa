@@ -187,36 +187,91 @@ html {
 
 
 /*-------Descripcion del contacto------*/
-#descContacto {
-    background-color: var(--neutral) ;
-    text-align: justify;
-    padding: 60px 24px 40px;
+.holaMochi {
+    background-color: #F4A3C1;
+    border-radius: 3rem;
+    width: fit-content;
+    padding: 2px 7px;
+    color: var(--color-texto);
 }
 
-#descContacto h1 {
+#descripcionContacto {
+    margin-top: 2rem;
+}
+
+#descripcionContacto h1 {
     color: #40682E;
     font-weight: 800;
-    text-align: center;
-
+    text-align: left;
+    padding-bottom: 15px;
 }
 
-#descContacto  {
+#descripcionContacto p {
     color: #41493E;
-    text-align: justify;
-    font-size: 1.05rem;
-    line-height: 1.4;
-    margin: 20px 20px 0px 20px;
+    text-align: left;
 }
 
-#descContacto .contactanosProducto {
-    display: block;
-    max-width: 300px;
+
+.imagenProductos {
+    object-fit: cover;
+    width: 90%;
     height: auto;
-    margin: 15px auto 0; 
-    background-color: transparent;
+    border: 8px solid white;
     border-radius: 1rem;
-    border: 5px, solid white;
+
+    transform: rotate(3deg);
+    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.2); /* sombreado suave y con opacidad */
 }
 
+.botonesContacto {
+    display: flex;
+    gap: 20px;
+
+
+}
+
+.whats {
+    border: none;
+    background-color: #40682E;
+    color: white;
+    border-radius: 3rem;
+    padding: 15px 25px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    
+    transition: 
+    transform 0.3s ease, /* suavidad en el mov */
+    box-shadow 0.3s ease;
+}
+
+.whats img {
+    width: 25px;
+    height: 25px;
+}
+
+.whats:hover, .email:hover {
+    cursor: pointer;
+    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.2); /* sombreado suave y con opacidad */
+}
+
+.email {
+    border: 2px solid #FF8C00;
+    border-radius: 3rem;
+    padding: 15px 25px;
+    background-color: #FF8C00;
+    color: white;
+
+    transition: 
+    transform 0.3s ease, /* suavidad en el mov */
+    box-shadow 0.3s ease;
+}
+
+.email img {
+    width: 25px;
+    height: 25px;
+}
 
 /*-------Formulario------*/
