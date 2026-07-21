@@ -181,3 +181,42 @@ html {
 .descripcion3{
     border-top:0.150rem solid  #FF8C00; 
 }
+
+
+/************************PAGINA DE CONTACTO*******************************************/
+
+
+/*-------Descripcion del contacto------*/
+#descContacto {
+    background-color: var(--neutral) ;
+    text-align: justify;
+    padding: 60px 24px 40px;
+}
+
+#descContacto h1 {
+    color: #40682E;
+    font-weight: 800;
+    text-align: center;
+
+}
+
+#descContacto  {
+    color: #41493E;
+    text-align: justify;
+    font-size: 1.05rem;
+    line-height: 1.4;
+    margin: 20px 20px 0px 20px;
+}
+
+#descContacto .contactanosProducto {
+    display: block;
+    max-width: 300px;
+    height: auto;
+    margin: 15px auto 0; 
+    background-color: transparent;
+    border-radius: 1rem;
+    border: 5px, solid white;
+}
+
+
+/*-------Formulario------*/
