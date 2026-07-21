@@ -225,8 +225,7 @@ html {
 .botonesContacto {
     display: flex;
     gap: 20px;
-
-
+    flex-wrap: wrap;
 }
 
 .whats {
@@ -251,7 +250,7 @@ html {
     height: 25px;
 }
 
-.whats:hover, .email:hover {
+.whats:hover, .email:hover, .botonEnviar:hover {
     cursor: pointer;
     box-shadow: 0 14px 35px rgba(0, 0, 0, 0.2); /* sombreado suave y con opacidad */
 }
@@ -284,8 +283,8 @@ html {
 }
 
 .card-body{
-  background-color: white;
-  border-radius: 2rem;;
+    background-color: white;
+    border-radius: 2rem;;
 }
 
 .botonEnviar{
@@ -293,7 +292,7 @@ html {
     color: white;
     border-radius: 2rem;
     padding: 10px 15px;
-
+    border: none;
     display: flex;
     justify-content: center;
     align-items: center;
