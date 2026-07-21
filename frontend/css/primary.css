@@ -279,3 +279,23 @@ html {
 }
 
 /*-------Formulario------*/
+.card{
+    border-radius: 2rem;
+}
+
+.card-body{
+  background-color: white;
+  border-radius: 2rem;;
+}
+
+.botonEnviar{
+    background-color: #40682E;
+    color: white;
+    border-radius: 2rem;
+    padding: 10px 15px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
