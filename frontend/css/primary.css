@@ -298,3 +298,11 @@ html {
     align-items: center;
     gap: 5px;
 }
+
+.info_box{
+    margin-top: 1rem ;
+    background-color: white;
+    border-radius: 0.375rem;
+    border: 1px solid #40682e85;
+    padding: 10px;
+}
