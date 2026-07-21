@@ -90,7 +90,6 @@ html {
     background-color: white;  /* Color de fondo blanco */
     color: var(--color-texto); /* Color de texto */
             
-   
     border: none;  /* Sin borde */
     border-radius: 13px !important; /* Esquinas sutilmente redondeadas, !important: prioriza a css en vez de bootstrap*/
     overflow: hidden; /* (Para las img) Evita que el contenido se salga de la tarjeta, más no evita  que crezca ya que no hemos definido altura ni ancho fijo*/
@@ -263,6 +262,11 @@ html {
     padding: 15px 25px;
     background-color: #FF8C00;
     color: white;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
 
     transition: 
     transform 0.3s ease, /* suavidad en el mov */
