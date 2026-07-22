@@ -301,8 +301,14 @@ html {
 
 .info_box{
     margin-top: 1rem ;
+    margin-bottom: 1rem;
     background-color: white;
     border-radius: 0.375rem;
     border: 1px solid #40682e85;
     padding: 10px;
+}
+
+.errorc{
+    border-color: rgb(182, 47, 47) !important;
+    background-color: rgb(243, 149, 149) !important;
 }
