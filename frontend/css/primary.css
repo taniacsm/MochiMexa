@@ -35,10 +35,9 @@
     padding-bottom: 6px !important;
     transition: color 0.25s ease, font-weight 0.25s ease;
 }
-.custom-navbar .custom-link:hover,
-.custom-navbar .custom-link.active {
+
+#navbarMochi a:hover {
     color: var(--primario-navbar) !important;
-    font-weight: 600;
 }
 /* Subrayado */
 .custom-navbar .custom-link::after {
