@@ -63,7 +63,9 @@ El desarrollo del proyecto se gestiona mediante el marco de trabajo **Scrum**, u
 *Nota: Con el fin de maximizar el aprendizaje técnico y de gestión de todos los integrantes, los roles se trabajan de forma rotativa a lo largo del ciclo del proyecto.*
 
 ### 🗓️ Estado de los Sprints
-* **Primer Sprint (3 de Julio - 10 de Octubre):** Fase de entregables teóricos, diseño del Mockup en Figma, estructuración en Trello, configuración del repositorio en GitHub, y documentación técnica/planeación.
+* **Primer Sprint (3 de Julio - 28 de Julio):** Fase de entregables teóricos, diseño del Mockup en Figma, estructuración en Trello, configuración del repositorio en GitHub, y documentación técnica/planeación.
+* **Segundo Sprint (28 de Julio - 20 de Agosto):** Construir una estructura de navegación responsiva, organizada en directorios estándar y conectada con las secciones clave del proyecto. Durante las 19 horas estimadas de trabajo, se implementarán el listado dinámico de 10 productos o publicaciones en formato JSON, así como los formularios para la creación de modelos y el registro de usuarios con sus correspondientes validaciones de datos y alertas de Bootstrap. Finalmente, el sprint concluye con la integración del flujo de inicio de sesión de usuarios y autenticación mediante la API de LocalStorage, asegurando el control de versiones y el envío continuo de avances al repositorio.
+  
 
 ### 👥 Integrantes del Equipo ("MochiTim")
 * **Product Owner:** Maribel Serrano Valdez
