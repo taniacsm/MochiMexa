@@ -70,10 +70,8 @@ El desarrollo del proyecto se gestiona mediante el marco de trabajo **Scrum**, u
 * **Scrum Master:** Tania Cristal Serrano Molina
 * **Equipo de Desarrollo (Developers & QA):**
   * Andrea Elizabeth Gómez Sánchez (Q&A)
-  * Avril Nallely Ponce Mendoza
   * Frida Pilar Luna Barón (Tester)
   * Jorge Santiago Jiménez López
-  * Luis Antonio Velázquez Catalán
   * Mario Alberto Valero Mayorga
   * Missael Eduardo Manjarrez Tellez
 
