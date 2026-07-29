@@ -1,3 +1,232 @@
+/*--------------------------------Nabvar de aquí para abajo------------------------------*/
+:root {
+    --primario-navbar: #395C33;  
+    --badge-brown: #8C4A19;        
+    --input-border: #BACAA9;
+}
+/* Navbar Contenedor */
+.custom-navbar {
+    background-color: var(--neutral, #FDF9F2) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+}
+/* Logo*/
+.brand-logo {
+    max-height: 45px !important;
+    width: auto !important;
+    object-fit: contain;
+}
+.brand-text {
+    font-weight: 700;
+    font-size: 1.45rem;
+    color: var(--primario-navbar) !important;
+    letter-spacing: -0.3px;
+    text-decoration: none;
+}
+/* Links de Navegación */
+.custom-navbar .custom-link {
+    color: var(--color-texto, #272021) !important;
+    font-weight: 500;
+    font-size: 1.05rem;
+    margin: 0 0.8rem;
+    position: relative;
+    text-decoration: none;
+    padding-bottom: 6px !important;
+    transition: color 0.25s ease, font-weight 0.25s ease;
+}
+.custom-navbar .custom-link:hover,
+.custom-navbar .custom-link.active {
+    color: var(--primario-navbar) !important;
+    font-weight: 600;
+}
+/* Subrayado */
+.custom-navbar .custom-link::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--primario-navbar);
+    transition: width 0.25s ease-in-out;
+}
+.custom-navbar .custom-link:hover::after,
+.custom-navbar .custom-link.active::after {
+    width: 100%;
+}
+/* Buscador*/
+.search-container {
+    min-width: 280px;
+    display: flex;
+    align-items: center;
+    color: var(--primario-navbar);
+}
+.custom-navbar .custom-search-input {
+    border-radius: 30px !important;
+    padding-left: 2.8rem !important;
+    padding-right: 1.2rem !important;
+    background-color: transparent !important;
+    border: 1px solid var(--input-border) !important;
+    color: var(--primario-navbar) !important;
+    height: 40px;
+    font-size: 0.95rem;
+}
+.custom-navbar .custom-search-input::placeholder {
+    color: var(--primario-navbar) !important;
+    opacity: 0.7;
+}
+.custom-navbar .custom-search-input:focus {
+    background-color: #ffffff !important;
+    border-color: var(--primario-navbar) !important;
+    box-shadow: 0 0 0 0.2rem rgba(57, 92, 51, 0.15) !important;
+}
+/* Iconos de Carrito y Usuario */
+.custom-navbar .icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    padding: 4px;
+    color: var(--primario-navbar) !important;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.custom-navbar .icon-btn svg {
+    fill: var(--primario-navbar) !important;
+}
+.custom-navbar .icon-btn:hover {
+    transform: scale(1.12);
+    opacity: 0.85;
+}
+/* Dropdown Sesión */
+.custom-navbar .custom-dropdown {
+    border: none;
+    border-radius: 10px;
+    background-color: var(--neutral, #FAF7F0);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.08) !important;
+}
+.custom-navbar .custom-dropdown .dropdown-item {
+    color: var(--color-texto);
+    font-weight: 500;
+}
+.custom-navbar .custom-dropdown .dropdown-item:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: var(--primario-navbar);
+}
+/*------------------------------Navbar de aquí para arriba------------------------------------*/
+/*------------------------------Home y Hero de aquí para abajo---------------------------------------*/
+:root {
+    --color-green: #3B6032;
+    --color-orange: #FF972A;
+    --color-purple: #703D57;
+    --color-bg-light: #BACAA9;
+}
+body {
+    background-color: var(--color-bg-light);
+    font-family: system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+.bg-custom-green {
+    background-color: var(--color-green) !important;
+    color: #ffffff;
+}
+.bg-custom-orange {
+    background-color: var(--color-orange) !important;
+    color: #ffffff;
+}
+.text-custom-green {
+    color: var(--color-green) !important;
+}
+.text-custom-purple {
+    color: var(--color-purple) !important;
+}
+.extra-small {
+    font-size: 0.78rem;
+}
+.tracking-wide {
+    letter-spacing: 0.05em;
+}
+.hero-outer-wrapper {
+  /*imagen de fondo */
+    background-image: url('../assets/imagenes/hero/hero.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 480px;
+}
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.55);
+    z-index: 0;
+}
+.hero-content-container {
+    padding-top: 4.5rem !important;
+    padding-bottom: 4.5rem !important;
+}
+.btn-custom-orange {
+    background-color: var(--color-orange);
+    border: none;
+    transition: all 0.25s ease;
+}
+.btn-custom-orange:hover {
+    background-color: #e5821e;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 151, 42, 0.3) !important;
+}
+
+/* seccion categoria */
+.category-underline {
+    width: 45px;
+    height: 3px;
+    background-color: var(--color-green);
+    border-radius: 2px;
+}
+.category-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+.category-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08) !important;
+}
+.category-img-wrapper {
+    height: 220px;
+}
+/*mas vendidos*/
+.hover-link {
+    transition: opacity 0.2s ease;
+}
+.hover-link:hover {
+    opacity: 0.8;
+    text-decoration: underline !important;
+}
+.product-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06) !important;
+}
+.product-img-wrapper {
+    height: 200px;
+}
+.btn-add-cart {
+    width: 36px;
+    height: 36px;
+    background-color: var(--color-orange);
+    color: #ffffff;
+    border: none;
+    transition: all 0.2s ease;
+}
+.btn-add-cart:hover {
+    background-color: #e5821e;
+    transform: scale(1.08);
+    box-shadow: 0 4px 10px rgba(255, 151, 42, 0.55);
+}
+/*----------------------------Home y hero de aquí para arriba-------------------------/*
 /*Identificamos la paleta de colores*/
 :root {
     --primario: #8DBA76;  /* color titulo en figma  es: #40682E */
