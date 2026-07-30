@@ -1,0 +1,58 @@
+/*DISEÑO MODAL CARRITO*/
+
+/* Posicionar el modal a la derecha ocupando el 100% de la altura */
+.modal-carrito-derecha .modal-dialog {
+    position: fixed;
+    margin: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    max-width: 420px; /* Ancho lateral del carrito */
+    height: 100%;
+    transform: translate3d(100%, 0, 0);
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Redondear contenedor y ajustar fondo */
+.modal-carrito-derecha .modal-content {
+    height: 100%;
+    border: none;
+    border-radius: 24px 0 0 24px; /* Bordes redondeados del lado izquierdo */
+    background-color: #F7F5EE; /* Tono beige claro suave del diseño */
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+/* Tipografía y colores específicos */
+.modal-carrito-derecha .modal-title {
+    color: var(--primario);
+    font-size: 1.4rem;
+}
+
+
+/* Botón estilizado como el diseño (Naranja de la paleta) */
+.modal-carrito-derecha .btn-pagar {
+    background-color: var(--terciario);
+    color: #ffffff;
+    border: none;
+    box-shadow: 0 4px 12px rgba(255, 140, 0, 0.25);
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.modal-carrito-derecha .btn-pagar:hover {
+    background-color: #e07b00;
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+/* Ajustes visuales a los scrollbars internos si hay muchos productos */
+.modal-carrito-derecha .modal-content::-webkit-scrollbar {
+    width: 6px;
+}
+.modal-carrito-derecha .modal-content::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0.1);
+    border-radius: 10px;
+}
+
+
