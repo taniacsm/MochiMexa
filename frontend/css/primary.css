@@ -540,3 +540,16 @@ html {
     border-color: rgb(182, 47, 47) !important;
     background-color: rgb(243, 149, 149) !important;
 }
+
+/*Administrador de Productos*/
+#nombreProducto,
+#descripcionProducto,
+#categoriaProducto,
+#seleccionCategoria
+#simboloPrecio,
+#stockProducto,
+#previewDescripcion{
+    font-size: 1rem;
+}
+
+/*-----------------------------*/
