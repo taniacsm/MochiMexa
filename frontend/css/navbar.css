@@ -1,0 +1,114 @@
+:root {
+    --primario-navbar: #395C33;  
+    --badge-brown: #8C4A19;        
+    --input-border: #BACAA9;
+}
+
+/* Navbar Contenedor */
+.custom-navbar {
+    background-color: var(--neutral, #FDF9F2) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+}
+/* Logo*/
+.brand-logo {
+    max-height: 45px !important;
+    width: auto !important;
+    object-fit: contain;
+}
+.brand-text {
+    font-weight: 700;
+    font-size: 1.45rem;
+    color: var(--primario-navbar) !important;
+    letter-spacing: -0.3px;
+    text-decoration: none;
+}
+/* Links de Navegación */
+.custom-navbar .custom-link {
+    color: var(--color-texto, #272021) !important;
+    font-weight: 500;
+    font-size: 1.05rem;
+    margin: 0 0.8rem;
+    position: relative;
+    text-decoration: none;
+    padding-bottom: 6px !important;
+    transition: color 0.25s ease, font-weight 0.25s ease;
+}
+
+#navbarMochi a:hover {
+    color: var(--primario-navbar) !important;
+}
+/* Subrayado */
+.custom-navbar .custom-link::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--primario-navbar);
+    transition: width 0.25s ease-in-out;
+}
+.custom-navbar .custom-link:hover::after,
+.custom-navbar .custom-link.active::after {
+    width: 100%;
+}
+/* Buscador*/
+.search-container {
+    min-width: 280px;
+    display: flex;
+    align-items: center;
+    color: var(--primario-navbar);
+}
+.custom-navbar .custom-search-input {
+    border-radius: 30px !important;
+    padding-left: 2.8rem !important;
+    padding-right: 1.2rem !important;
+    background-color: transparent !important;
+    border: 1px solid var(--input-border) !important;
+    color: var(--primario-navbar) !important;
+    height: 40px;
+    font-size: 0.95rem;
+}
+.custom-navbar .custom-search-input::placeholder {
+    color: var(--primario-navbar) !important;
+    opacity: 0.7;
+}
+.custom-navbar .custom-search-input:focus {
+    background-color: #ffffff !important;
+    border-color: var(--primario-navbar) !important;
+    box-shadow: 0 0 0 0.2rem rgba(57, 92, 51, 0.15) !important;
+}
+/* Iconos de Carrito y Usuario */
+.custom-navbar .icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    padding: 4px;
+    color: var(--primario-navbar) !important;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.custom-navbar .icon-btn svg {
+    fill: var(--primario-navbar) !important;
+}
+.custom-navbar .icon-btn:hover {
+    transform: scale(1.12);
+    opacity: 0.85;
+}
+/* Dropdown Sesión */
+.custom-navbar .custom-dropdown {
+    border: none;
+    border-radius: 10px;
+    background-color: var(--neutral, #FAF7F0);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.08) !important;
+}
+.custom-navbar .custom-dropdown .dropdown-item {
+    color: var(--color-texto);
+    font-weight: 500;
+}
+.custom-navbar .custom-dropdown .dropdown-item:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: var(--primario-navbar);
+}
