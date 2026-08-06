@@ -1,0 +1,255 @@
+/* Estilo para asegurar que la imagen se ajuste a la pantalla */
+:root {
+    --color-green-primary: #94ba68;
+    --color-green-dark: #3b670f;
+    --color-input-bg: #eff2e8;
+    --color-text-main: #1f1f1f;
+    --color-text-muted: #666666;
+    --color-white: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', -apple-system, sans-serif;
+}
+
+body {
+    background-color: #f7f9f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1.5rem;
+}
+
+/* --- Contenedor Grid Principal --- */
+.register-card {
+    display: grid;
+    grid-template-columns: 1fr;
+    /* Vista móvil apilada */
+    max-width: 820px;
+    width: 100%;
+    background-color: var(--color-white);
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+}
+
+/* Vista Desktop: 2 columnas proporcionales */
+@media (min-width: 768px) {
+    .register-card {
+        grid-template-columns: 0.95fr 1.05fr;
+    }
+}
+
+/* --- Columna Izquierda (Branding Verde) --- */
+.col-brand {
+    background-color: var(--color-green-primary);
+    padding: 3.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.brand-circle {
+    width: 140px;
+    height: 140px;
+    background-color: var(--color-white);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+}
+
+.brand-logo {
+    width: 75%;
+    height: auto;
+    object-fit: contain;
+}
+
+.brand-title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--color-text-main);
+    margin-bottom: 0.8rem;
+}
+
+.brand-description {
+    font-size: 0.88rem;
+    color: #2e3a20;
+    line-height: 1.5;
+    max-width: 270px;
+}
+
+/* --- Columna Derecha (Formulario) --- */
+.col-form {
+    padding: 3rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form-header {
+    margin-bottom: 1.8rem;
+}
+
+.form-header h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--color-text-main);
+    margin-bottom: 0.3rem;
+}
+
+.form-header p {
+    font-size: 0.88rem;
+    color: var(--color-text-muted);
+}
+
+/* Campos de entrada */
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-text-main);
+    margin-bottom: 0.4rem;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    left: 1rem;
+    font-size: 0.9rem;
+    opacity: 0.6;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 0.85rem 2.5rem 0.85rem 2.8rem;
+    background-color: var(--color-input-bg);
+    border: 1.5px solid transparent;
+    border-radius: 50px;
+    font-size: 0.92rem;
+    color: var(--color-text-main);
+    outline: none;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.input-wrapper input:focus {
+    border-color: var(--color-green-primary);
+    background-color: var(--color-white);
+    box-shadow: 0 0 0 3px rgba(148, 186, 104, 0.25);
+}
+/*Icono telefono*/
+.input-wrapper img{
+    width: 1.2rem;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    opacity: 0.6;
+}
+.toggle-password img{
+    width: 1.2rem;
+}
+
+/* Checkbox & Botón Submit */
+.form-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin: 1.5rem 0;
+    font-size: 0.85rem;
+    color: var(--color-text-main);
+}
+.form-checkbox a{
+    text-decoration: none;
+    color:var(--color-green-primary);
+}
+.form-checkbox a:hover{
+    color:var(--color-green-dark)
+}
+
+.form-checkbox input[type="checkbox"] {
+    accent-color: var(--color-green-dark);
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.highlight-text {
+    color: var(--color-green-dark);
+    font-weight: 700;
+}
+
+header img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    /* Elimina espacio inferior por defecto */
+}
+
+/* Estilo para contener y centrar el formulario */
+.content-area {
+    max-width: 600px;
+    /* Limita el ancho del formulario */
+    margin: 0 auto;
+    /* Centra el formulario en la pantalla */
+    padding: 2rem;
+    font-family: Arial, sans-serif;
+    /* O tu fuente preferida */
+}
+
+/* Estilos básicos para el formulario */
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+label {
+    display: block;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+input[type="checkbox"] {
+    margin-right: 0.5rem;
+}
+
+/* boton registrarse*/
+.btn-submit {
+    width: 100%;
+    padding: 0.9rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 700;
+    transition: transform 0.2s ease-in-out;
+
+}
+.btn-submit:hover {
+    background-color: #e5821e !important;
+    transform: scale(1.03);
+    box-shadow: 0 4px 10px rgba(255, 151, 42, 0.55);
+}
+
+
