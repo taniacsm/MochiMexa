@@ -11,23 +11,17 @@ function togglePasswordVista(){
     }
 
 }
-
-document.getElementById('registroForm').addEventListener('submit',function(e){
+document.getElementById('login-form').addEventListener('submit',function(e){
     e.preventDefault();
-    const nombre = document.getElementById('name').value;
     const email = document.getElementById('email').value;
-    const telefono = document.getElementById('phone').value;
     const contraseña = document.getElementById('password').value;
 
     const nuevoUsuario = {
-        nombre : nombre,
         email : email,
-        telefono : telefono,
         contraseña : contraseña
     }
-    const usuariosGuardados = JSON.parse(localStorage.getItem('usuariosRegistrados')) || [];
+    const usuariosGuardados = JSON.parse(localStorage.getItem('usuariosBienvenidos')) || [];
     usuariosGuardados.push(nuevoUsuario);
-    localStorage.setItem('usuariosRegistrados', JSON.stringify(usuariosGuardados));
-    alert("Usuario registrado con éxito.")
-    document.getElementById('registroForm').reset();
+    localStorage.setItem('usuariosBienvenidos', JSON.stringify(usuariosGuardados));
+    document.getElementById('login-form').reset();
 });
