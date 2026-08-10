@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicia Sesión</title>
+    <link rel="stylesheet" href="../css/inicioSesion.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Nunito:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!--
+    <link href="https://googleapis.com" rel="stylesheet">  -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+<div id="mochiNav">
+ </div> 
+  <main class="login-container">
+    <div class="login-card">
+
+      <!-- Header con Logo y Título -->
+      <header class="form-header text-center">
+        <img src="/frontend/assets/imagenes/nosotros/LogoNegro.png" alt="MochiMexa Logo" class="brand-logo">
+        <h1 class="brand-title">MochiMexa</h1>
+        <p class="subtitle">¡Hola de nuevo Mochiamigo! 🍡</p>
+      </header>
+
+      <form class="login-form" action="#" method="POST" novalidate>
+
+        <!-- Campo: Correo -->
+        <div class="form-group mochiCorreo fw-bold">
+          <label for="email">Mochi correo: </label>
+          <div class="input-wrapper">
+            <span class="input-icon" aria-hidden="true">
+              <img src="/frontend/assets/imagenes/iconos/envelope-solid.png" alt="icono mail">
+            </span>
+            <input type="email" id="email" name="email" placeholder="hola@ejemplo.com" required>
+          </div>
+        </div>
+
+        <!-- Campo: Contraseña con enlace de olvidó contraseña -->
+        <div class="form-group">
+          <div class="label-row mochiContraseña fw-bold">
+            <label for="password">Mochi contraseña: </label> 
+            <a href="#" class="forgot-password fw-bold">¿Olvidaste tu clave?</a>
+          </div>
+          <div class="input-wrapper">
+            <span class="input-icon" aria-hidden="true">
+              <img src="/frontend/assets/imagenes/iconos/lock-solid.png" alt="icono candado">
+            </span>
+            <input type="password" id="password" name="password" placeholder="••••••••" required>
+            <button type="button" class="toggle-password" onclick="togglePasswordVista()" aria-label="Mostrar contraseña">
+              <img id="ojo"  src="/frontend/assets/imagenes/iconos/eye-slash-solid.png" alt="icono ojo">
+            </button>
+          </div>
+        </div>
+
+        <!-- Botón de acción principal -->
+        <button type="submit" class="btn-submit">ENTRAR AL PARAÍSO</button>
+
+        <!-- Footer del formulario -->
+        <div class="form-footer">
+          <span>¿No tienes una cuenta?</span>
+          <a href="registroUsuarios.html" class="register-link">Crear una cuenta</a>
+        </div>
+
+      </form>
+    </div>
+  </main>
+  <footer class="footerInicio">
+    <p class="fw-bold" >© 2026 MochiMexa Dulces Orientales. Hecho con ❤️ y azúcar.
+    </p>
+  </footer>
+     
+        <script src="/frontend/js/registroUsu.js"></script>
+</body>
+
+</html>

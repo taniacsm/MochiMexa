@@ -1,0 +1,161 @@
+/* Estilo para asegurar que la imagen se ajuste a la pantalla */
+ :root { 
+    --color-green-primary: #94ba68;
+    --color-green-dark: #3b670f;
+    --color-input-bg: #eff2e8;
+    --color-text-main: #1f1f1f;
+    --color-text-muted: #666666;
+    --color-white: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #FDF9F2 !important;
+    font-family: "Manrope", sans-serif !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 1.5rem;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Tarjeta principal */
+.login-card {
+  background: #ffffff;
+  padding: 2.5rem 2rem;
+  border-radius: 35px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.mochiCorreo label{
+    padding-bottom: 0.5rem;
+    color: #41493B;
+}
+
+
+.mochiContraseña label {
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+    color: #41493B;
+}
+
+/* Header / Logo */
+.form-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.brand-logo {
+  width: 70px;
+  height: 70px;
+  margin-bottom: 0.5rem;
+}
+
+.brand-title {
+  color: #2e6221; /* Verde característico */
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.subtitle {
+  color: #666;
+  font-size: 0.95rem;
+  margin-top: 0.3rem;
+}
+
+/* Labels y fila de Contraseña */
+.label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.4rem;
+}
+
+.forgot-password {
+  color: #a83244; /* Rojo/vinotinto */
+  font-size: 0.85rem;
+  font-weight: bold;
+  text-decoration: none;
+  max-width: 110px;
+  text-align: right;
+  line-height: 1.1;
+}
+
+/* Campos de texto */
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  background-color: #f2f3eb; /* Fondo beige claro del input */
+  border: 1px solid #f8c0c8; /* Borde rosa suave */
+  border-radius: 25px;
+  padding: 0.6rem 1rem;
+}
+
+.input-wrapper input {
+  border: none;
+  background: transparent;
+  width: 100%;
+  outline: none;
+  margin-left: 0.5rem;
+}
+
+.input-icon img {
+
+    width: 1.2rem ;
+}
+
+/* Botón principal */
+.btn-submit {
+  width: 100%;
+  background-color: #689f38; /* Verde del botón */
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 0.9rem;
+  font-weight: bold;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  box-shadow: 0 4px 10px rgba(104, 159, 56, 0.3);
+}
+
+/* Footer / Enlace a registro */
+.form-footer {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.register-link {
+  color: #437a32;
+  font-weight: bold;
+  text-decoration: none;
+  margin-left: 0.3rem;
+}
+.toggle-password{
+  border: none;
+
+}
+.toggle-password img{
+    width: 1.2rem;
+}
+.footerInicio {
+    margin-top: 3rem;
+}

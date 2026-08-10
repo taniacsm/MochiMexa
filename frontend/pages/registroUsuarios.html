@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administrador|Productos</title>
+    <title> Registro Usuarios</title>
     <link rel="stylesheet" href="../css/registroUsu.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -94,6 +94,21 @@
                                 </button>
                             </div>
                         </div>
+                        <!-- Campo: Confirmar Contraseña -->
+                         <div class="form-group">
+                            <label for="password">Confirmar Contraseña</label>
+                            <div class="input-wrapper">
+                                <span class="input-icon" aria-hidden="true">
+                                    <img src="/frontend/assets/imagenes/iconos/lock-solid.png" alt="icono candado">
+                                </span>
+                                <input type="password" id="password" name="password" placeholder="••••••••" required>
+                                <button type="button" class="toggle-password" onclick="togglePasswordVista()"
+                                    aria-label="Mostrar u ocultar contraseña">
+                                    <img id="ojo" src="../assets/imagenes/iconos/eye-slash-solid.png"
+                                        atl="icono de vision">
+                                </button>
+                            </div>
+                        </div>                       
 
                         <!-- Checkbox: Términos y Condiciones -->
                         <div class="form-checkbox">
