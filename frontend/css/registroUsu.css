@@ -236,7 +236,8 @@ input[type="checkbox"] {
 }
 
 /* boton registrarse*/
-.btn-submit {
+.btn.btn-submit {
+    background-color: #FF8C00;
     width: 100%;
     padding: 0.9rem;
     border: none;
@@ -246,9 +247,9 @@ input[type="checkbox"] {
     transition: transform 0.2s ease-in-out;
 
 }
-.btn-submit:hover {
-    background-color: #e5821e !important;
-    transform: scale(1.03);
+.btn.btn-submit:hover {
+    background-color: #e5821e;
+    transform: scale(1.025);
     box-shadow: 0 4px 10px rgba(255, 151, 42, 0.55);
 }
 

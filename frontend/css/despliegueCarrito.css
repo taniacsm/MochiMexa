@@ -33,10 +33,10 @@
 
 /* Botón estilizado como el diseño (Naranja de la paleta) */
 .modal-carrito-derecha .btn-pagar {
-    background-color: var(--terciario);
+    background-color: white;
     color: black;
     border: none;
-    box-shadow: 0 4px 12px rgba(255, 140, 0, 0.25);
+    box-shadow: 0 4px 12px rgba(191, 191, 191, 0.25);
     transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
