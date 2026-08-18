@@ -15,8 +15,8 @@
 }
 
 body {
-    background-color: #FDF9F2 !important;
-    font-family: "Manrope", sans-serif !important;
+    background-color: #FDF9F2;
+    font-family: "Manrope", sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;

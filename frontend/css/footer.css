@@ -8,8 +8,8 @@
 }
 
 body {
-    background-color: var(--neutral) !important;
-    font-family: "Manrope", sans-serif !important;
+    background-color: var(--neutral);
+    font-family: "Manrope", sans-serif;
 }
 
 /* --- Footer General --- */

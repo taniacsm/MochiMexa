@@ -9,14 +9,15 @@
 }
 
 body {
-    background-color: var(--neutral) !important;
-    font-family: "Manrope", sans-serif !important;
-    font-optical-sizing: auto !important;
-    font-weight: 400 !important;
-    font-style: normal !important;
+    background-color: var(--neutral);
+    font-family: "Manrope", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
 }
 
 /*-------Descripcion del contacto------*/
+
 .holaMochi {
     background-color: #F4A3C1;
     border-radius: 3rem;
@@ -40,7 +41,6 @@ body {
     color: #41493E;
     text-align: left;
 }
-
 
 .imagenProductos {
     object-fit: cover;
@@ -109,6 +109,7 @@ body {
 }
 
 /*-------Formulario------*/
+
 .card{
     border-radius: 2rem;
 }
@@ -139,7 +140,3 @@ body {
     padding: 10px;
 }
 
-.errorc{
-    border-color: rgb(182, 47, 47) !important;
-    background-color: rgb(243, 149, 149) !important;
-}
