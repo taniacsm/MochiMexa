@@ -337,6 +337,8 @@ h5 {
 .pedidoRecienteTitle{
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
 }
 
 .pedidoRecienteTitle a {
@@ -383,6 +385,71 @@ h5 {
     border-radius: 0 10px 10px 0;
 }
 
+/* SEGUNDA SECCIÓN */
+
+.pagina.activo {
+    background-color: var(--primario);
+    color: white;
+}
+
+.paginacion button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+#productos {
+    width: 100%;
+}
+
+/* contenedor grande de tabla + paginación */
+.tablaProductos {
+    width: 100%;
+
+    background-color: white;
+
+    border-radius: 20px;
+}
+
+/* tabla real */
+.tablaProductos table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+.tituloTablaProductos th{
+    background-color: #F2EDE3;
+    padding: 1rem;
+}
+
+.tituloTablaProductos th:last-child{
+    padding: 1rem;
+    border-radius: 0 10px 0 0;
+}
+
+.tituloTablaProductos th:first-child{
+    padding: 1rem;
+    border-radius: 10px 0 0 0px;
+}
+
+.tablaProductos th,
+.tablaProductos td {
+    padding: 1rem;
+}
+
+#anterior {
+    border: none;
+    border-radius: 30px;
+}
+
+.pagina {
+    border: none;
+    border-radius: 30px;
+    padding: 1px 10px;
+}
+
+#siguiente {
+
+}
 
 /* FOOTER */
 
