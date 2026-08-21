@@ -1,0 +1,420 @@
+/* PALETA */
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --primario: #8DBA76;
+    --secundario: #F4A3C1;
+    --terciario: #FF8C00;
+    --neutral: #FDF9F2;
+    --color-green-dark: #3b670f;
+    --color-texto: rgb(27, 32, 33);
+}
+
+
+/* BODY */
+
+body {
+    background-color: var(--neutral);
+
+    font-family: "Manrope", sans-serif;
+
+    font-optical-sizing: auto;
+
+    font-weight: 400;
+
+    font-style: normal;
+}
+
+
+/* MAIN */
+
+main {
+    min-height: 100vh;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+/* TITULOS */
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family:
+        system-ui,
+        -apple-system,
+        "Segoe UI",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+    font-weight: 500;
+}
+
+
+/* SIDEBAR */
+
+.columna1 {
+    padding: 1rem;
+
+    background-color: #f8f3e9;
+
+    min-height: 100vh;
+}
+
+
+/* LOGO */
+
+.logoAdmin {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* ← centra TODO el conjunto */
+    gap: .5rem;
+}
+
+.logoAdmin img {
+    width: 2.5rem;
+}
+
+.logoAdmin a {
+    text-decoration: none;
+
+    color: var(--color-green-dark);
+
+    font-family:
+        system-ui,
+        -apple-system,
+        "Segoe UI",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+    font-weight: 500;
+
+    font-size: 25px;
+
+    line-height: 25px;
+}
+
+.logoAdmin p {
+    color: var(--color-texto);
+
+    font-weight: 500;
+    
+}
+
+
+/* NUEVO PRODUCTO */
+
+.botonProducto a {
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    margin-top: 10px;
+
+    margin-bottom: 3rem;
+
+    padding: 8px;
+
+    border-radius: 30px;
+
+    background-color: var(--terciario);
+
+    color: var(--color-texto);
+
+    text-decoration: none;
+
+    white-space: nowrap;
+}
+
+.botonProducto img {
+    width: 1rem;
+}
+
+
+/* MENU */
+
+.botonesMenu a {
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    margin: 10px 0 15px;
+
+    padding: 8px;
+
+    border-radius: 10px;
+
+    background-color: white;
+
+    color: var(--color-texto);
+
+    text-decoration: none;
+
+    transition: transform .3s ease-in-out;
+}
+
+.botonesMenu a:hover {
+    cursor: pointer;
+
+    background-color: var(--primario);
+
+    box-shadow: 0 3px 8px rgba(0, 0, 0, .219);
+
+    transform: scale(1.02);
+}
+
+.botonesMenu img {
+    width: 1rem;
+}
+
+
+/* NAV */
+
+.adminNav {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    background-color: #f8f3e9;
+
+    margin-left: -12px;
+    margin-right: -12px;
+    padding-left: 12px;
+    padding-right: 12px;
+
+}
+
+.adminNav a {
+    text-decoration: none;
+
+    color: var(--color-green-dark);
+
+    font-weight: 600;
+
+    margin: 5px;
+}
+
+.iconNav {
+    width: 1.5rem;
+}
+
+.adminNav a:last-child img {
+    width: 3rem;
+}
+
+.adminNav input {
+    width: 300px;
+
+    border-radius: 30px;
+
+    font-size: 1rem;
+}
+
+
+/* DASHBOARD */
+
+#dashboard h1 {
+    margin-top: 2rem;
+
+    font-weight: 600;
+
+    font-size: 2rem;
+
+    color: var(--color-texto);
+}
+
+#dashboard > p {
+    margin-bottom: 3rem;
+
+    color: rgb(54, 54, 54);
+}
+
+
+/* CARDS */
+
+.cardResumen {
+    height: 100%;
+
+    background-color: white;
+
+    padding: 1rem;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+}
+
+.cardResumen img {
+    width: 1rem;
+
+    margin-right: 5px;
+}
+
+.cardResumen h3 {
+    margin-top: .25rem;
+
+    margin-bottom: .5rem;
+}
+
+.positive {
+    color: var(--color-green-dark);
+    font-weight: 500;
+} 
+
+.negative {
+    color: rgb(214, 10, 10);
+    font-weight: 500;
+
+}
+
+.pendent {
+    color: rgb(146, 76, 14);
+    font-weight: 500;
+
+}
+
+
+/* PARTE INFERIOR */
+
+#dashboard .row.g-4 {
+    margin-top: 1.5rem;
+}
+
+
+/* VENTAS SEMANALES */
+
+.ventaSemanal {
+    height: 100%;
+
+    min-height: 250px;
+
+    background-color: white;
+
+    border-radius: 20px;
+
+    padding: 2rem;
+}
+
+/* Contenedor de nuestra gráfica */
+.contenedorGrafica {
+    width: 100%;
+    height: 250px;
+
+    /* Separación entre el título y la gráfica */
+    margin-top: 2rem;
+}
+
+/* PEDIDOS RECIENTES */
+
+.pedidoReciente {
+    height: 100%;
+
+    background-color: white;
+
+    border-radius: 20px;
+
+    padding: 2rem;
+    
+    
+}
+
+.pedidoRecienteTitle{
+    display: flex;
+    justify-content: space-between;
+}
+
+.pedidoRecienteTitle a {
+    text-decoration: none;
+    color: #3b670f;
+    font-size: 13px;
+}
+
+.pedidoReciente table {
+    width: 100%;
+}
+
+.titulosTable {
+    background-color: #e4dbc67d;
+    margin-bottom: 10px;
+}
+
+.titulosTable th {
+    padding: 10px;
+}
+
+.firstRowTableValues td {
+    padding: 10px;
+}
+
+.secondRowTableValues td {
+    padding: 10px;
+}
+
+.thirdRowTableValues td {
+    padding: 10px;
+}
+
+/* esquina izquierda, las tablas se ponen picky y usamos este truco */
+.titulosTable th:first-child {
+    border-radius: 10px 0 0 10px;
+}
+.fourthRowTableValues td {
+    padding: 10px;
+}
+
+/* esquina derecha */
+.titulosTable th:last-child {
+    border-radius: 0 10px 10px 0;
+}
+
+
+/* FOOTER */
+
+#dashboard {
+    margin-bottom: 3rem;
+}
+
+footer {
+    margin-top: auto;
+    margin-bottom: 1rem;
+    border-top: 1px solid #c2c2c2;
+    padding-top: 1rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    color: gray;
+}
+
+footer p {
+    margin: 0;
+}
+
+.linksFooter {
+    display: flex;
+
+    gap: 1rem;
+}
+
+footer a {
+    color: gray;
+
+    text-decoration: none;
+}
