@@ -216,7 +216,6 @@ function mostrarProductos() {
     //
     // Página 3:
     // (3 - 1) * 3 = 6
-
     const inicio = (paginaActual - 1) * productosPorPagina;
 
 
@@ -231,7 +230,6 @@ function mostrarProductos() {
     //
     // toma los productos:
     // 0, 1 y 2
-
     const productosPagina = productos.slice(inicio, fin);
 
 
@@ -248,23 +246,49 @@ function mostrarProductos() {
             <td>
                 <input type="checkbox" class="checkboxProducto">
             </td>
+
             <td>${producto.nombre}</td>
+
             <td>${producto.categoria}</td>
+
             <td>$${producto.precio.toFixed(2)} MXN</td>
+
             <td>${producto.stock}</td>
+
             <td>${producto.estado}</td>
         `;
 
 
-        // Finalmente agregamos la fila al tbody.
+        // Agregamos la fila al tbody.
         tablaProductos.appendChild(fila);
     });
+
+
+    // ========================================
+    // TEXTO: "Mostrando 1 a 3 de 9 productos"
+    // ========================================
+
+    // El primer producto que aparece en esta página.
+    // Sumamos 1 porque los arreglos empiezan en posición 0.
+    const primerProducto = inicio + 1;
+
+
+    // Calculamos el último producto mostrado.
+    //
+    // Math.min() evita pasarnos del total.
+    // Por ejemplo, si existen 8 productos:
+    // página 3 mostraría del 7 al 8, NO del 7 al 9.
+    const ultimoProducto = Math.min(fin, productos.length);
+
+
+    // Cambiamos el texto del <p> que tenemos en el HTML.
+    document.getElementById("infoProductos").textContent =
+        `Mostrando ${primerProducto} a ${ultimoProducto} de ${productos.length} productos`;
 
 
     // Actualizamos los botones después de mostrar la página.
     actualizarBotones();
 }
-
 
 // ========================================
 // FUNCIÓN PARA ACTUALIZAR LOS BOTONES
