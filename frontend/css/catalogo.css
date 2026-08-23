@@ -1,0 +1,105 @@
+/*Identificamos la paleta de colores*/
+:root {
+    --primario: #8DBA76;  /* color titulo en figma  es: #40682E */
+    --secundario: #F4A3C1;
+    --terciario: #FF8C00;
+    --neutral: #FDF9F2;
+    --color-texto: rgb(27, 32, 33); /*  color texto Figma : #41493E */
+}
+
+body {
+    background-color: var(--neutral);
+    font-family: "Manrope", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Color general de fondo */
+.bg-catalog {
+    background-color: var(--neutral);
+}
+
+/* Tipografías pequeñas para descripciones */
+.extra-small {
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+/* Badge 'EN STOCK' */
+.badge-stock {
+    background-color: #2F5233;
+    color: #ffffff;
+    font-size: 0.65rem;
+    letter-spacing: 0.5px;
+    border-radius: 20px;
+}
+
+/* Fondo de la imagen del producto */
+.product-img-container {
+    background-color: #FAF6ED;
+
+    height: 220px; /* Usa una medida fija como px para homologar el alto */
+    position: relative;
+    overflow: hidden;
+
+}
+
+.product-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Precio */
+.price-tag {
+    color: #2F5233;
+    font-size: 1rem;
+}
+
+/* Botón naranja principal 
+.btn-orange {
+    background-color: #FF912C;
+    color: #ffffff;
+    border: none;
+    transition: background-color 0.2s ease;
+}
+
+
+.btn-orange:hover {
+    background-color: #e07b1d;
+    color: #ffffff;
+}
+    */
+
+/* Estilos de Checkbox personalizados */
+.custom-checkbox:checked {
+    background-color: #2F5233;
+    border-color: #2F5233;
+}
+
+/* Range input (Slider) */
+.custom-range::-webkit-slider-thumb {
+    background: #2F5233;
+}
+
+.custom-range::-moz-range-thumb {
+    background: #2F5233;
+}
+
+/* Incrementamos la especificidad anteponiendo .btn */
+.btn.btn-orange {
+    background-color: var(--terciario, #FF912C);
+    color: #ffffff;
+    border: none;
+    transition: background-color 0.2s ease;
+}
+
+.btn.btn-orange:hover,
+.btn.btn-orange:focus,
+.btn.btn-orange:active {
+    background-color: #e07b1d;
+    color: #ffffff;
+}
+
+
