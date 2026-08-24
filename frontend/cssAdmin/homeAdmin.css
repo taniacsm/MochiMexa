@@ -372,6 +372,10 @@ h5 {
     padding: 10px;
 }
 
+.pedidoReciente tbody tr {
+    border-bottom: 1px solid #eee;
+}
+
 /* esquina izquierda, las tablas se ponen picky y usamos este truco */
 .titulosTable th:first-child {
     border-radius: 10px 0 0 10px;
@@ -387,85 +391,125 @@ h5 {
 
 /* SEGUNDA SECCIÓN */
 
-.pagina.activo {
-    background-color: var(--primario);
-    color: white;
-}
-
-.paginacion button:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-}
+/* SEGUNDA SECCIÓN */
 
 #productos {
     width: 100%;
 }
 
-/* contenedor grande de tabla + paginación */
 .tablaProductos {
     width: 100%;
 
     background-color: white;
 
     border-radius: 20px;
+
+    overflow: hidden;
 }
 
-/* tabla real */
 .tablaProductos table {
     width: 100%;
     table-layout: fixed;
 }
 
-.tituloTablaProductos th{
+.tituloTablaProductos th {
     background-color: #F2EDE3;
-    padding: 1rem;
-}
 
-.tituloTablaProductos th:last-child{
-    padding: 1rem;
-    border-radius: 0 10px 0 0;
-}
-
-.tituloTablaProductos th:first-child{
-    padding: 1rem;
-    border-radius: 10px 0 0 0px;
+    padding: .9rem 1rem;
 }
 
 .tablaProductos th,
 .tablaProductos td {
-    padding: 1rem;
+    padding: .75rem 1rem;
+
+    vertical-align: middle;
 }
 
-.paginacion{
+.tablaProductos tbody tr {
+    border-bottom: 1px solid #eee;
+}
+
+
+/* ANCHOS DE COLUMNAS */
+
+.tablaProductos th:nth-child(1),
+.tablaProductos td:nth-child(1) {
+    width: 6%;
+    text-align: center;
+}
+
+.tablaProductos th:nth-child(2),
+.tablaProductos td:nth-child(2) {
+    width: 34%;
+}
+
+.tablaProductos th:nth-child(3),
+.tablaProductos td:nth-child(3) {
+    width: 18%;
+}
+
+.tablaProductos th:nth-child(4),
+.tablaProductos td:nth-child(4) {
+    width: 18%;
+}
+
+.tablaProductos th:nth-child(5),
+.tablaProductos td:nth-child(5) {
+    width: 12%;
+}
+
+.tablaProductos th:nth-child(6),
+.tablaProductos td:nth-child(6) {
+    width: 12%;
+}
+
+
+/* PAGINACIÓN */
+
+.paginacion {
     display: flex;
-    justify-content: end;
-    gap: 5px;
-    margin-right: 10px;
-    margin-bottom: 10px;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 1rem;
+
+    background-color: #F8F5EE;
 }
 
 #infoProductos {
     margin: 0;
 }
 
-#anterior {
-    border: none;
-    border-radius: 30px;
-    padding: 1px 10px;
+.paginacion > div {
+    display: flex;
 
+    gap: .5rem;
 }
 
+#anterior,
+#siguiente,
 .pagina {
-    border: none;
+    border: 1px solid #e5e5e5;
+
     border-radius: 30px;
-    padding: 1px 10px;
+
+    padding: .25rem .80rem;
+
+    background-color: transparent;
 }
 
-#siguiente {
-    border: none;
-    border-radius: 30px;
-    padding: 1px 10px;
+.pagina.activo {
+    background-color: var(--primario);
 
+    color: white;
+}
+
+.paginacion button:disabled {
+    opacity: .4;
+
+    cursor: not-allowed;
 }
 
 /* FOOTER */
