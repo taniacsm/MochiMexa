@@ -95,7 +95,7 @@
                         Clientes
                     </a>
 
-                    <a href="">
+                    <a href="#configuracion">
                         <img
                             src="/frontend/assets/imagenes/iconos/gear-solid.png"
                             alt=""
@@ -414,10 +414,299 @@
                 </section>
 
 
-                <section id="configuracion">
+<section id="configuracion">
 
-                </section>
+    <div class="configuracionContenido">
 
+        <h1>Ajustes Generales</h1>
+        <p>Configura las opciones principales de tu tienda MochiMexa.</p>
+
+        <div class="row g-4">
+
+            <!-- COLUMNA IZQUIERDA -->
+            <div class="col-xl-8">
+
+                <!-- PERFIL DEL ADMINISTRADOR -->
+                <div class="perfilAdmin">
+
+                    <h4>Perfil del Administrador</h4>
+
+                    <div class="row align-items-center g-3">
+
+                        <div class="col-md-2">
+
+                            <img
+                                src="/frontend/assets/imagenes/nosotros/andy_gomez_nb_circulo.png"
+                                alt="Foto del administrador"
+                                class="fotoAdmin"
+                            >
+
+                        </div>
+
+                        <div class="col-md-5">
+
+                            <label for="nombreAdmin">
+                                Nombre Completo
+                            </label>
+
+                            <input
+                                type="text"
+                                id="nombreAdmin"
+                                class="form-control"
+                                value="Ana Mochi"
+                            >
+
+                        </div>
+
+                        <div class="col-md-5">
+
+                            <label for="correoAdmin">
+                                Correo Electrónico
+                            </label>
+
+                            <input
+                                type="email"
+                                id="correoAdmin"
+                                class="form-control"
+                                value="admin@mochimexa.com"
+                            >
+
+                        </div>
+
+                    </div>
+
+                    <button class="botonGuardar">
+                        Guardar Cambios
+                    </button>
+
+                </div>
+
+
+                <!-- CONFIGURACIÓN DE ENVÍOS -->
+                <div class="configEnvios">
+
+                    <h4>
+                        Configuración de Envíos
+                    </h4>
+
+                    <!-- ENVÍO CDMX -->
+                    <div class="envio">
+
+                        <div>
+
+                            <strong>
+                                Zona Metropolitana (CDMX)
+                            </strong>
+
+                            <p>
+                                Envío estándar 1-2 días hábiles
+                            </p>
+
+                        </div>
+
+                        <input
+                            type="number"
+                            value="80"
+                        >
+
+                    </div>
+
+
+                    <!-- ENVÍO INTERIOR -->
+                    <div class="envio">
+
+                        <div>
+
+                            <strong>
+                                Interior de la República
+                            </strong>
+
+                            <p>
+                                Envío nacional 3-5 días hábiles
+                            </p>
+
+                        </div>
+
+                        <input
+                            type="number"
+                            value="150"
+                        >
+
+                    </div>
+
+                    <button class="botonGuardar">
+                        Guardar Envíos
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- COLUMNA DERECHA -->
+            <div class="col-xl-4">
+
+                <!-- MÉTODOS DE PAGO -->
+                <div class="metodosPago">
+
+                    <h4>
+                        Métodos de Pago
+                    </h4>
+
+
+                    <!-- TARJETA -->
+                    <div class="opcionPago">
+
+                        <span>
+                            Tarjeta Crédito/Débito
+                        </span>
+
+                        <label class="switchPago">
+
+                            <input
+                                type="checkbox"
+                                checked
+                            >
+
+                            <span class="sliderPago"></span>
+
+                        </label>
+
+                    </div>
+
+
+                    <!-- SPEI -->
+                    <div class="opcionPago">
+
+                        <span>
+                            Transferencia SPEI
+                        </span>
+
+                        <label class="switchPago">
+
+                            <input
+                                type="checkbox"
+                                checked
+                            >
+
+                            <span class="sliderPago"></span>
+
+                        </label>
+
+                    </div>
+
+
+                    <!-- OXXO -->
+                    <div class="opcionPago">
+
+                        <span>
+                            Pago en OXXO
+                        </span>
+
+                        <label class="switchPago">
+
+                            <input
+                                type="checkbox"
+                            >
+
+                            <span class="sliderPago"></span>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <!-- NOTIFICACIONES -->
+                <div class="notificacionesAdmin">
+
+                    <h4>
+                        Notificaciones
+                    </h4>
+
+
+                    <!-- NUEVOS PEDIDOS -->
+                    <label class="opcionNotificacion">
+
+                        <input
+                            type="checkbox"
+                            checked
+                        >
+
+                        <span>
+
+                            <strong>
+                                Nuevos Pedidos
+                            </strong>
+
+                            <small>
+                                Recibir email cuando se crea un pedido.
+                            </small>
+
+                        </span>
+
+                    </label>
+
+
+                    <!-- STOCK BAJO -->
+                    <label class="opcionNotificacion">
+
+                        <input
+                            type="checkbox"
+                            checked
+                        >
+
+                        <span>
+
+                            <strong>
+                                Stock Bajo
+                            </strong>
+
+                            <small>
+                                Alertas de inventario por debajo de 5 uds.
+                            </small>
+
+                        </span>
+
+                    </label>
+
+
+                    <!-- RESUMEN SEMANAL -->
+                    <label class="opcionNotificacion">
+
+                        <input
+                            type="checkbox"
+                        >
+
+                        <span>
+
+                            <strong>
+                                Resumen Semanal
+                            </strong>
+
+                            <small>
+                                Reporte de ventas cada domingo.
+                            </small>
+
+                        </span>
+
+                    </label>
+
+
+                    <button class="botonGuardar">
+                        Guardar
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 
                 <!-- FOOTER -->
                 <footer>
