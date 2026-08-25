@@ -546,3 +546,110 @@ footer a {
 
     text-decoration: none;
 }
+
+/* --- TARJETA 1: Total de Clientes --- */
+#TarjetaClientes {
+    background-color: #FFFFFF;
+    border: 1px solid #EBE9DF;
+    border-radius: 16px;
+}
+
+#TarjetaClientes .card-title {
+    color: #6C757D;
+    font-weight: 600;
+}
+
+/* Ajustes para el número 1,248 */
+.numero-clientes {
+    color: var(--color-green-dark);
+    font-weight: 700;
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.texto-crecimiento {
+    color: var(--primario);
+    font-size: 0.88rem;
+    font-weight: 600;
+}
+
+.icono-clientes {
+    color: #C3D3B5;
+    background-color: #F4F7F2;
+    padding: 8px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+}
+
+/* --- TARJETA 2: Tasa de Recurrencia --- */
+#TarjetaRecurrencia {
+    background-color: var(--primario);
+    border: none;
+    border-radius: 16px;
+}
+
+.verde-oscuro-titulo {
+    color: var(--color-green-dark);
+    font-weight: 600;
+    opacity: 0.85;
+}
+
+.numero-destacado-oscuro {
+    color: var(--color-green-dark);
+    font-weight: 700;
+    font-size: 2.5rem;
+}
+
+.verde-oscuro-texto {
+    color: var(--color-green-dark);
+    font-size: 0.9rem;
+    line-height: 1.35;
+    opacity: 0.9;
+}
+
+
+
+/* Contenedor principal de la celda Cliente */
+.cliente-info-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Alineación vertical de los datos (Nombre arriba, Email abajo) */
+.cliente-datos {
+    display: flex;
+    flex-direction: column;
+}
+
+.cliente-nombre {
+    font-weight: 700;
+    color: #212529;
+    font-size: 0.95rem;
+    line-height: 1.2;
+}
+
+.cliente-email {
+    font-size: 0.82rem;
+    color: #8C8C8C;
+}
+
+/* Estilos para Foto de Perfil */
+.avatar-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Estilos para Avatares con Iniciales */
+.avatar-iniciales {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
