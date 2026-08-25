@@ -313,7 +313,9 @@
                                             <td>Ana López</td>
                                             <td>Hoy, 10:23 AM</td>
                                             <td>$350.00</td>
-                                            <td>Pendiente</td>
+                                            <td>
+                                                <span class="estadoPedido pendiente">Pendiente</span>
+                                            </td>
                                         </tr>
 
                                         <tr class="secondRowTableValues">
@@ -321,7 +323,9 @@
                                             <td>Carlos Ruíz</td>
                                             <td>Ayer, 04:45 PM</td>
                                             <td>$890.50</td>
-                                            <td>Enviado</td>
+                                            <td>
+                                                <span class="estadoPedido enviado">Enviado</span>
+                                            </td>
                                         </tr>
 
                                         <tr class="thirdRowTableValues">
@@ -329,7 +333,9 @@
                                             <td>Sofía Martínez</td>
                                             <td>Ayer, 11:10 AM</td>
                                             <td>$120.00</td>
-                                            <td>Enviado</td>
+                                            <td>
+                                                <span class="estadoPedido enviado">Enviado</span>
+                                            </td>
                                         </tr>
 
                                         <tr class="fourthRowTableValues">
@@ -337,7 +343,9 @@
                                             <td>Sofía Martínez</td>
                                             <td>12 Ago, 09:00 AM</td>
                                             <td>$540.00</td>
-                                            <td>Entregado</td>
+                                            <td>
+                                                <span class="estadoPedido entregado">Entregado</span>
+                                            </td>
                                         </tr>
 
                                     </tbody>
@@ -353,47 +361,143 @@
                 </section>
 
                 <section id="productos">
+
                     <div class="row g-4">
 
                         <div class="col-12">
 
+
+                            <!-- =================================
+                                ENCABEZADO DEL CATÁLOGO
+                            ================================== -->
+
+                            <div class="catalogoHeader">
+
+                                <div class="catalogoTitulo">
+
+                                    <h1>
+                                        Catálogo de Productos
+                                    </h1>
+
+                                    <p>
+                                        Gestiona tu inventario, precios y disponibilidad de productos.
+                                    </p>
+
+                                </div>
+
+
+                                <div class="accionesCatalogo">
+
+                                    <button class="botonExportar">
+                                        <span>⇩</span>
+                                        Exportar
+                                    </button>
+
+                                    <button class="botonAgregar">
+                                        +
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- =================================
+                                FILTROS
+                            ================================== -->
+
+                            <div class="filtrosProductos">
+
+                                <button class="filtro activo">
+                                    Todos
+                                </button>
+
+                                <button class="filtro">
+                                    Mochis
+                                </button>
+
+                                <button class="filtro">
+                                    Pockys
+                                </button>
+
+                                <button class="filtro">
+                                    Bebidas
+                                </button>
+
+                            </div>
+
+
+                            <!-- =================================
+                                TABLA
+                            ================================== -->
+
                             <div class="tablaProductos">
 
                                 <table>
+
                                     <thead>
+
                                         <tr class="tituloTablaProductos">
+
                                             <th>
                                                 <input type="checkbox">
                                             </th>
+
                                             <th>Producto</th>
+
                                             <th>Categoría</th>
+
                                             <th>Precio</th>
+
                                             <th>Stock</th>
+
                                             <th>Estado</th>
+
                                         </tr>
+
                                     </thead>
 
+
                                     <tbody id="tablaProductos">
-                                        <!-- JS va a meter aquí los productos -->
+                                        <!-- JS mete aquí los productos -->
                                     </tbody>
+
                                 </table>
+
+
+                                <!-- =================================
+                                    PAGINACIÓN
+                                ================================== -->
 
                                 <div class="paginacion">
 
-                                    <!-- JS actualizará este texto -->
                                     <p id="infoProductos"></p>
+
 
                                     <div>
 
-                                        <button id="anterior">Anterior</button>
+                                        <button id="anterior">
+                                            Anterior
+                                        </button>
 
-                                        <button class="pagina" data-pagina="1">1</button>
-                                        <button class="pagina" data-pagina="2">2</button>
-                                        <button class="pagina" data-pagina="3">3</button>
+                                        <button class="pagina" data-pagina="1">
+                                            1
+                                        </button>
 
-                                        <button id="siguiente">Siguiente</button>
-                                    
+                                        <button class="pagina" data-pagina="2">
+                                            2
+                                        </button>
+
+                                        <button class="pagina" data-pagina="3">
+                                            3
+                                        </button>
+
+                                        <button id="siguiente">
+                                            Siguiente
+                                        </button>
+
                                     </div>
+
                                 </div>
 
                             </div>
@@ -401,10 +505,269 @@
                         </div>
 
                     </div>
+
                 </section>
 
-
                 <section id="pedidos">
+
+                    <!-- ENCABEZADO -->
+                    <div class="pedidosHeader">
+
+                        <div class="pedidosTitulo">
+                            <h1>Gestión de Pedidos</h1>
+                            <p>Supervisa y actualiza el estado de los envíos pendientes.</p>
+                        </div>
+
+                        <div class="accionesPedidos">
+
+                            <button class="botonFiltrar">
+                                <span>☰</span>
+                                Filtrar
+                            </button>
+
+                            <button class="botonExportarPedidos">
+                                <span>⇩</span>
+                                Exportar
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- TABLA DE PEDIDOS -->
+                    <div class="tablaPedidos">
+
+                        <table>
+
+                            <thead>
+                                <tr>
+                                    <th>Guía de envío</th>
+                                    <th>Cliente & destino</th>
+                                    <th>Fecha</th>
+                                    <th>Método de pago</th>
+                                    <th>Estado</th>
+                                    <th>Acción</th>
+                                </tr>
+                            </thead>
+
+
+                            <tbody>
+
+                                <!-- PEDIDO 1 -->
+                                <tr>
+
+                                    <td>
+                                        <div class="guiaPedido">
+
+                                            <div class="iconoEnvio pendienteEnvio">
+                                                🚚
+                                            </div>
+
+                                            <div class="guiaTexto">
+                                                <strong>#MX-0992-A</strong>
+                                                <span>Estándar</span>
+                                            </div>
+
+                                        </div>
+                                    </td>
+
+
+                                    <td>
+                                        <div class="clientePedido">
+
+                                            <strong>Sofía Martínez</strong>
+
+                                            <span>
+                                                ⌖ Estado de México
+                                            </span>
+
+                                        </div>
+                                    </td>
+
+
+                                    <td>
+                                        24 Oct, 10:30 AM
+                                    </td>
+
+
+                                    <td>
+                                        <span class="metodoPago">
+                                            ▣ Tarjeta
+                                        </span>
+                                    </td>
+
+
+                                    <td>
+                                        <span class="estadoPedido estadoPendiente">
+                                            Pendiente⌄
+                                        </span>
+                                    </td>
+
+
+                                    <td>
+                                        <button class="accionesPedido">
+                                            ⋮
+                                        </button>
+                                    </td>
+
+                                </tr>
+
+
+                                <!-- PEDIDO 2 -->
+                                <tr>
+
+                                    <td>
+                                        <div class="guiaPedido">
+
+                                            <div class="iconoEnvio caminoEnvio">
+                                                🚚
+                                            </div>
+
+                                            <div class="guiaTexto">
+                                                <strong>#MX-0993-B</strong>
+                                                <span>Express</span>
+                                            </div>
+
+                                        </div>
+                                    </td>
+
+
+                                    <td>
+                                        <div class="clientePedido">
+
+                                            <strong>Carlos Reyes</strong>
+
+                                            <span>
+                                                ⌖ Jalisco
+                                            </span>
+
+                                        </div>
+                                    </td>
+
+
+                                    <td>
+                                        23 Oct, 14:15 PM
+                                    </td>
+
+
+                                    <td>
+                                        <span class="metodoPago">
+                                            ▣ OXXO Pay
+                                        </span>
+                                    </td>
+
+
+                                    <td>
+                                        <span class="estadoPedido estadoCamino">
+                                            En camino⌄
+                                        </span>
+                                    </td>
+
+
+                                    <td>
+                                        <button class="accionesPedido">
+                                            ⋮
+                                        </button>
+                                    </td>
+
+                                </tr>
+
+
+                                <!-- PEDIDO 3 -->
+                                <tr>
+
+                                    <td>
+                                        <div class="guiaPedido">
+
+                                            <div class="iconoEnvio entregadoEnvio">
+                                                🚚
+                                            </div>
+
+                                            <div class="guiaTexto">
+                                                <strong>#MX-0994-C</strong>
+                                                <span>Estándar</span>
+                                            </div>
+
+                                        </div>
+                                    </td>
+
+
+                                    <td>
+                                        <div class="clientePedido">
+
+                                            <strong>Ana Gómez</strong>
+
+                                            <span>
+                                                ⌖ Nuevo León
+                                            </span>
+
+                                        </div>
+                                    </td>
+
+
+                                    <td>
+                                        22 Oct, 09:00 AM
+                                    </td>
+
+
+                                    <td>
+                                        <span class="metodoPago">
+                                            ▣ SPEI
+                                        </span>
+                                    </td>
+
+
+                                    <td>
+                                        <span class="estadoPedido estadoEntregado">
+                                            Entregado⌄
+                                        </span>
+                                    </td>
+
+
+                                    <td>
+                                        <button class="accionesPedido">
+                                            ⋮
+                                        </button>
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+
+                        <!-- PAGINACIÓN -->
+                        <div class="paginacionPedidos">
+
+                            <p>
+                                Mostrando 3 de 45 pedidos
+                            </p>
+
+                            <div>
+
+                                <button>‹</button>
+
+                                <button class="paginaPedido activa">
+                                    1
+                                </button>
+
+                                <button class="paginaPedido">
+                                    2
+                                </button>
+
+                                <button class="paginaPedido">
+                                    3
+                                </button>
+
+                                <button>›</button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
 
                 </section>
 

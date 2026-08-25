@@ -320,7 +320,41 @@ h5 {
     margin-top: 2rem;
 }
 
-/* PEDIDOS RECIENTES */
+/* =========================
+   PEDIDOS RECIENTES
+   ========================= */
+
+/* ESTADOS DE PEDIDOS */
+
+.estadoPedido {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+/* Pendiente - naranja */
+.estadoPedido.pendiente {
+    background-color: #fff0e8;
+    color: #ff7a1a;
+    border: 1px solid #ffc596;
+}
+
+/* Enviado - verde */
+.estadoPedido.enviado {
+    background-color: #e4efdc;
+    color: #6f9655;
+    border: 1px solid #b8d4a5;
+}
+
+/* Entregado - gris */
+.estadoPedido.entregado {
+    background-color: #e9e9e4;
+    color: #666;
+    border: 1px solid #c8c8be;
+}   
+
 
 .pedidoReciente {
     height: 100%;
@@ -329,67 +363,349 @@ h5 {
 
     border-radius: 20px;
 
-    padding: 2rem;
-    
-    
+    overflow: hidden;
 }
 
-.pedidoRecienteTitle{
+
+/* ENCABEZADO DE LA CARD */
+
+.pedidoRecienteTitle {
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
-    margin-bottom: 10px;
+
+    padding: 1.5rem 2rem;
+
+    margin: 0;
+}
+
+.pedidoRecienteTitle h4 {
+    margin: 0;
+
+    font-weight: 600;
 }
 
 .pedidoRecienteTitle a {
     text-decoration: none;
-    color: #3b670f;
+
+    color: var(--color-green-dark);
+
     font-size: 13px;
 }
 
+
+/* TABLA */
+
 .pedidoReciente table {
     width: 100%;
+
+    border-collapse: collapse;
 }
 
-.titulosTable {
-    background-color: #e4dbc67d;
-    margin-bottom: 10px;
+.pedidoReciente th {
+    background-color: #F2EDE3;
+
+    padding: .9rem 1rem;
+
+    text-align: left;
+
+    font-size: 13px;
 }
 
-.titulosTable th {
-    padding: 10px;
+.pedidoReciente td {
+    padding: 1rem;
+
+    vertical-align: middle;
+
+    font-size: 14px;
 }
 
-.firstRowTableValues td {
-    padding: 10px;
-}
 
-.secondRowTableValues td {
-    padding: 10px;
-}
-
-.thirdRowTableValues td {
-    padding: 10px;
-}
+/* Líneas entre filas */
 
 .pedidoReciente tbody tr {
     border-bottom: 1px solid #eee;
 }
 
-/* esquina izquierda, las tablas se ponen picky y usamos este truco */
-.titulosTable th:first-child {
-    border-radius: 10px 0 0 10px;
-}
-.fourthRowTableValues td {
-    padding: 10px;
+.pedidoReciente tbody tr:last-child {
+    border-bottom: none;
 }
 
-/* esquina derecha */
-.titulosTable th:last-child {
+
+/* Esquinas del encabezado */
+
+.pedidoReciente th:first-child {
+    border-radius: 10px 0 0 10px;
+}
+
+.pedidoReciente th:last-child {
     border-radius: 0 10px 10px 0;
 }
 
-/* SEGUNDA SECCIÓN */
+
+/* =========================
+   CLIENTE
+   ========================= */
+
+.clienteReciente {
+    display: flex;
+
+    align-items: center;
+
+    gap: .7rem;
+}
+
+
+/* Avatar con iniciales */
+
+.avatarCliente {
+    width: 34px;
+
+    height: 34px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    border-radius: 50%;
+
+    background-color: #e2efd9;
+
+    color: var(--color-green-dark);
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+
+/* Avatar con foto */
+
+.avatarImagen {
+    width: 34px;
+
+    height: 34px;
+
+    flex-shrink: 0;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+}
+
+
+/* =========================
+   TOTAL
+   ========================= */
+
+.totalPedido {
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+
+/* =========================
+   ESTADOS
+   ========================= */
+
+.estadoReciente {
+    display: inline-block;
+
+    padding: 4px 12px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    white-space: nowrap;
+}
+
+
+/* Pendiente */
+
+.estadoReciente.pendiente {
+    background-color: #fff0e8;
+
+    border: 1px solid #ffc596;
+
+    color: #ff7a1a;
+}
+
+
+/* Enviado */
+
+.estadoReciente.enviado {
+    background-color: #e4efdc;
+
+    border: 1px solid #b8d4a5;
+
+    color: var(--primario);
+}
+
+
+/* Entregado */
+
+.estadoReciente.entregado {
+    background-color: #e9e9e4;
+
+    border: 1px solid #c8c8be;
+
+    color: #555;
+}
+
+/* =========================
+   CATÁLOGO DE PRODUCTOS
+   ========================= */
+
+.catalogoHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+
+/* TÍTULO */
+
+.catalogoTitulo h1 {
+    margin: 0 0 .5rem 0;
+
+    color: var(--color-green-dark);
+
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.catalogoTitulo p {
+    margin: 0;
+
+    color: #555;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   BOTONES DE ARRIBA
+   ========================= */
+
+.accionesCatalogo {
+    display: flex;
+    align-items: center;
+
+    gap: .75rem;
+}
+
+.accionesCatalogo button {
+    border: none;
+
+    cursor: pointer;
+
+    font-family: inherit;
+}
+
+
+/* EXPORTAR */
+
+.botonExportar {
+    display: flex;
+    align-items: center;
+
+    gap: .5rem;
+
+    padding: .6rem 1rem;
+
+    border-radius: 30px;
+
+    background-color: #eceae4;
+
+    color: var(--color-texto);
+
+    font-weight: 500;
+}
+
+
+/* BOTÓN + */
+
+.botonAgregar {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+
+    background-color: var(--terciario);
+
+    color: var(--color-texto);
+
+    font-size: 22px;
+}
+
+
+/* =========================
+   FILTROS
+   ========================= */
+
+.filtrosProductos {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    gap: .5rem;
+
+    padding: 1.5rem;
+
+    margin-bottom: 2rem;
+
+    background-color: white;
+
+    border-radius: 15px;
+}
+
+
+/* BOTONES DE FILTROS */
+
+.filtro {
+    padding: .45rem 1rem;
+
+    border: 1px solid #ddd9cf;
+
+    border-radius: 30px;
+
+    background-color: #f1efe9;
+
+    color: #4b4b43;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    cursor: pointer;
+}
+
+
+/* FILTRO SELECCIONADO */
+
+.filtro.activo {
+    background-color: var(--primario);
+
+    border-color: var(--primario);
+
+    color: #29451c;
+}
 
 /* SEGUNDA SECCIÓN */
 
@@ -405,6 +721,7 @@ h5 {
     border-radius: 20px;
 
     overflow: hidden;
+    margin-bottom: 10px;
 }
 
 .tablaProductos table {
@@ -414,14 +731,12 @@ h5 {
 
 .tituloTablaProductos th {
     background-color: #F2EDE3;
-
     padding: .9rem 1rem;
 }
 
 .tablaProductos th,
 .tablaProductos td {
     padding: .75rem 1rem;
-
     vertical-align: middle;
 }
 
@@ -430,41 +745,189 @@ h5 {
 }
 
 
-/* ANCHOS DE COLUMNAS */
+/* =========================
+   ANCHOS DE COLUMNAS
+   ========================= */
 
+/* Checkbox */
 .tablaProductos th:nth-child(1),
 .tablaProductos td:nth-child(1) {
     width: 6%;
     text-align: center;
 }
 
+/* Producto */
 .tablaProductos th:nth-child(2),
 .tablaProductos td:nth-child(2) {
     width: 34%;
 }
 
+/* Categoría */
 .tablaProductos th:nth-child(3),
 .tablaProductos td:nth-child(3) {
     width: 18%;
 }
 
+/* Precio */
 .tablaProductos th:nth-child(4),
 .tablaProductos td:nth-child(4) {
     width: 18%;
 }
 
+/* Stock */
 .tablaProductos th:nth-child(5),
 .tablaProductos td:nth-child(5) {
-    width: 12%;
+    width: 11%;
 }
 
+/* Estado */
 .tablaProductos th:nth-child(6),
 .tablaProductos td:nth-child(6) {
-    width: 12%;
+    width: 13%;
 }
 
 
-/* PAGINACIÓN */
+/* =========================
+   PRODUCTO: IMAGEN + TEXTO
+   ========================= */
+
+.productoInfo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.productoImagen {
+    width: 50px;
+    height: 50px;
+
+    object-fit: cover;
+
+    border-radius: 8px;
+
+    /* evita que flex haga la imagen más pequeña */
+    flex-shrink: 0;
+}
+
+.productoTexto {
+    display: flex;
+    flex-direction: column;
+
+    /* evita que el contenido invada
+       la siguiente columna */
+    min-width: 0;
+}
+
+.productoTexto strong {
+    font-weight: 600;
+    font-size: 14px;
+
+    white-space: nowrap;
+}
+
+.productoTexto span {
+    font-size: 12px;
+
+    color: #666;
+
+    white-space: nowrap;
+}
+
+
+/* =========================
+   CATEGORÍAS
+   ========================= */
+
+.categoria {
+    display: inline-block;
+
+    padding: 4px 12px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+}
+
+/* Mochis */
+.categoria-mochis {
+    background-color: #e2efd9;
+    color: #3b670f;
+}
+
+/* Pockys */
+.categoria-pockys {
+    background-color: #e8e6e1;
+    color: #555;
+}
+
+/* Bebidas */
+.categoria-bebidas {
+    background-color: #ffe0c7;
+    color: #74421e;
+}
+
+
+/* =========================
+   STOCK
+   ========================= */
+
+.stockBueno {
+    color: var(--color-green-dark);
+
+    font-weight: 600;
+}
+
+.stockBajo {
+    color: #c91818;
+
+    font-weight: 600;
+}
+
+
+/* =========================
+   ESTADO
+   ========================= */
+
+.estado {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 5px 12px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+}
+
+/* Activo */
+.estado.activo {
+    background-color: #d9f8e6;
+    color: #247244;
+}
+
+/* Inactivo */
+.estado.inactivo {
+    background-color: #f0f1f4;
+    color: #667085;
+}
+
+/* Bolita del estado */
+.puntoEstado {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background-color: currentColor;
+}
+
+
+/* =========================
+   PAGINACIÓN
+   ========================= */
 
 .paginacion {
     display: flex;
@@ -484,6 +947,8 @@ h5 {
 
 .paginacion > div {
     display: flex;
+
+    align-items: center;
 
     gap: .5rem;
 }
@@ -510,6 +975,435 @@ h5 {
     opacity: .4;
 
     cursor: not-allowed;
+}
+
+/* =========================
+   GESTIÓN DE PEDIDOS
+   ========================= */
+
+#pedidos {
+    width: 100%;
+}
+
+
+/* =========================
+   ENCABEZADO
+   ========================= */
+
+.pedidosHeader {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-top: 2rem;
+
+    margin-bottom: 2rem;
+}
+
+
+.pedidosTitulo h1 {
+    margin: 0 0 .5rem 0;
+
+    font-size: 2rem;
+
+    font-weight: 600;
+
+    color: var(--color-texto);
+}
+
+
+.pedidosTitulo p {
+    margin: 0;
+
+    color: #555;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   BOTONES SUPERIORES
+   ========================= */
+
+.accionesPedidos {
+    display: flex;
+
+    align-items: center;
+
+    gap: .75rem;
+}
+
+
+.botonFiltrar,
+.botonExportarPedidos {
+    display: flex;
+
+    align-items: center;
+
+    gap: .5rem;
+
+    border: none;
+
+    padding: .55rem 1rem;
+
+    border-radius: 30px;
+
+    background-color: #eceae4;
+
+    color: var(--color-texto);
+
+    font-family: inherit;
+
+    font-weight: 500;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   CONTENEDOR DE LA TABLA
+   ========================= */
+
+.tablaPedidos {
+    width: 100%;
+
+    background-color: white;
+
+    border: 1px solid #e5e0d7;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+
+/* =========================
+   TABLA
+   ========================= */
+
+.tablaPedidos {
+    border: none;
+
+    margin-bottom: 10px;
+}
+
+.tablaPedidos table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    table-layout: fixed;
+}
+
+
+.tablaPedidos th {
+    padding: 1rem;
+
+    background-color: #F2EDE3;
+
+    text-align: left;
+
+    font-size: 13px;
+
+    text-transform: uppercase;
+
+    color: #4b4b43;
+}
+
+
+.tablaPedidos td {
+    padding: 1.5rem 1rem;
+
+    vertical-align: middle;
+
+    font-size: 14px;
+}
+
+
+.tablaPedidos tbody tr {
+    border-bottom: 1px solid #eee;
+}
+
+
+/* =========================
+   ANCHOS DE COLUMNAS
+   ========================= */
+
+.tablaPedidos th:nth-child(1),
+.tablaPedidos td:nth-child(1) {
+    width: 20%;
+}
+
+
+.tablaPedidos th:nth-child(2),
+.tablaPedidos td:nth-child(2) {
+    width: 20%;
+}
+
+
+.tablaPedidos th:nth-child(3),
+.tablaPedidos td:nth-child(3) {
+    width: 16%;
+}
+
+
+.tablaPedidos th:nth-child(4),
+.tablaPedidos td:nth-child(4) {
+    width: 18%;
+}
+
+
+.tablaPedidos th:nth-child(5),
+.tablaPedidos td:nth-child(5) {
+    width: 18%;
+}
+
+
+.tablaPedidos th:nth-child(6),
+.tablaPedidos td:nth-child(6) {
+    width: 8%;
+
+    text-align: center;
+}
+
+
+/* =========================
+   GUÍA DE ENVÍO
+   ========================= */
+
+.guiaPedido {
+    display: flex;
+
+    align-items: center;
+
+    gap: .75rem;
+}
+
+
+.iconoEnvio {
+    width: 42px;
+
+    height: 42px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    border-radius: 8px;
+
+    background-color: #F2EDE3;
+}
+
+
+.guiaTexto {
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+.guiaTexto strong {
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+
+.guiaTexto span {
+    margin-top: 3px;
+
+    font-size: 12px;
+
+    color: #666;
+}
+
+
+/* COLORES DEL ICONO */
+
+.pendienteEnvio {
+    color: var(--terciario);
+}
+
+.caminoEnvio {
+    color: var(--color-green-dark);
+}
+
+.entregadoEnvio {
+    color: #777;
+}
+
+
+/* =========================
+   CLIENTE
+   ========================= */
+
+.clientePedido {
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+.clientePedido strong {
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+
+.clientePedido span {
+    margin-top: 5px;
+
+    color: #666;
+
+    font-size: 12px;
+}
+
+
+/* =========================
+   MÉTODO DE PAGO
+   ========================= */
+
+.metodoPago {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    background-color: #eceae4;
+
+    font-size: 12px;
+
+    white-space: nowrap;
+}
+
+
+/* =========================
+   ESTADOS
+   ========================= */
+
+.estadoPedido {
+    display: inline-flex;
+
+    align-items: center;
+
+    padding: 8px 16px;
+
+    border-radius: 25px;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+
+/* PENDIENTE */
+
+.estadoPendiente {
+    background-color: #ffd5d2;
+
+    color: #a40000;
+}
+
+
+/* EN CAMINO */
+
+.estadoCamino {
+    background-color: var(--terciario);
+
+    color: #493000;
+}
+
+
+/* ENTREGADO */
+
+.estadoEntregado {
+    background-color: var(--primario);
+
+    color: #31551f;
+}
+
+
+/* =========================
+   ACCIÓN
+   ========================= */
+
+.accionesPedido {
+    border: none;
+
+    background-color: transparent;
+
+    font-size: 22px;
+
+    color: #555;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   PAGINACIÓN
+   ========================= */
+
+.paginacionPedidos {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 1rem 1.5rem;
+}
+
+
+.paginacionPedidos p {
+    margin: 0;
+
+    font-size: 13px;
+}
+
+
+.paginacionPedidos > div {
+    display: flex;
+
+    align-items: center;
+
+    gap: .5rem;
+}
+
+
+.paginacionPedidos button {
+    width: 36px;
+
+    height: 36px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background-color: transparent;
+
+    cursor: pointer;
+}
+
+
+.paginaPedido.activa {
+    background-color: var(--color-green-dark);
+
+    color: white;
 }
 
 /* FOOTER */
