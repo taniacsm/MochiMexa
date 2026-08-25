@@ -102,9 +102,15 @@ new Chart(graficaVentas, {
 
 // Por ahora los productos están escritos aquí.
 // Después estos datos pueden venir de tu backend / base de datos.
+// ========================================
+// PRODUCTOS
+// ========================================
+
 const productos = [
     {
         nombre: "Mochi Tradicional Matcha",
+        sku: "MO-MAT-001",
+        imagen: "/frontend/assets/imagenes/productosCatalogo/mochis/Mochi Matcha.png",
         categoria: "Mochis",
         precio: 45,
         stock: 124,
@@ -112,6 +118,8 @@ const productos = [
     },
     {
         nombre: "Pocky Fresa Kawaii",
+        sku: "PK-FRE-002",
+        imagen: "/frontend/assets/imagenes/productos/pocky-fresa.png",
         categoria: "Pockys",
         precio: 35,
         stock: 12,
@@ -119,6 +127,8 @@ const productos = [
     },
     {
         nombre: "Ramune Soda Original",
+        sku: "BE-RAM-003",
+        imagen: "/frontend/assets/imagenes/productos/ramune-original.png",
         categoria: "Bebidas",
         precio: 65,
         stock: 0,
@@ -126,6 +136,8 @@ const productos = [
     },
     {
         nombre: "Mochi Fresa",
+        sku: "MO-FRE-004",
+        imagen: "/frontend/assets/imagenes/productos/mochi-fresa.png",
         categoria: "Mochis",
         precio: 50,
         stock: 30,
@@ -133,6 +145,8 @@ const productos = [
     },
     {
         nombre: "Pocky Chocolate",
+        sku: "PK-CHO-005",
+        imagen: "/frontend/assets/imagenes/productos/pocky-chocolate.png",
         categoria: "Pockys",
         precio: 40,
         stock: 20,
@@ -140,6 +154,8 @@ const productos = [
     },
     {
         nombre: "Ramune Melón",
+        sku: "BE-MEL-006",
+        imagen: "/frontend/assets/imagenes/productos/ramune-melon.png",
         categoria: "Bebidas",
         precio: 60,
         stock: 15,
@@ -147,6 +163,8 @@ const productos = [
     },
     {
         nombre: "Mochi Mango",
+        sku: "MO-MAN-007",
+        imagen: "/frontend/assets/imagenes/productos/mochi-mango.png",
         categoria: "Mochis",
         precio: 55,
         stock: 8,
@@ -154,6 +172,8 @@ const productos = [
     },
     {
         nombre: "Pocky Matcha",
+        sku: "PK-MAT-008",
+        imagen: "/frontend/assets/imagenes/productos/pocky-matcha.png",
         categoria: "Pockys",
         precio: 42,
         stock: 18,
@@ -161,6 +181,8 @@ const productos = [
     },
     {
         nombre: "Ramune Fresa",
+        sku: "BE-FRE-009",
+        imagen: "/frontend/assets/imagenes/productos/ramune-fresa.png",
         categoria: "Bebidas",
         precio: 65,
         stock: 0,
@@ -170,13 +192,11 @@ const productos = [
 
 
 // ========================================
-// VARIABLES PARA LA PAGINACIÓN
+// VARIABLES DE PAGINACIÓN
 // ========================================
 
-// Página que estamos viendo actualmente.
 let paginaActual = 1;
 
-// Cuántos productos queremos mostrar por página.
 const productosPorPagina = 3;
 
 
@@ -184,156 +204,221 @@ const productosPorPagina = 3;
 // ELEMENTOS DEL HTML
 // ========================================
 
-// tbody donde vamos a insertar los productos.
 const tablaProductos = document.getElementById("tablaProductos");
 
-// Botones anterior y siguiente.
 const botonAnterior = document.getElementById("anterior");
+
 const botonSiguiente = document.getElementById("siguiente");
 
-// Seleccionamos TODOS los botones que tengan class="pagina".
 const botonesPagina = document.querySelectorAll(".pagina");
+
+const infoProductos = document.getElementById("infoProductos");
 
 
 // ========================================
-// FUNCIÓN PARA MOSTRAR LOS PRODUCTOS
+// MOSTRAR PRODUCTOS
 // ========================================
 
 function mostrarProductos() {
 
-    // Primero limpiamos la tabla.
-    // Esto evita que se acumulen los productos anteriores.
+    // Limpiamos las filas anteriores
     tablaProductos.innerHTML = "";
 
-
-    // Calculamos desde qué producto debemos empezar.
-    //
-    // Página 1:
-    // (1 - 1) * 3 = 0
-    //
-    // Página 2:
-    // (2 - 1) * 3 = 3
-    //
-    // Página 3:
-    // (3 - 1) * 3 = 6
+    // Calculamos desde qué producto comenzar
     const inicio = (paginaActual - 1) * productosPorPagina;
 
-
-    // Calculamos dónde termina la página.
+    // Calculamos dónde termina esta página
     const fin = inicio + productosPorPagina;
 
-
-    // slice() toma solamente una parte del arreglo.
-    //
-    // Por ejemplo:
-    // slice(0, 3)
-    //
-    // toma los productos:
-    // 0, 1 y 2
+    // Sacamos solo los productos correspondientes
     const productosPagina = productos.slice(inicio, fin);
 
 
-    // Recorremos solamente los productos
-    // que pertenecen a esta página.
+    // Recorremos los productos de la página actual
     productosPagina.forEach(producto => {
 
-        // Creamos una fila <tr>.
+        // Creamos una fila
         const fila = document.createElement("tr");
 
 
-        // Metemos dentro de la fila los datos del producto.
+        // ========================================
+        // CLASE DE CATEGORÍA
+        // ========================================
+
+        // "Mochis" -> "mochis"
+        const claseCategoria =
+            producto.categoria.toLowerCase();
+
+
+        // ========================================
+        // CLASE DE STOCK
+        // ========================================
+
+        let claseStock = "";
+
+        if (producto.stock > 15) {
+
+            claseStock = "stockBueno";
+
+        } else if (
+            producto.stock > 0 &&
+            producto.stock <= 15
+        ) {
+
+            claseStock = "stockBajo";
+        }
+
+
+        // ========================================
+        // CLASE DE ESTADO
+        // ========================================
+
+        // "Activo" -> "activo"
+        // "Inactivo" -> "inactivo"
+        const claseEstado =
+            producto.estado.toLowerCase();
+
+
+        // ========================================
+        // CONTENIDO DE LA FILA
+        // ========================================
+
         fila.innerHTML = `
+
+            <!-- CHECKBOX -->
             <td>
-                <input type="checkbox" class="checkboxProducto">
+                <input
+                    type="checkbox"
+                    class="checkboxProducto"
+                >
             </td>
 
-            <td>${producto.nombre}</td>
 
-            <td>${producto.categoria}</td>
+            <!-- PRODUCTO -->
+            <td>
 
-            <td>$${producto.precio.toFixed(2)} MXN</td>
+                <div class="productoInfo">
 
-            <td>${producto.stock}</td>
+                    <img
+                        src="${producto.imagen}"
+                        alt="${producto.nombre}"
+                        class="productoImagen"
+                    >
 
-            <td>${producto.estado}</td>
+                    <div class="productoTexto">
+
+                        <strong>
+                            ${producto.nombre}
+                        </strong>
+
+                        <span>
+                            SKU: ${producto.sku}
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </td>
+
+
+            <!-- CATEGORÍA -->
+            <td>
+
+                <span
+                    class="categoria categoria-${claseCategoria}"
+                >
+                    ${producto.categoria}
+                </span>
+
+            </td>
+
+
+            <!-- PRECIO -->
+            <td>
+                $${producto.precio.toFixed(2)} MXN
+            </td>
+
+
+            <!-- STOCK -->
+            <td class="${claseStock}">
+                ${producto.stock}
+            </td>
+
+
+            <!-- ESTADO -->
+            <td>
+
+                <span class="estado ${claseEstado}">
+
+                    <span class="puntoEstado"></span>
+
+                    ${producto.estado}
+
+                </span>
+
+            </td>
         `;
 
 
-        // Agregamos la fila al tbody.
+        // Agregamos la fila al tbody
         tablaProductos.appendChild(fila);
     });
 
 
     // ========================================
-    // TEXTO: "Mostrando 1 a 3 de 9 productos"
+    // TEXTO "MOSTRANDO..."
     // ========================================
 
-    // El primer producto que aparece en esta página.
-    // Sumamos 1 porque los arreglos empiezan en posición 0.
     const primerProducto = inicio + 1;
 
+    const ultimoProducto = Math.min(
+        fin,
+        productos.length
+    );
 
-    // Calculamos el último producto mostrado.
-    //
-    // Math.min() evita pasarnos del total.
-    // Por ejemplo, si existen 8 productos:
-    // página 3 mostraría del 7 al 8, NO del 7 al 9.
-    const ultimoProducto = Math.min(fin, productos.length);
-
-
-    // Cambiamos el texto del <p> que tenemos en el HTML.
-    document.getElementById("infoProductos").textContent =
+    infoProductos.textContent =
         `Mostrando ${primerProducto} a ${ultimoProducto} de ${productos.length} productos`;
 
 
-    // Actualizamos los botones después de mostrar la página.
+    // Actualizamos botones
     actualizarBotones();
 }
 
+
 // ========================================
-// FUNCIÓN PARA ACTUALIZAR LOS BOTONES
+// ACTUALIZAR BOTONES
 // ========================================
 
 function actualizarBotones() {
-
-    // Calculamos cuántas páginas existen.
-    //
-    // Tenemos 9 productos y mostramos 3:
-    //
-    // 9 / 3 = 3 páginas
 
     const totalPaginas = Math.ceil(
         productos.length / productosPorPagina
     );
 
 
-    // Si estamos en la página 1,
-    // desactivamos "Anterior".
-    botonAnterior.disabled = paginaActual === 1;
+    // Desactivar "Anterior" en página 1
+    botonAnterior.disabled =
+        paginaActual === 1;
 
 
-    // Si estamos en la última página,
-    // desactivamos "Siguiente".
-    botonSiguiente.disabled = paginaActual === totalPaginas;
+    // Desactivar "Siguiente" en la última página
+    botonSiguiente.disabled =
+        paginaActual === totalPaginas;
 
 
-    // Recorremos los botones 1, 2 y 3.
+    // Cambiar estilo del botón activo
     botonesPagina.forEach(boton => {
 
-        // Obtenemos el número guardado en:
-        // data-pagina="1"
-        // data-pagina="2"
-        // etc.
-        const numeroPagina = Number(boton.dataset.pagina);
+        const numeroPagina =
+            Number(boton.dataset.pagina);
 
 
-        // Quitamos la clase activo de todos.
         boton.classList.remove("activo");
 
 
-        // Si este botón corresponde a la página actual,
-        // agregamos la clase activo.
         if (numeroPagina === paginaActual) {
+
             boton.classList.add("activo");
         }
     });
@@ -351,8 +436,6 @@ botonSiguiente.addEventListener("click", () => {
     );
 
 
-    // Solo avanzamos si todavía existe
-    // una página siguiente.
     if (paginaActual < totalPaginas) {
 
         paginaActual++;
@@ -368,8 +451,6 @@ botonSiguiente.addEventListener("click", () => {
 
 botonAnterior.addEventListener("click", () => {
 
-    // Solo retrocedemos si no estamos
-    // en la primera página.
     if (paginaActual > 1) {
 
         paginaActual--;
@@ -387,12 +468,8 @@ botonesPagina.forEach(boton => {
 
     boton.addEventListener("click", () => {
 
-        // dataset.pagina obtiene el valor de:
-        // data-pagina="..."
-        //
-        // Number lo convierte de texto a número.
-
-        paginaActual = Number(boton.dataset.pagina);
+        paginaActual =
+            Number(boton.dataset.pagina);
 
         mostrarProductos();
     });
@@ -400,7 +477,7 @@ botonesPagina.forEach(boton => {
 
 
 // ========================================
-// MOSTRAR LA PRIMERA PÁGINA AL CARGAR
+// MOSTRAR PRIMERA PÁGINA
 // ========================================
 
 mostrarProductos();
