@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalogo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Nunito:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/catalogo.css">
+    <link rel="stylesheet" href="../css/despliegueCarrito.css">
+
+</head>
+
+<body class="bg-catalog">
+    <div id="mochiNav"></div>
+    <main class="container py-5">
+        <!-- Encabezado -->
+        <header class="mb-5">
+            <h1 class="fw-bold text-dark display-6 mb-2">Nuestros productos</h1>
+            <p class="text-secondary mb-0">Explora el balance perfecto entre la tradición artesanal japonesa y los vibrantes sabores de México.</p>
+        </header>
+
+        <div class="row g-4">
+            <!-- Sidebar / Filtros -->
+            <aside class="col-12 col-md-3">
+                <div class="filter-section mb-4">
+                    <h6 class="fw-bold text-dark mb-3">
+                        <i class="bi bi-cash-stack text-success me-2"></i>Rango de Precio
+                    </h6>
+                    <input type="range" class="form-range custom-range" min="50" max="500" id="priceRange">
+                    <div class="d-flex justify-content-between text-muted small fw-semibold">
+                        <span>$50 MXN</span>
+                        <span>$500 MXN</span>
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <h6 class="fw-bold text-dark mb-3">
+                        <i class="bi bi-grid-fill text-success me-2"></i>Categoria
+                    </h6>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input custom-checkbox" type="checkbox" id="flavor1" checked>
+                        <label class="form-check-label text-secondary small fw-medium" for="flavor1">Mochis</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input custom-checkbox" type="checkbox" id="flavor2">
+                        <label class="form-check-label text-secondary small fw-medium" for="flavor2">Snacks</label>
+                    </div>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input custom-checkbox" type="checkbox" id="flavor3">
+                        <label class="form-check-label text-secondary small fw-medium" for="flavor3">Bebidas</label>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Grid de Productos -->
+            <section class="col-12 col-md-9">
+                <div class="row g-4">
+                    <!-- Tarjeta de Producto 1 -->
+                    <div class="col-12 col-sm-6 col-lg-4">
+                        <div class="card h-100 border-0 rounded-4 shadow-sm overflow-hidden bg-white">
+                            <div class="position-relative product-img-container rounded-4 mb-3">
+                                <span class="badge badge-stock position-absolute top-0 start-0 m-3 px-3 py-2">EN STOCK</span>
+                                <img src="../assets/imagenes/productosCatalogo/mochis/Mochi Fresa.png" class="img-fluid d-block mx-auto" alt="Mochi de Tamarindo">
+                            </div>
+                            <div class="card-body d-flex flex-column justify-content-between">
+                                <div>
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h5 class="fw-bold text-dark fs-6 m-0">Mochi de Fresa</h5>
+                                        <span class="price-tag fw-bold">$85.00</span>
+                                    </div>
+                                    <p class="text-secondary extra-small mb-4">Mochi tradicional relleno de pulpa de fresa picante con un toque de chile ancho.</p>
+                                </div>
+                                <button onclick="Cart.additem(1)" class="btn btn-orange w-100 rounded-pill py-2 fw-semibold d-flex align-items-center justify-content-center gap-2">
+                                    <i class="bi bi-cart-fill"></i> Agregar al carrito
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tarjeta de Producto 2 -->
+                    <div class="col-12 col-sm-6 col-lg-4">
+                        <div class="card h-100 border-0 rounded-4 shadow-sm overflow-hidden bg-white">
+                            <div class="position-relative product-img-container rounded-4 mb-3">
+                                <span class="badge badge-stock position-absolute top-0 start-0 m-3 px-3 py-2">EN STOCK</span>
+                                <img src="../assets/imagenes/productosCatalogo/mochis/Mochi Lychee.png" class="img-fluid d-block mx-auto" alt="Mochi de Tamarindo">
+                            </div>
+                            <div class="card-body d-flex flex-column justify-content-between">
+                                <div>
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h5 class="fw-bold text-dark fs-6 m-0">Mochi de Lychee</h5>
+                                        <span class="price-tag fw-bold">$85.00</span>
+                                    </div>
+                                    <p class="text-secondary extra-small mb-4">Mochi tradicional relleno de pulpa de Lychee picante con un toque de chile ancho.</p>
+                                </div>
+                                <button onclick="Cart.additem(2)" class="btn btn-orange w-100 rounded-pill py-2 fw-semibold d-flex align-items-center justify-content-center gap-2">
+                                    <i class="bi bi-cart-fill"></i> Agregar al carrito
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Tarjeta 3-->
+                    <div class="col-12 col-sm-6 col-lg-4">
+                        <div class="card h-100 border-0 rounded-4 shadow-sm overflow-hidden bg-white">
+                            <div class="position-relative product-img-container rounded-4 mb-3">
+                                <span class="badge badge-stock position-absolute top-0 start-0 m-3 px-3 py-2">EN STOCK</span>
+                                <img src="../assets/imagenes/productosCatalogo/mochis/Mochi Mango.png" class="img-fluid d-block mx-auto" alt="Mochi de Tamarindo">
+                            </div>
+                            <div class="card-body d-flex flex-column justify-content-between">
+                                <div>
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h5 class="fw-bold text-dark fs-6 m-0">Mochi de Mango</h5>
+                                        <span class="price-tag fw-bold">$85.00</span>
+                                    </div>
+                                    <p class="text-secondary extra-small mb-4">Mochi tradicional relleno de pulpa de mango picante con un toque de chile ancho.</p>
+                                </div>
+                                <button onclick="Cart.additem(3)" class="btn btn-orange w-100 rounded-pill py-2 fw-semibold d-flex align-items-center justify-content-center gap-2">
+                                    <i class="bi bi-cart-fill"></i> Agregar al carrito
+                                </button>
+                            </div>
+                        </div>
+                    </div>                    
+                    <!--Tarjeta 4-->
+                    <div class="col-12 col-sm-6 col-lg-4">
+                        <div class="card h-100 border-0 rounded-4 shadow-sm overflow-hidden bg-white">
+                            <div class="position-relative product-img-container rounded-4 mb-3">
+                                <span class="badge badge-stock position-absolute top-0 start-0 m-3 px-3 py-2">EN STOCK</span>
+                                <img src="../assets/imagenes/productosCatalogo/mochis/Mochi Matcha.png" class="img-fluid d-block mx-auto" alt="Mochi de Tamarindo">
+                            </div>
+                            <div class="card-body d-flex flex-column justify-content-between">
+                                <div>
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h5 class="fw-bold text-dark fs-6 m-0">Mochi de Matcha</h5>
+                                        <span class="price-tag fw-bold">$85.00</span>
+                                    </div>
+                                    <p class="text-secondary extra-small mb-4">Mochi tradicional relleno de pulpa de Matcha picante con un toque de chile ancho.</p>
+                                </div>
+                                <button onclick="Cart.additem(4)" class="btn btn-orange w-100 rounded-pill py-2 fw-semibold d-flex align-items-center justify-content-center gap-2">
+                                    <i class="bi bi-cart-fill"></i> Agregar al carrito
+                                </button>
+                            </div>
+                        </div>
+                    </div>                                    
+                    <!--Tarjeta 5--> 
+                    <div class="col-12 col-sm-6 col-lg-4">
+                        <div class="card h-100 border-0 rounded-4 shadow-sm overflow-hidden bg-white">
+                            <div class="position-relative product-img-container rounded-4 mb-3">
+                                <span class="badge badge-stock position-absolute top-0 start-0 m-3 px-3 py-2">EN STOCK</span>
+                                <img src="../assets/imagenes/productosCatalogo/mochis/Mochi Taro.png" class="img-fluid d-block mx-auto" alt="Mochi de Tamarindo">
+                            </div>
+                            <div class="card-body d-flex flex-column justify-content-between">
+                                <div>
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h5 class="fw-bold text-dark fs-6 m-0">Mochi de Taro</h5>
+                                        <span class="price-tag fw-bold">$85.00</span>
+                                    </div>
+                                    <p class="text-secondary extra-small mb-4">Mochi tradicional relleno de taro picante con un toque de chile ancho.</p>
+                                </div>
+                                <button onclick="Cart.additem(5)" class="btn btn-orange w-100 rounded-pill py-2 fw-semibold d-flex align-items-center justify-content-center gap-2">
+                                    <i class="bi bi-cart-fill"></i> Agregar al carrito
+                                </button>
+                            </div>
+                        </div>
+                    </div>                                       
+                    <!--Tarjeta 6--> 
+                    <div class="col-12 col-sm-6 col-lg-4">
+                        <div class="card h-100 border-0 rounded-4 shadow-sm overflow-hidden bg-white">
+                            <div class="position-relative product-img-container rounded-4 mb-3">
+                                <span class="badge badge-stock position-absolute top-0 start-0 m-3 px-3 py-2">EN STOCK</span>
+                                <img src="../assets/imagenes/productosCatalogo/ramune/Ramune Lychee.png" class="img-fluid d-block mx-auto" alt="Mochi de Tamarindo">
+                            </div>
+                            <div class="card-body d-flex flex-column justify-content-between">
+                                <div>
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h5 class="fw-bold text-dark fs-6 m-0">Bebida de Lychee</h5>
+                                        <span class="price-tag fw-bold">$50.00</span>
+                                    </div>
+                                    <p class="text-secondary extra-small mb-4">Bebida 500mL de Lychee</p>
+                                </div>
+                                <button onclick="Cart.additem(6)" class="btn btn-orange w-100 rounded-pill py-2 fw-semibold d-flex align-items-center justify-content-center gap-2">
+                                    <i class="bi bi-cart-fill"></i> Agregar al carrito
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Tarjeta 7-->
+                    <div class="col-12 col-sm-6 col-lg-4">
+                        <div class="card h-100 border-0 rounded-4 shadow-sm overflow-hidden bg-white">
+                            <div class="position-relative product-img-container rounded-4 mb-3">
+                                <span class="badge badge-stock position-absolute top-0 start-0 m-3 px-3 py-2">EN STOCK</span>
+                                <img src="../assets/imagenes/productosCatalogo/pokis/Pokys Cholocate.png" class="img-fluid d-block mx-auto" alt="Mochi de Tamarindo">
+                            </div>
+                            <div class="card-body d-flex flex-column justify-content-between">
+                                <div>
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h5 class="fw-bold text-dark fs-6 m-0">Pokys de chocolate</h5>
+                                        <span class="price-tag fw-bold">$85.00</span>
+                                    </div>
+                                    <p class="text-secondary extra-small mb-4">Mochi tradicional relleno de pulpa de tamarindo picante con un toque de chile ancho.</p>
+                                </div>
+                                <button onclick="Cart.additem(7)" class="btn btn-orange w-100 rounded-pill py-2 fw-semibold d-flex align-items-center justify-content-center gap-2">
+                                    <i class="bi bi-cart-fill"></i> Agregar al carrito
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Tarjeta 8-->
+                    <div class="col-12 col-sm-6 col-lg-4">
+                        <div class="card h-100 border-0 rounded-4 shadow-sm overflow-hidden bg-white">
+                            <div class="position-relative product-img-container rounded-4 mb-3">
+                                <span class="badge badge-stock position-absolute top-0 start-0 m-3 px-3 py-2">EN STOCK</span>
+                                <img src="../assets/imagenes/productosCatalogo/pokis/Pokys Cookies & Cream.png" class="img-fluid d-block mx-auto" alt="Mochi de Tamarindo">
+                            </div>
+                            <div class="card-body d-flex flex-column justify-content-between">
+                                <div>
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h5 class="fw-bold text-dark fs-6 m-0">Pokys Cookies & Cream</h5>
+                                        <span class="price-tag fw-bold">$85.00</span>
+                                    </div>
+                                    <p class="text-secondary extra-small mb-4">Pokys Cookies & Cream</p>
+                                </div>
+                                <button onclick="Cart.additem(8)" class="btn btn-orange w-100 rounded-pill py-2 fw-semibold d-flex align-items-center justify-content-center gap-2">
+                                    <i class="bi bi-cart-fill"></i> Agregar al carrito
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Tarjeta 9-->
+                    <div class="col-12 col-sm-6 col-lg-4">
+                        <div class="card h-100 border-0 rounded-4 shadow-sm overflow-hidden bg-white">
+                            <div class="position-relative product-img-container rounded-4 mb-3">
+                                <span class="badge badge-stock position-absolute top-0 start-0 m-3 px-3 py-2">EN STOCK</span>
+                                <img src="../assets/imagenes/productosCatalogo/pokis/Pokys Fresa.png" class="img-fluid d-block mx-auto" alt="Mochi de Tamarindo">
+                            </div>
+                            <div class="card-body d-flex flex-column justify-content-between">
+                                <div>
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h5 class="fw-bold text-dark fs-6 m-0">Pokys de Fresa</h5>
+                                        <span class="price-tag fw-bold">$85.00</span>
+                                    </div>
+                                    <p class="text-secondary extra-small mb-4">Pokys tradicionales de fresa</p>
+                                </div>
+                                <button onclick="Cart.additem(9)" class="btn btn-orange w-100 rounded-pill py-2 fw-semibold d-flex align-items-center justify-content-center gap-2">
+                                    <i class="bi bi-cart-fill"></i> Agregar al carrito
+                                </button>
+                            </div>
+                        </div>
+                    </div>                    
+                    <!--Tarjeta 10-->
+                    <div class="col-12 col-sm-6 col-lg-4">
+                        <div class="card h-100 border-0 rounded-4 shadow-sm overflow-hidden bg-white">
+                            <div class="position-relative product-img-container rounded-4 mb-3">
+                                <span class="badge badge-stock position-absolute top-0 start-0 m-3 px-3 py-2">EN STOCK</span>
+                                <img src="../assets/imagenes/productosCatalogo/pokis/Pokys Matcha.png" class="img-fluid d-block mx-auto" alt="Mochi de Tamarindo">
+                            </div>
+                            <div class="card-body d-flex flex-column justify-content-between">
+                                <div>
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h5 class="fw-bold text-dark fs-6 m-0">Pokys de Matcha</h5>
+                                        <span class="price-tag fw-bold">$85.00</span>
+                                    </div>
+                                    <p class="text-secondary extra-small mb-4">Pokys tradicionales de Matcha</p>
+                                </div>
+                                <button onclick="Cart.additem(10)" class="btn btn-orange w-100 rounded-pill py-2 fw-semibold d-flex align-items-center justify-content-center gap-2">
+                                    <i class="bi bi-cart-fill"></i> Agregar al carrito
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <div id="mochiFooter"></div>
+    <div id="contenedorCarrito"></div>    
+    <script src="../js/script.js"></script>
+    <script src="../js/catalogo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
+

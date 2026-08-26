@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MochiMexa Admin</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Nunito:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../cssAdmin/homeAdmin.css"
+    >
+</head>
+
+<body>
+
+    <div class="container-fluid">
+
+        <div class="row">
+
+            <!-- SIDEBAR -->
+            <aside class="col-md-3 col-xl-2 columna1">
+
+                <div class="logoAdmin">
+
+                    <img
+                        src="/frontend/assets/imagenes/nosotros/LogoNegro.png"
+                        alt="Logo MochiMexa"
+                    >
+
+                    <div>
+                        <a href="">MochiMexa Admin</a>
+                        <p>Panel de control</p>
+                    </div>
+
+                </div>
+
+                <div class="botonProducto">
+
+                    <a href="">
+                        <img
+                            src="/frontend/assets/imagenes/iconos/plus-solid.png"
+                            alt=""
+                        >
+                        Nuevo producto
+                    </a>
+
+                </div>
+
+                <div class="botonesMenu">
+
+                    <a href="">
+                        <img
+                            src="/frontend/assets/imagenes/iconos/table-solid.png"
+                            alt=""
+                        >
+                        Dashboard
+                    </a>
+
+                    <a href="">
+                        <img
+                            src="/frontend/assets/imagenes/iconos/box-archive-solid.png"
+                            alt=""
+                        >
+                        Productos
+                    </a>
+
+                    <a href="">
+                        <img
+                            src="/frontend/assets/imagenes/iconos/cart-shopping-solid.png"
+                            alt=""
+                        >
+                        Pedidos
+                    </a>
+
+                    <a href="">
+                        <img
+                            src="/frontend/assets/imagenes/iconos/users-solid.png"
+                            alt=""
+                        >
+                        Clientes
+                    </a>
+
+                    <a href="#configuracion">
+                        <img
+                            src="/frontend/assets/imagenes/iconos/gear-solid.png"
+                            alt=""
+                        >
+                        Configuración
+                    </a>
+
+                </div>
+
+            </aside>
+
+
+            <!-- CONTENIDO -->
+            <main class="col-md-9 col-xl-10">
+
+                <!-- NAV -->
+                <nav class="adminNav">
+
+                    <a href="">MochiMexa</a>
+
+                    <div>
+                        <input
+                            class="form-control custom-search-input"
+                            type="search"
+                            placeholder="Buscar en dashboard..."
+                            aria-label="Buscar dulce"
+                        >
+                    </div>
+
+                    <div>
+                        <a href="">
+                            <img
+                                class="iconNav"
+                                src="/frontend/assets/imagenes/iconos/bell-regular.png"
+                                alt=""
+                            >
+                        </a>
+
+                        <a href="">
+                            <img
+                                class="iconNav"
+                                src="/frontend/assets/imagenes/iconos/circle-question-regular.png"
+                                alt=""
+                            >
+                        </a>
+
+                        <a href="">
+                            <img
+                                src="/frontend/assets/imagenes/nosotros/andy_gomez_nb_circulo.png"
+                                alt=""
+                            >
+                        </a>
+                    </div>
+                </nav>
+
+
+                <!-- DASHBOARD -->
+                <section id="dashboard">
+
+                    <h1>¡Hola, Admin!</h1>
+
+                    <p>
+                        Aquí está el resumen de MochiMexa hoy.
+                    </p>
+
+
+                    <!-- CARDS SUPERIORES -->
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-xl-4 g-3">
+
+                        <div class="col">
+                            <div class="cardResumen">
+
+                                <span>
+                                    <img
+                                        src="/frontend/assets/imagenes/iconos/sack-dollar-solid.png"
+                                        alt=""
+                                    >
+                                    Ventas totales
+                                </span>
+
+                                <h3>$12,450</h3>
+
+                                <span class="positive">
+                                    +15% esta semana
+                                </span>
+
+                            </div>
+                        </div>
+
+
+                        <div class="col">
+                            <div class="cardResumen">
+
+                                <span>
+                                    <img
+                                        src="/frontend/assets/imagenes/iconos/basket-shopping-solid.png"
+                                        alt=""
+                                    >
+                                    Pedidos nuevos
+                                </span>
+
+                                <h3>34</h3>
+
+                                <span class="pendent">
+                                    12 por enviar
+                                </span>
+
+                            </div>
+                        </div>
+
+
+                        <div class="col">
+                            <div class="cardResumen">
+
+                                <span>
+                                    <img
+                                        src="/frontend/assets/imagenes/iconos/boxes-stacked-solid.png"
+                                        alt=""
+                                    >
+                                    Productos en stock
+                                </span>
+
+                                <h3>856</h3>
+
+                                <span class="negative">
+                                    5 bajos en stock
+                                </span>
+
+                            </div>
+                        </div>
+
+
+                        <div class="col">
+                            <div class="cardResumen">
+
+                                <span>
+                                    <img
+                                        src="/frontend/assets/imagenes/iconos/user-check-solid.png"
+                                        alt=""
+                                    >
+                                    Clientes activos
+                                </span>
+
+                                <h3>1,240</h3>
+
+                                <span class="positive">
+                                    +42 este mes
+                                </span>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <!-- PARTE INFERIOR -->
+                    <div class="row g-4">
+
+                        <!-- VENTAS -->
+                        <div class="col-xl-3">
+
+                            <div class="ventaSemanal">
+
+                                <h4>
+                                    Ventas semanales
+                                </h4>
+                                <!--
+                                Aquí Chart.js va a dibujar nuestra gráfica.
+                                Nosotros NO dibujamos las barras manualmente.
+                                -->
+                                <div class="contenedorGrafica">
+                                    <canvas id="graficaVentas"></canvas>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- PEDIDOS -->
+                        <div class="col-xl-9">
+
+                            <div class="pedidoReciente">
+
+                                <div class="pedidoRecienteTitle">
+                                    <h4>
+                                        Pedidos recientes
+                                    </h4>
+
+                                    <a href="">
+                                        Ver todos
+                                    </a>
+                                </div>
+
+
+                                <table>
+
+                                    <thead>
+
+                                        <tr class="titulosTable">
+                                            <th>ID</th>
+                                            <th>Cliente</th>
+                                            <th>Fecha</th>
+                                            <th>Total</th>
+                                            <th>Estado</th>
+                                        </tr>
+
+                                    </thead>
+
+
+                                    <tbody>
+
+                                        <tr class="firstRowTableValues">
+                                            <td>#0001</td>
+                                            <td>Ana López</td>
+                                            <td>Hoy, 10:23 AM</td>
+                                            <td>$350.00</td>
+                                            <td>
+                                                <span class="estadoPedido pendiente">Pendiente</span>
+                                            </td>
+                                        </tr>
+
+                                        <tr class="secondRowTableValues">
+                                            <td>#0002</td>
+                                            <td>Carlos Ruíz</td>
+                                            <td>Ayer, 04:45 PM</td>
+                                            <td>$890.50</td>
+                                            <td>
+                                                <span class="estadoPedido enviado">Enviado</span>
+                                            </td>
+                                        </tr>
+
+                                        <tr class="thirdRowTableValues">
+                                            <td>#0003</td>
+                                            <td>Sofía Martínez</td>
+                                            <td>Ayer, 11:10 AM</td>
+                                            <td>$120.00</td>
+                                            <td>
+                                                <span class="estadoPedido enviado">Enviado</span>
+                                            </td>
+                                        </tr>
+
+                                        <tr class="fourthRowTableValues">
+                                            <td>#0004</td>
+                                            <td>Sofía Martínez</td>
+                                            <td>12 Ago, 09:00 AM</td>
+                                            <td>$540.00</td>
+                                            <td>
+                                                <span class="estadoPedido entregado">Entregado</span>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <section id="productos">
+
+                    <div class="row g-4">
+
+                        <div class="col-12">
+
+
+                            <!-- =================================
+                                ENCABEZADO DEL CATÁLOGO
+                            ================================== -->
+
+                            <div class="catalogoHeader">
+
+                                <div class="catalogoTitulo">
+
+                                    <h1>
+                                        Catálogo de Productos
+                                    </h1>
+
+                                    <p>
+                                        Gestiona tu inventario, precios y disponibilidad de productos.
+                                    </p>
+
+                                </div>
+
+
+                                <div class="accionesCatalogo">
+
+                                    <button class="botonExportar">
+                                        <span>⇩</span>
+                                        Exportar
+                                    </button>
+
+                                    <button class="botonAgregar">
+                                        +
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- =================================
+                                FILTROS
+                            ================================== -->
+
+                            <div class="filtrosProductos">
+
+                                <button class="filtro activo">
+                                    Todos
+                                </button>
+
+                                <button class="filtro">
+                                    Mochis
+                                </button>
+
+                                <button class="filtro">
+                                    Pockys
+                                </button>
+
+                                <button class="filtro">
+                                    Bebidas
+                                </button>
+
+                            </div>
+
+
+                            <!-- =================================
+                                TABLA
+                            ================================== -->
+
+                            <div class="tablaProductos">
+
+                                <table>
+
+                                    <thead>
+
+                                        <tr class="tituloTablaProductos">
+
+                                            <th>
+                                                <input type="checkbox">
+                                            </th>
+
+                                            <th>Producto</th>
+
+                                            <th>Categoría</th>
+
+                                            <th>Precio</th>
+
+                                            <th>Stock</th>
+
+                                            <th>Estado</th>
+
+                                        </tr>
+
+                                    </thead>
+
+
+                                    <tbody id="tablaProductos">
+                                        <!-- JS mete aquí los productos -->
+                                    </tbody>
+
+                                </table>
+
+
+                                <!-- =================================
+                                    PAGINACIÓN
+                                ================================== -->
+
+                                <div class="paginacion">
+
+                                    <p id="infoProductos"></p>
+
+
+                                    <div>
+
+                                        <button id="anterior">
+                                            Anterior
+                                        </button>
+
+                                        <button class="pagina" data-pagina="1">
+                                            1
+                                        </button>
+
+                                        <button class="pagina" data-pagina="2">
+                                            2
+                                        </button>
+
+                                        <button class="pagina" data-pagina="3">
+                                            3
+                                        </button>
+
+                                        <button id="siguiente">
+                                            Siguiente
+                                        </button>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <section id="pedidos">
+
+                    <!-- ENCABEZADO -->
+                    <div class="pedidosHeader">
+
+                        <div class="pedidosTitulo">
+                            <h1>Gestión de Pedidos</h1>
+                            <p>Supervisa y actualiza el estado de los envíos pendientes.</p>
+                        </div>
+
+                        <div class="accionesPedidos">
+
+                            <button class="botonFiltrar">
+                                <span>☰</span>
+                                Filtrar
+                            </button>
+
+                            <button class="botonExportarPedidos">
+                                <span>⇩</span>
+                                Exportar
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- TABLA DE PEDIDOS -->
+                    <div class="tablaPedidos">
+
+                        <table>
+
+                            <thead>
+                                <tr>
+                                    <th>Guía de envío</th>
+                                    <th>Cliente & destino</th>
+                                    <th>Fecha</th>
+                                    <th>Método de pago</th>
+                                    <th>Estado</th>
+                                    <th>Acción</th>
+                                </tr>
+                            </thead>
+
+
+                            <tbody>
+
+                                <!-- PEDIDO 1 -->
+                                <tr>
+
+                                    <td>
+                                        <div class="guiaPedido">
+
+                                            <div class="iconoEnvio pendienteEnvio">
+                                                🚚
+                                            </div>
+
+                                            <div class="guiaTexto">
+                                                <strong>#MX-0992-A</strong>
+                                                <span>Estándar</span>
+                                            </div>
+
+                                        </div>
+                                    </td>
+
+
+                                    <td>
+                                        <div class="clientePedido">
+
+                                            <strong>Sofía Martínez</strong>
+
+                                            <span>
+                                                ⌖ Estado de México
+                                            </span>
+
+                                        </div>
+                                    </td>
+
+
+                                    <td>
+                                        24 Oct, 10:30 AM
+                                    </td>
+
+
+                                    <td>
+                                        <span class="metodoPago">
+                                            ▣ Tarjeta
+                                        </span>
+                                    </td>
+
+
+                                    <td>
+                                        <span class="estadoPedido estadoPendiente">
+                                            Pendiente⌄
+                                        </span>
+                                    </td>
+
+
+                                    <td>
+                                        <button class="accionesPedido">
+                                            ⋮
+                                        </button>
+                                    </td>
+
+                                </tr>
+
+
+                                <!-- PEDIDO 2 -->
+                                <tr>
+
+                                    <td>
+                                        <div class="guiaPedido">
+
+                                            <div class="iconoEnvio caminoEnvio">
+                                                🚚
+                                            </div>
+
+                                            <div class="guiaTexto">
+                                                <strong>#MX-0993-B</strong>
+                                                <span>Express</span>
+                                            </div>
+
+                                        </div>
+                                    </td>
+
+
+                                    <td>
+                                        <div class="clientePedido">
+
+                                            <strong>Carlos Reyes</strong>
+
+                                            <span>
+                                                ⌖ Jalisco
+                                            </span>
+
+                                        </div>
+                                    </td>
+
+
+                                    <td>
+                                        23 Oct, 14:15 PM
+                                    </td>
+
+
+                                    <td>
+                                        <span class="metodoPago">
+                                            ▣ OXXO Pay
+                                        </span>
+                                    </td>
+
+
+                                    <td>
+                                        <span class="estadoPedido estadoCamino">
+                                            En camino⌄
+                                        </span>
+                                    </td>
+
+
+                                    <td>
+                                        <button class="accionesPedido">
+                                            ⋮
+                                        </button>
+                                    </td>
+
+                                </tr>
+
+
+                                <!-- PEDIDO 3 -->
+                                <tr>
+
+                                    <td>
+                                        <div class="guiaPedido">
+
+                                            <div class="iconoEnvio entregadoEnvio">
+                                                🚚
+                                            </div>
+
+                                            <div class="guiaTexto">
+                                                <strong>#MX-0994-C</strong>
+                                                <span>Estándar</span>
+                                            </div>
+
+                                        </div>
+                                    </td>
+
+
+                                    <td>
+                                        <div class="clientePedido">
+
+                                            <strong>Ana Gómez</strong>
+
+                                            <span>
+                                                ⌖ Nuevo León
+                                            </span>
+
+                                        </div>
+                                    </td>
+
+
+                                    <td>
+                                        22 Oct, 09:00 AM
+                                    </td>
+
+
+                                    <td>
+                                        <span class="metodoPago">
+                                            ▣ SPEI
+                                        </span>
+                                    </td>
+
+
+                                    <td>
+                                        <span class="estadoPedido estadoEntregado">
+                                            Entregado⌄
+                                        </span>
+                                    </td>
+
+
+                                    <td>
+                                        <button class="accionesPedido">
+                                            ⋮
+                                        </button>
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+
+                        <!-- PAGINACIÓN -->
+                        <div class="paginacionPedidos">
+
+                            <p>
+                                Mostrando 3 de 45 pedidos
+                            </p>
+
+                            <div>
+
+                                <button>‹</button>
+
+                                <button class="paginaPedido activa">
+                                    1
+                                </button>
+
+                                <button class="paginaPedido">
+                                    2
+                                </button>
+
+                                <button class="paginaPedido">
+                                    3
+                                </button>
+
+                                <button>›</button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <section id="clientes">
+                    <div class="row">
+                        <h1>Directorio de clientes</h1>
+                        <p>Gestiona tu base de clientes, revisa su historial y fomenta la lealtad.</p>
+                    </div>
+                    <!-- tarjeta (total de clients) -->
+                    <div class="row">
+                        <div class="col-lg-4 col-xl-3">
+                            <div class="card mb-3" id="TarjetaClientes">
+                                <div class="card-body" >
+                                    <h5 class="card-title text-muted mb-0">Total de clientes</h5>
+                                    <h1 class="numero-clientes">1248</h1>
+                                    <p class="card-text texto-crecimiento">
+                                        <i class="bi bi-graph-up-arrow"></i>+12% este mes
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card mb-3" id="TarjetaRecurrencia">
+                                <div class="card-body">
+                                    <h6 class="card-title verde-oscuro-titulo">Tasa de Recurrencia</h6>
+                                    <h1 class="numero-destacado-oscuro">68%</h1>
+                                    <p class="card-text verde-oscuro-texto">Excelente retención. Considera lanzar un programa de lealtad Mochi.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-8 col-xl-9">
+                            <div class="historialClientes">
+                                <div class="encabezadoClientes">
+                                    <h4>
+                                        Todos los clientes
+                                    </h4>
+
+                                    </div>
+
+
+                                    <table>
+
+                                        <thead>
+
+                                            <tr class="titulosTable">
+                                                <th>Cliente</th>
+                                                <th>Ubicación</th>
+                                                <th>Pedidos</th>
+                                                <th>Última hora</th>
+                                                <th>Acciones</th>
+                                            </tr>
+
+                                        </thead>
+
+
+                                        <tbody>
+
+                                            <tr class="firstRowTableValues">
+                                                <td>
+                                                    <div class="cliente-info-container">
+                                                        <img src="../assets/imagenes/nosotros/Frida.jpeg" alt="Mariana Valdés" class="avatar-img">
+                                                        <div class="cliente-datos">
+                                                            <span class="cliente-nombre">Mariana Valdés</span>
+                                                            <span class="cliente-email">mariana.v@gmail.com</span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>Ciudad de México</td>
+                                                <td>14</td>
+                                                <td>Hoy, 10:23 AM</td>
+                                                <td>Compras</td>
+                                            </tr>
+
+                                            <tr class="secondRowTableValues">
+                                                <td> 
+                                                <div class="cliente-info-container">
+                                                    <div class="avatar-iniciales bg-avatar-verde">CJ</div>
+                                                        <div class="cliente-datos">
+                                                            <span class="cliente-nombre">Carlos Ruíz</span>
+                                                            <span class="cliente-email">carlos.j99@gmail.com</span>
+                                                        </div>
+                                                    </div>    
+                                                </td>
+                                                <td>Jalisco</td>
+                                                <td>3</td>
+                                                <td>Ayer, 04:45 PM</td>
+                                                <td>Reembolso</td>
+                                            </tr>
+
+                                            <tr class="thirdRowTableValues">
+                                                <td> 
+                                                <div class="cliente-info-container">
+                                                    <div class="avatar-iniciales bg-avatar-verde">SR</div>
+                                                        <div class="cliente-datos">
+                                                            <span class="cliente-nombre">Sofía Ruíz</span>
+                                                            <span class="cliente-email">sofia.j99@gmail.com</span>
+                                                        </div>
+                                                    </div>    
+                                                </td>
+                                                <td>Estado de Mexico</td>
+                                                <td>8</td>
+                                                <td>Ayer, 11:10 AM</td>
+                                                <td>Compras</td>
+                                            </tr>
+
+                                            <tr class="fourthRowTableValues">
+                                                <td>
+                                                    <div class="cliente-info-container">
+                                                        <img src="../assets/imagenes/nosotros/Missael.jpeg" alt="Mariana Valdés" class="avatar-img">
+                                                        <div class="cliente-datos">
+                                                            <span class="cliente-nombre">Missael Juan</span>
+                                                            <span class="cliente-email">misaael@gmail.com</span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>Nuevo Leon</td>
+                                                <td>1</td>
+                                                <td>12 Ago, 09:00 AM</td>
+                                                <td>Reembolso</td>
+                                            </tr>
+
+                                        </tbody>
+
+                                    </table>
+
+                                </div>
+
+                            </div>
+
+                        </div> 
+                    </div>
+
+
+
+                
+
+                </section>
+
+
+<section id="configuracion">
+
+    <div class="configuracionContenido">
+
+        <h1>Ajustes Generales</h1>
+        <p>Configura las opciones principales de tu tienda MochiMexa.</p>
+
+        <div class="row g-4">
+
+            <!-- COLUMNA IZQUIERDA -->
+            <div class="col-xl-8">
+
+                <!-- PERFIL DEL ADMINISTRADOR -->
+                <div class="perfilAdmin">
+
+                    <h4>Perfil del Administrador</h4>
+
+                    <div class="row align-items-center g-3">
+
+                        <div class="col-md-2">
+
+                            <img
+                                src="/frontend/assets/imagenes/nosotros/andy_gomez_nb_circulo.png"
+                                alt="Foto del administrador"
+                                class="fotoAdmin"
+                            >
+
+                        </div>
+
+                        <div class="col-md-5">
+
+                            <label for="nombreAdmin">
+                                Nombre Completo
+                            </label>
+
+                            <input
+                                type="text"
+                                id="nombreAdmin"
+                                class="form-control"
+                                value="Ana Mochi"
+                            >
+
+                        </div>
+
+                        <div class="col-md-5">
+
+                            <label for="correoAdmin">
+                                Correo Electrónico
+                            </label>
+
+                            <input
+                                type="email"
+                                id="correoAdmin"
+                                class="form-control"
+                                value="admin@mochimexa.com"
+                            >
+
+                        </div>
+
+                    </div>
+
+                    <button class="botonGuardar">
+                        Guardar Cambios
+                    </button>
+
+                </div>
+
+
+                <!-- CONFIGURACIÓN DE ENVÍOS -->
+                <div class="configEnvios">
+
+                    <h4>
+                        Configuración de Envíos
+                    </h4>
+
+                    <!-- ENVÍO CDMX -->
+                    <div class="envio">
+
+                        <div>
+
+                            <strong>
+                                Zona Metropolitana (CDMX)
+                            </strong>
+
+                            <p>
+                                Envío estándar 1-2 días hábiles
+                            </p>
+
+                        </div>
+
+                        <input
+                            type="number"
+                            value="80"
+                        >
+
+                    </div>
+
+
+                    <!-- ENVÍO INTERIOR -->
+                    <div class="envio">
+
+                        <div>
+
+                            <strong>
+                                Interior de la República
+                            </strong>
+
+                            <p>
+                                Envío nacional 3-5 días hábiles
+                            </p>
+
+                        </div>
+
+                        <input
+                            type="number"
+                            value="150"
+                        >
+
+                    </div>
+
+                    <button class="botonGuardar">
+                        Guardar Envíos
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- COLUMNA DERECHA -->
+            <div class="col-xl-4">
+
+                <!-- MÉTODOS DE PAGO -->
+                <div class="metodosPago">
+
+                    <h4>
+                        Métodos de Pago
+                    </h4>
+
+
+                    <!-- TARJETA -->
+                    <div class="opcionPago">
+
+                        <span>
+                            Tarjeta Crédito/Débito
+                        </span>
+
+                        <label class="switchPago">
+
+                            <input
+                                type="checkbox"
+                                checked
+                            >
+
+                            <span class="sliderPago"></span>
+
+                        </label>
+
+                    </div>
+
+
+                    <!-- SPEI -->
+                    <div class="opcionPago">
+
+                        <span>
+                            Transferencia SPEI
+                        </span>
+
+                        <label class="switchPago">
+
+                            <input
+                                type="checkbox"
+                                checked
+                            >
+
+                            <span class="sliderPago"></span>
+
+                        </label>
+
+                    </div>
+
+
+                    <!-- OXXO -->
+                    <div class="opcionPago">
+
+                        <span>
+                            Pago en OXXO
+                        </span>
+
+                        <label class="switchPago">
+
+                            <input
+                                type="checkbox"
+                            >
+
+                            <span class="sliderPago"></span>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <!-- NOTIFICACIONES -->
+                <div class="notificacionesAdmin">
+
+                    <h4>
+                        Notificaciones
+                    </h4>
+
+
+                    <!-- NUEVOS PEDIDOS -->
+                    <label class="opcionNotificacion">
+
+                        <input
+                            type="checkbox"
+                            checked
+                        >
+
+                        <span>
+
+                            <strong>
+                                Nuevos Pedidos
+                            </strong>
+
+                            <small>
+                                Recibir email cuando se crea un pedido.
+                            </small>
+
+                        </span>
+
+                    </label>
+
+
+                    <!-- STOCK BAJO -->
+                    <label class="opcionNotificacion">
+
+                        <input
+                            type="checkbox"
+                            checked
+                        >
+
+                        <span>
+
+                            <strong>
+                                Stock Bajo
+                            </strong>
+
+                            <small>
+                                Alertas de inventario por debajo de 5 uds.
+                            </small>
+
+                        </span>
+
+                    </label>
+
+
+                    <!-- RESUMEN SEMANAL -->
+                    <label class="opcionNotificacion">
+
+                        <input
+                            type="checkbox"
+                        >
+
+                        <span>
+
+                            <strong>
+                                Resumen Semanal
+                            </strong>
+
+                            <small>
+                                Reporte de ventas cada domingo.
+                            </small>
+
+                        </span>
+
+                    </label>
+
+
+                    <button class="botonGuardar">
+                        Guardar
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+                <!-- FOOTER -->
+                <footer>
+
+                    <p>
+                        © 2026 MochiMexa Admin. Dulces Orientales hechos con ❤️ y azúcar.
+                    </p>
+
+                    <div class="linksFooter">
+
+                        <a href="">
+                            Soporte
+                        </a>
+
+                        <a href="">
+                            Privacidad
+                        </a>
+
+                        <a href="">
+                            Términos
+                        </a>
+
+                    </div>
+
+                </footer>
+
+            </main>
+
+        </div>
+
+    </div>
+
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+    <!-- Librería Chart.js: nos permite crear gráficas, Chart.js debe ir antes de tu archivo adminProd.js, porque adminProd.js va a utilizar Chart.js. -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Nuestro archivo JavaScript -->
+    <script src="/frontend/jsAdmin/scriptAdmin.js"></script>
+
+</body>
+
+</html>

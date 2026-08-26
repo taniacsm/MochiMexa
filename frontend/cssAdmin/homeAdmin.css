@@ -1,0 +1,1853 @@
+/* PALETA */
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --primario: #8DBA76;
+    --secundario: #F4A3C1;
+    --terciario: #FF8C00;
+    --neutral: #FDF9F2;
+    --color-green-dark: #3b670f;
+    --color-texto: rgb(27, 32, 33);
+}
+
+
+/* BODY */
+
+body {
+    background-color: var(--neutral);
+
+    font-family: "Manrope", sans-serif;
+
+    font-optical-sizing: auto;
+
+    font-weight: 400;
+
+    font-style: normal;
+}
+
+
+/* MAIN */
+
+main {
+    min-height: 100vh;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+/* TITULOS */
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family:
+        system-ui,
+        -apple-system,
+        "Segoe UI",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+    font-weight: 500;
+}
+
+
+/* SIDEBAR */
+
+.columna1 {
+    padding: 1rem;
+
+    background-color: #f8f3e9;
+
+    min-height: 100vh;
+}
+
+
+/* LOGO */
+
+.logoAdmin {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* ← centra TODO el conjunto */
+    gap: .5rem;
+}
+
+.logoAdmin img {
+    width: 2.5rem;
+}
+
+.logoAdmin a {
+    text-decoration: none;
+
+    color: var(--color-green-dark);
+
+    font-family:
+        system-ui,
+        -apple-system,
+        "Segoe UI",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+    font-weight: 500;
+
+    font-size: 25px;
+
+    line-height: 25px;
+}
+
+.logoAdmin p {
+    color: var(--color-texto);
+
+    font-weight: 500;
+    
+}
+
+
+/* NUEVO PRODUCTO */
+
+.botonProducto a {
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    margin-top: 10px;
+
+    margin-bottom: 3rem;
+
+    padding: 8px;
+
+    border-radius: 30px;
+
+    background-color: var(--terciario);
+
+    color: var(--color-texto);
+
+    text-decoration: none;
+
+    white-space: nowrap;
+}
+
+.botonProducto img {
+    width: 1rem;
+}
+
+
+/* MENU */
+
+.botonesMenu a {
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    margin: 10px 0 15px;
+
+    padding: 8px;
+
+    border-radius: 10px;
+
+    background-color: white;
+
+    color: var(--color-texto);
+
+    text-decoration: none;
+
+    transition: transform .3s ease-in-out;
+}
+
+.botonesMenu a:hover {
+    cursor: pointer;
+
+    background-color: var(--primario);
+
+    box-shadow: 0 3px 8px rgba(0, 0, 0, .219);
+
+    transform: scale(1.02);
+}
+
+.botonesMenu img {
+    width: 1rem;
+}
+
+
+/* NAV */
+
+.adminNav {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    background-color: #f8f3e9;
+
+    margin-left: -12px;
+    margin-right: -12px;
+    padding-left: 12px;
+    padding-right: 12px;
+
+}
+
+.adminNav a {
+    text-decoration: none;
+
+    color: var(--color-green-dark);
+
+    font-weight: 600;
+
+    margin: 5px;
+}
+
+.iconNav {
+    width: 1.5rem;
+}
+
+.adminNav a:last-child img {
+    width: 3rem;
+}
+
+.adminNav input {
+    width: 300px;
+
+    border-radius: 30px;
+
+    font-size: 1rem;
+}
+
+
+/* DASHBOARD */
+
+#dashboard h1 {
+    margin-top: 2rem;
+
+    font-weight: 600;
+
+    font-size: 2rem;
+
+    color: var(--color-texto);
+}
+
+#dashboard > p {
+    margin-bottom: 3rem;
+
+    color: rgb(54, 54, 54);
+}
+
+
+/* CARDS */
+
+.cardResumen {
+    height: 100%;
+
+    background-color: white;
+
+    padding: 1rem;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+}
+
+.cardResumen img {
+    width: 1rem;
+
+    margin-right: 5px;
+}
+
+.cardResumen h3 {
+    margin-top: .25rem;
+
+    margin-bottom: .5rem;
+}
+
+.positive {
+    color: var(--color-green-dark);
+    font-weight: 500;
+} 
+
+.negative {
+    color: rgb(214, 10, 10);
+    font-weight: 500;
+
+}
+
+.pendent {
+    color: rgb(146, 76, 14);
+    font-weight: 500;
+
+}
+
+
+/* PARTE INFERIOR */
+
+#dashboard .row.g-4 {
+    margin-top: 1.5rem;
+}
+
+
+/* VENTAS SEMANALES */
+
+.ventaSemanal {
+    height: 100%;
+
+    min-height: 250px;
+
+    background-color: white;
+
+    border-radius: 20px;
+
+    padding: 2rem;
+}
+
+/* Contenedor de nuestra gráfica */
+.contenedorGrafica {
+    width: 100%;
+    height: 250px;
+
+    /* Separación entre el título y la gráfica */
+    margin-top: 2rem;
+}
+
+/* =========================
+   PEDIDOS RECIENTES
+   ========================= */
+
+/* ESTADOS DE PEDIDOS */
+
+.estadoPedido {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+/* Pendiente - naranja */
+.estadoPedido.pendiente {
+    background-color: #fff0e8;
+    color: #ff7a1a;
+    border: 1px solid #ffc596;
+}
+
+/* Enviado - verde */
+.estadoPedido.enviado {
+    background-color: #e4efdc;
+    color: #6f9655;
+    border: 1px solid #b8d4a5;
+}
+
+/* Entregado - gris */
+.estadoPedido.entregado {
+    background-color: #e9e9e4;
+    color: #666;
+    border: 1px solid #c8c8be;
+}   
+
+
+.pedidoReciente {
+    height: 100%;
+
+    background-color: white;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+
+/* ENCABEZADO DE LA CARD */
+
+.pedidoRecienteTitle {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 1.5rem 2rem;
+
+    margin: 0;
+}
+
+.pedidoRecienteTitle h4 {
+    margin: 0;
+
+    font-weight: 600;
+}
+
+.pedidoRecienteTitle a {
+    text-decoration: none;
+
+    color: var(--color-green-dark);
+
+    font-size: 13px;
+}
+
+
+/* TABLA */
+
+.pedidoReciente table {
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+.pedidoReciente th {
+    background-color: #F2EDE3;
+
+    padding: .9rem 1rem;
+
+    text-align: left;
+
+    font-size: 13px;
+}
+
+.pedidoReciente td {
+    padding: 1rem;
+
+    vertical-align: middle;
+
+    font-size: 14px;
+}
+
+
+/* Líneas entre filas */
+
+.pedidoReciente tbody tr {
+    border-bottom: 1px solid #eee;
+}
+
+.pedidoReciente tbody tr:last-child {
+    border-bottom: none;
+}
+
+
+/* Esquinas del encabezado */
+
+.pedidoReciente th:first-child {
+    border-radius: 10px 0 0 10px;
+}
+
+.pedidoReciente th:last-child {
+    border-radius: 0 10px 10px 0;
+}
+
+
+/* =========================
+   CLIENTE
+   ========================= */
+
+.clienteReciente {
+    display: flex;
+
+    align-items: center;
+
+    gap: .7rem;
+}
+
+
+/* Avatar con iniciales */
+
+.avatarCliente {
+    width: 34px;
+
+    height: 34px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    border-radius: 50%;
+
+    background-color: #e2efd9;
+
+    color: var(--color-green-dark);
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+
+/* Avatar con foto */
+
+.avatarImagen {
+    width: 34px;
+
+    height: 34px;
+
+    flex-shrink: 0;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+}
+
+
+/* =========================
+   TOTAL
+   ========================= */
+
+.totalPedido {
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+
+/* =========================
+   ESTADOS
+   ========================= */
+
+.estadoReciente {
+    display: inline-block;
+
+    padding: 4px 12px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    white-space: nowrap;
+}
+
+
+/* Pendiente */
+
+.estadoReciente.pendiente {
+    background-color: #fff0e8;
+
+    border: 1px solid #ffc596;
+
+    color: #ff7a1a;
+}
+
+
+/* Enviado */
+
+.estadoReciente.enviado {
+    background-color: #e4efdc;
+
+    border: 1px solid #b8d4a5;
+
+    color: var(--primario);
+}
+
+
+/* Entregado */
+
+.estadoReciente.entregado {
+    background-color: #e9e9e4;
+
+    border: 1px solid #c8c8be;
+
+    color: #555;
+}
+
+/* =========================
+   CATÁLOGO DE PRODUCTOS
+   ========================= */
+
+.catalogoHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+
+/* TÍTULO */
+
+.catalogoTitulo h1 {
+    margin: 0 0 .5rem 0;
+
+    color: var(--color-green-dark);
+
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.catalogoTitulo p {
+    margin: 0;
+
+    color: #555;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   BOTONES DE ARRIBA
+   ========================= */
+
+.accionesCatalogo {
+    display: flex;
+    align-items: center;
+
+    gap: .75rem;
+}
+
+.accionesCatalogo button {
+    border: none;
+
+    cursor: pointer;
+
+    font-family: inherit;
+}
+
+
+/* EXPORTAR */
+
+.botonExportar {
+    display: flex;
+    align-items: center;
+
+    gap: .5rem;
+
+    padding: .6rem 1rem;
+
+    border-radius: 30px;
+
+    background-color: #eceae4;
+
+    color: var(--color-texto);
+
+    font-weight: 500;
+}
+
+
+/* BOTÓN + */
+
+.botonAgregar {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+
+    background-color: var(--terciario);
+
+    color: var(--color-texto);
+
+    font-size: 22px;
+}
+
+
+/* =========================
+   FILTROS
+   ========================= */
+
+.filtrosProductos {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    gap: .5rem;
+
+    padding: 1.5rem;
+
+    margin-bottom: 2rem;
+
+    background-color: white;
+
+    border-radius: 15px;
+}
+
+
+/* BOTONES DE FILTROS */
+
+.filtro {
+    padding: .45rem 1rem;
+
+    border: 1px solid #ddd9cf;
+
+    border-radius: 30px;
+
+    background-color: #f1efe9;
+
+    color: #4b4b43;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    cursor: pointer;
+}
+
+
+/* FILTRO SELECCIONADO */
+
+.filtro.activo {
+    background-color: var(--primario);
+
+    border-color: var(--primario);
+
+    color: #29451c;
+}
+
+/* SEGUNDA SECCIÓN */
+
+#productos {
+    width: 100%;
+}
+
+.tablaProductos {
+    width: 100%;
+
+    background-color: white;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.tablaProductos table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+.tituloTablaProductos th {
+    background-color: #F2EDE3;
+    padding: .9rem 1rem;
+}
+
+.tablaProductos th,
+.tablaProductos td {
+    padding: .75rem 1rem;
+    vertical-align: middle;
+}
+
+.tablaProductos tbody tr {
+    border-bottom: 1px solid #eee;
+}
+
+
+/* =========================
+   ANCHOS DE COLUMNAS
+   ========================= */
+
+/* Checkbox */
+.tablaProductos th:nth-child(1),
+.tablaProductos td:nth-child(1) {
+    width: 6%;
+    text-align: center;
+}
+
+/* Producto */
+.tablaProductos th:nth-child(2),
+.tablaProductos td:nth-child(2) {
+    width: 34%;
+}
+
+/* Categoría */
+.tablaProductos th:nth-child(3),
+.tablaProductos td:nth-child(3) {
+    width: 18%;
+}
+
+/* Precio */
+.tablaProductos th:nth-child(4),
+.tablaProductos td:nth-child(4) {
+    width: 18%;
+}
+
+/* Stock */
+.tablaProductos th:nth-child(5),
+.tablaProductos td:nth-child(5) {
+    width: 11%;
+}
+
+/* Estado */
+.tablaProductos th:nth-child(6),
+.tablaProductos td:nth-child(6) {
+    width: 13%;
+}
+
+
+/* =========================
+   PRODUCTO: IMAGEN + TEXTO
+   ========================= */
+
+.productoInfo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.productoImagen {
+    width: 50px;
+    height: 50px;
+
+    object-fit: cover;
+
+    border-radius: 8px;
+
+    /* evita que flex haga la imagen más pequeña */
+    flex-shrink: 0;
+}
+
+.productoTexto {
+    display: flex;
+    flex-direction: column;
+
+    /* evita que el contenido invada
+       la siguiente columna */
+    min-width: 0;
+}
+
+.productoTexto strong {
+    font-weight: 600;
+    font-size: 14px;
+
+    white-space: nowrap;
+}
+
+.productoTexto span {
+    font-size: 12px;
+
+    color: #666;
+
+    white-space: nowrap;
+}
+
+
+/* =========================
+   CATEGORÍAS
+   ========================= */
+
+.categoria {
+    display: inline-block;
+
+    padding: 4px 12px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+}
+
+/* Mochis */
+.categoria-mochis {
+    background-color: #e2efd9;
+    color: #3b670f;
+}
+
+/* Pockys */
+.categoria-pockys {
+    background-color: #e8e6e1;
+    color: #555;
+}
+
+/* Bebidas */
+.categoria-bebidas {
+    background-color: #ffe0c7;
+    color: #74421e;
+}
+
+
+/* =========================
+   STOCK
+   ========================= */
+
+.stockBueno {
+    color: var(--color-green-dark);
+
+    font-weight: 600;
+}
+
+.stockBajo {
+    color: #c91818;
+
+    font-weight: 600;
+}
+
+
+/* =========================
+   ESTADO
+   ========================= */
+
+.estado {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 5px 12px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+}
+
+/* Activo */
+.estado.activo {
+    background-color: #d9f8e6;
+    color: #247244;
+}
+
+/* Inactivo */
+.estado.inactivo {
+    background-color: #f0f1f4;
+    color: #667085;
+}
+
+/* Bolita del estado */
+.puntoEstado {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background-color: currentColor;
+}
+
+
+/* =========================
+   PAGINACIÓN
+   ========================= */
+
+.paginacion {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 1rem;
+
+    background-color: #F8F5EE;
+}
+
+#infoProductos {
+    margin: 0;
+}
+
+.paginacion > div {
+    display: flex;
+
+    align-items: center;
+
+    gap: .5rem;
+}
+
+#anterior,
+#siguiente,
+.pagina {
+    border: 1px solid #e5e5e5;
+
+    border-radius: 30px;
+
+    padding: .25rem .80rem;
+
+    background-color: transparent;
+}
+
+.pagina.activo {
+    background-color: var(--primario);
+
+    color: white;
+}
+
+.paginacion button:disabled {
+    opacity: .4;
+
+    cursor: not-allowed;
+}
+
+/* =========================
+   GESTIÓN DE PEDIDOS
+   ========================= */
+
+#pedidos {
+    width: 100%;
+}
+
+
+/* =========================
+   ENCABEZADO
+   ========================= */
+
+.pedidosHeader {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-top: 2rem;
+
+    margin-bottom: 2rem;
+}
+
+
+.pedidosTitulo h1 {
+    margin: 0 0 .5rem 0;
+
+    font-size: 2rem;
+
+    font-weight: 600;
+
+    color: var(--color-texto);
+}
+
+
+.pedidosTitulo p {
+    margin: 0;
+
+    color: #555;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   BOTONES SUPERIORES
+   ========================= */
+
+.accionesPedidos {
+    display: flex;
+
+    align-items: center;
+
+    gap: .75rem;
+}
+
+
+.botonFiltrar,
+.botonExportarPedidos {
+    display: flex;
+
+    align-items: center;
+
+    gap: .5rem;
+
+    border: none;
+
+    padding: .55rem 1rem;
+
+    border-radius: 30px;
+
+    background-color: #eceae4;
+
+    color: var(--color-texto);
+
+    font-family: inherit;
+
+    font-weight: 500;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   CONTENEDOR DE LA TABLA
+   ========================= */
+
+.tablaPedidos {
+    width: 100%;
+
+    background-color: white;
+
+    border: 1px solid #e5e0d7;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+
+/* =========================
+   TABLA
+   ========================= */
+
+.tablaPedidos {
+    border: none;
+
+    margin-bottom: 10px;
+}
+
+.tablaPedidos table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    table-layout: fixed;
+}
+
+
+.tablaPedidos th {
+    padding: 1rem;
+
+    background-color: #F2EDE3;
+
+    text-align: left;
+
+    font-size: 13px;
+
+    text-transform: uppercase;
+
+    color: #4b4b43;
+}
+
+
+.tablaPedidos td {
+    padding: 1.5rem 1rem;
+
+    vertical-align: middle;
+
+    font-size: 14px;
+}
+
+
+.tablaPedidos tbody tr {
+    border-bottom: 1px solid #eee;
+}
+
+
+/* =========================
+   ANCHOS DE COLUMNAS
+   ========================= */
+
+.tablaPedidos th:nth-child(1),
+.tablaPedidos td:nth-child(1) {
+    width: 20%;
+}
+
+
+.tablaPedidos th:nth-child(2),
+.tablaPedidos td:nth-child(2) {
+    width: 20%;
+}
+
+
+.tablaPedidos th:nth-child(3),
+.tablaPedidos td:nth-child(3) {
+    width: 16%;
+}
+
+
+.tablaPedidos th:nth-child(4),
+.tablaPedidos td:nth-child(4) {
+    width: 18%;
+}
+
+
+.tablaPedidos th:nth-child(5),
+.tablaPedidos td:nth-child(5) {
+    width: 18%;
+}
+
+
+.tablaPedidos th:nth-child(6),
+.tablaPedidos td:nth-child(6) {
+    width: 8%;
+
+    text-align: center;
+}
+
+
+/* =========================
+   GUÍA DE ENVÍO
+   ========================= */
+
+.guiaPedido {
+    display: flex;
+
+    align-items: center;
+
+    gap: .75rem;
+}
+
+
+.iconoEnvio {
+    width: 42px;
+
+    height: 42px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    border-radius: 8px;
+
+    background-color: #F2EDE3;
+}
+
+
+.guiaTexto {
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+.guiaTexto strong {
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+
+.guiaTexto span {
+    margin-top: 3px;
+
+    font-size: 12px;
+
+    color: #666;
+}
+
+
+/* COLORES DEL ICONO */
+
+.pendienteEnvio {
+    color: var(--terciario);
+}
+
+.caminoEnvio {
+    color: var(--color-green-dark);
+}
+
+.entregadoEnvio {
+    color: #777;
+}
+
+
+/* =========================
+   CLIENTE
+   ========================= */
+
+.clientePedido {
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+.clientePedido strong {
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+
+.clientePedido span {
+    margin-top: 5px;
+
+    color: #666;
+
+    font-size: 12px;
+}
+
+
+/* =========================
+   MÉTODO DE PAGO
+   ========================= */
+
+.metodoPago {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    background-color: #eceae4;
+
+    font-size: 12px;
+
+    white-space: nowrap;
+}
+
+
+/* =========================
+   ESTADOS
+   ========================= */
+
+.estadoPedido {
+    display: inline-flex;
+
+    align-items: center;
+
+    padding: 8px 16px;
+
+    border-radius: 25px;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+
+/* PENDIENTE */
+
+.estadoPendiente {
+    background-color: #ffd5d2;
+
+    color: #a40000;
+}
+
+
+/* EN CAMINO */
+
+.estadoCamino {
+    background-color: var(--terciario);
+
+    color: #493000;
+}
+
+
+/* ENTREGADO */
+
+.estadoEntregado {
+    background-color: var(--primario);
+
+    color: #31551f;
+}
+
+
+/* =========================
+   ACCIÓN
+   ========================= */
+
+.accionesPedido {
+    border: none;
+
+    background-color: transparent;
+
+    font-size: 22px;
+
+    color: #555;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   PAGINACIÓN
+   ========================= */
+
+.paginacionPedidos {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 1rem 1.5rem;
+}
+
+
+.paginacionPedidos p {
+    margin: 0;
+
+    font-size: 13px;
+}
+
+
+.paginacionPedidos > div {
+    display: flex;
+
+    align-items: center;
+
+    gap: .5rem;
+}
+
+
+.paginacionPedidos button {
+    width: 36px;
+
+    height: 36px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background-color: transparent;
+
+    cursor: pointer;
+}
+
+
+.paginaPedido.activa {
+    background-color: var(--color-green-dark);
+
+    color: white;
+}
+
+/* CONFIGURACIÓN */
+
+#configuracion {
+    width: 100%;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+}
+
+#configuracion .configuracionContenido {
+    width: 100%;
+}
+
+
+/* ENCABEZADO */
+
+#configuracion h1 {
+    margin: 0;
+
+    font-size: 1.8rem;
+
+    font-weight: 600;
+
+    color: var(--color-texto);
+}
+
+#configuracion .configuracionContenido > p {
+    margin-top: .25rem;
+
+    margin-bottom: 2rem;
+
+    color: rgb(54, 54, 54);
+}
+
+
+/* TARJETAS */
+
+#configuracion .perfilAdmin,
+#configuracion .configEnvios,
+#configuracion .metodosPago,
+#configuracion .notificacionesAdmin {
+    width: 100%;
+
+    background-color: white;
+
+    border: 1px solid #eee;
+
+    border-radius: 15px;
+
+    padding: 1.5rem;
+
+    margin-bottom: 1.5rem;
+}
+
+#configuracion .perfilAdmin h4,
+#configuracion .configEnvios h4,
+#configuracion .metodosPago h4,
+#configuracion .notificacionesAdmin h4 {
+    margin-bottom: 1.5rem;
+
+    font-weight: 600;
+
+    color: var(--color-texto);
+}
+
+#configuracion .metodosPago,
+#configuracion .notificacionesAdmin {
+    min-height: 220px;
+}
+
+
+/* PERFIL DEL ADMINISTRADOR */
+
+#configuracion .fotoAdmin {
+    display: block;
+
+    width: 70px;
+
+    height: 70px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+}
+
+#configuracion .perfilAdmin label {
+    display: block;
+
+    margin-bottom: .25rem;
+
+    font-size: 12px;
+
+    color: var(--color-texto);
+}
+
+#configuracion .perfilAdmin .form-control {
+    width: 100%;
+
+    background-color: #f2ede3;
+
+    border: none;
+
+    border-radius: 10px;
+}
+
+
+/* BOTONES */
+
+#configuracion .botonGuardar {
+    display: block;
+
+    margin-top: 1.5rem;
+
+    margin-left: auto;
+
+    padding: .5rem 1.2rem;
+
+    background-color: var(--terciario);
+
+    color: white;
+
+    border: none;
+
+    border-radius: 30px;
+}
+
+#configuracion .botonGuardar:hover {
+    cursor: pointer;
+
+    opacity: .9;
+}
+
+
+/* CONFIGURACIÓN DE ENVÍOS */
+
+#configuracion .envio {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 1rem;
+
+    width: 100%;
+
+    padding: 1rem;
+
+    margin-bottom: 1rem;
+
+    background-color: #f8f5ee;
+
+    border-radius: 10px;
+}
+
+#configuracion .envio strong {
+    font-size: 13px;
+
+    color: var(--color-texto);
+}
+
+#configuracion .envio p {
+    margin: 0;
+
+    font-size: 11px;
+
+    color: gray;
+}
+
+#configuracion .envio input {
+    width: 80px;
+
+    padding: .4rem;
+
+    background-color: #eee;
+
+    border: none;
+
+    border-radius: 8px;
+}
+
+
+/* MÉTODOS DE PAGO */
+
+#configuracion .opcionPago {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 1rem;
+
+    margin-bottom: 1.5rem;
+}
+
+
+/* SWITCH DE MÉTODOS DE PAGO */
+
+#configuracion .switchPago {
+    position: relative;
+
+    display: inline-block;
+
+    width: 38px;
+
+    height: 21px;
+}
+
+#configuracion .switchPago input {
+    width: 0;
+
+    height: 0;
+
+    opacity: 0;
+}
+
+#configuracion .sliderPago {
+    position: absolute;
+
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    background-color: #ddd;
+
+    border-radius: 30px;
+
+    cursor: pointer;
+
+    transition: .3s;
+}
+
+#configuracion .sliderPago::before {
+    content: "";
+
+    position: absolute;
+
+    width: 15px;
+
+    height: 15px;
+
+    left: 3px;
+
+    bottom: 3px;
+
+    background-color: white;
+
+    border-radius: 50%;
+
+    transition: .3s;
+}
+
+#configuracion .switchPago input:checked + .sliderPago {
+    background-color: var(--color-green-dark);
+}
+
+#configuracion .switchPago input:checked + .sliderPago::before {
+    transform: translateX(17px);
+}
+
+
+/* NOTIFICACIONES */
+
+#configuracion .opcionNotificacion {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: .5rem;
+
+    margin-bottom: 1.2rem;
+
+    cursor: pointer;
+}
+
+#configuracion .opcionNotificacion input {
+    margin-top: .2rem;
+
+    accent-color: var(--color-green-dark);
+}
+
+#configuracion .opcionNotificacion span {
+    display: flex;
+
+    flex-direction: column;
+}
+
+#configuracion .opcionNotificacion strong {
+    font-size: 13px;
+
+    font-weight: 600;
+
+    color: var(--color-texto);
+}
+
+#configuracion .opcionNotificacion small {
+    margin-top: .1rem;
+
+    font-size: 10px;
+
+    color: gray;
+}
+
+/* FOOTER */
+
+#dashboard {
+    margin-bottom: 3rem;
+}
+
+footer {
+    margin-top: auto;
+    margin-bottom: 1rem;
+    border-top: 1px solid #c2c2c2;
+    padding-top: 1rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    color: gray;
+}
+
+footer p {
+    margin: 0;
+}
+
+.linksFooter {
+    display: flex;
+
+    gap: 1rem;
+}
+
+footer a {
+    color: gray;
+
+    text-decoration: none;
+}
+
+/* --- TARJETA 1: Total de Clientes --- */
+#TarjetaClientes {
+    background-color: #FFFFFF;
+    border: 1px solid #EBE9DF;
+    border-radius: 16px;
+}
+
+#TarjetaClientes .card-title {
+    color: #6C757D;
+    font-weight: 600;
+}
+
+/* Ajustes para el número 1,248 */
+.numero-clientes {
+    color: var(--color-green-dark);
+    font-weight: 700;
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.texto-crecimiento {
+    color: var(--primario);
+    font-size: 0.88rem;
+    font-weight: 600;
+}
+
+.icono-clientes {
+    color: #C3D3B5;
+    background-color: #F4F7F2;
+    padding: 8px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+}
+
+/* --- TARJETA 2: Tasa de Recurrencia --- */
+#TarjetaRecurrencia {
+    background-color: var(--primario);
+    border: none;
+    border-radius: 16px;
+}
+
+.verde-oscuro-titulo {
+    color: var(--color-green-dark);
+    font-weight: 600;
+    opacity: 0.85;
+}
+
+.numero-destacado-oscuro {
+    color: var(--color-green-dark);
+    font-weight: 700;
+    font-size: 2.5rem;
+}
+
+.verde-oscuro-texto {
+    color: var(--color-green-dark);
+    font-size: 0.9rem;
+    line-height: 1.35;
+    opacity: 0.9;
+}
+
+
+
+/* Contenedor principal de la celda Cliente */
+.cliente-info-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Alineación vertical de los datos (Nombre arriba, Email abajo) */
+.cliente-datos {
+    display: flex;
+    flex-direction: column;
+}
+
+.cliente-nombre {
+    font-weight: 700;
+    color: #212529;
+    font-size: 0.95rem;
+    line-height: 1.2;
+}
+
+.cliente-email {
+    font-size: 0.82rem;
+    color: #8C8C8C;
+}
+
+/* Estilos para Foto de Perfil */
+.avatar-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Estilos para Avatares con Iniciales */
+.avatar-iniciales {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
