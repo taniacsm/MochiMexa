@@ -5,48 +5,53 @@ function togglePasswordVista() {
 
     if (vision.type === "password") {
         vision.type = "text";
-        // Si la contraseña es visible, mostramos el ojo abierto (o el que corresponda)
         visionCerrada.src = "../assets/imagenes/iconos/eye-solid.png";
     } else {
         vision.type = "password";
-        // Si la contraseña se oculta, mostramos el ojo tachado
         visionCerrada.src = "../assets/imagenes/iconos/eye-slash-solid.png";
     }
 }
 
-// Evento para procesar el inicio de sesión
-document.getElementById('login-form').addEventListener('submit', function (e) {
+// Evento para procesar el inicio de sesión mediante la API REST
+document.getElementById('login-form').addEventListener('submit', async function (e) {
     e.preventDefault();
 
     const email = document.getElementById('email').value.trim();
-    const contraseña = document.getElementById('password').value.trim();
+    const password = document.getElementById('password').value.trim();
 
-    // 1. Obtener la lista de usuarios registrados previamente (por ejemplo, desde tu registro)
-    const usuariosGuardados = JSON.parse(localStorage.getItem('usuariosRegistrados')) || [];
+    // Endpoint de autenticación en el servidor Spring Boot (Puerto 8080)
+    const API_URL = 'http://localhost:8080/api/auth/login';
 
-    // 2. Buscar si existe un usuario con ese correo y esa contraseña
-    const usuarioEncontrado = usuariosGuardados.find(
-        user => user.email === email && user.contraseña === contraseña
-    );
+    try {
+        const response = await fetch(API_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ 
+                email: email, 
+                password: password 
+            })
+        });
 
-    // NOTA: Si aún no tienes la pantalla de registro lista, puedes comentar la validación de arriba 
-    // y dejar pasar el login directamente para probar la redirección:
-    /*
-    const usuarioEncontrado = true; 
-    */
+        if (!response.ok) {
+            throw new Error('Correo o contraseña incorrectos.');
+        }
 
-    if (usuarioEncontrado) {
-        // 3. Guardar el estado de la sesión actual
+        const data = await response.json();
+
+        // Almacenar token o datos de sesión devueltos por Spring Boot
         const usuarioSesion = {
             email: email,
+            token: data.token || null,
             loginTime: new Date().toISOString()
         };
         localStorage.setItem('sesionActiva', JSON.stringify(usuarioSesion));
 
-        // 4. Limpiar el formulario y redirigir al index
         document.getElementById('login-form').reset();
-        window.location.href = '../index.html'; // Redirección a la página principal
-    } else {
-        alert('Correo o contraseña incorrectos. Inténtalo de nuevo.');
+        window.location.href = '../index.html';
+
+    } catch (error) {
+        alert('Error al iniciar sesión: ' + error.message);
     }
 });
