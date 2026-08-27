@@ -67,11 +67,74 @@ class CartController {
             this.carrito.push(nuevoProducto);
             console.log("Nuevo producto agregado al carrito:", nuevoProducto);
         }
-
-        localStorage.setItem('miCarrito', JSON.stringify(this.carrito));
+        this.guardarYRenderizar();
 
         const nombreProducto = nameElement ? nameElement.innerText : 'Producto';
-        alert(`¡Se actualizó el carrito! Tu lista ahora tiene este dulce guardado.`);
+        console.log(`¡Se actualizó el carrito! ${nombreProducto} guardado.`);
+    }
+
+    incrementar(id) {
+        const item = this.carrito.find(p => p.id === id);
+        if (item) item.cantidad++;
+        this.guardarYRenderizar();
+    }
+
+    decrementar(id) {
+        const item = this.carrito.find(p => p.id === id);
+        if (item) {
+            item.cantidad--;
+            if (item.cantidad <= 0) {
+                this.eliminarItem(id);
+                return;
+            }
+        }
+        this.guardarYRenderizar();
+    }
+
+    eliminarItem(id) {
+        this.carrito = this.carrito.filter(p => p.id !== id);
+        this.guardarYRenderizar();
+    }
+
+    guardarYRenderizar() {
+        localStorage.setItem('miCarrito', JSON.stringify(this.carrito));
+        this.renderCarrito();
+    }
+
+    renderCarrito() {
+        const contenedor = document.getElementById('listaCarrito');
+        const totalEl = document.getElementById('totalCarrito');
+        if (!contenedor || !totalEl) return; // el modal aún no está inyectado
+
+        if (this.carrito.length === 0) {
+            contenedor.innerHTML = `<p class="text-muted text-center py-4">Tu carrito está vacío</p>`;
+            totalEl.textContent = '$0.00';
+            return;
+        }
+
+        contenedor.innerHTML = this.carrito.map(item => `
+            <div class="d-flex align-items-start gap-2 mb-3 pb-3 border-bottom">
+                <img src="${item.imagen}" alt="${item.alt}" style="width:64px; height:64px; object-fit:cover; border-radius:12px;">
+                <div class="flex-grow-1">
+                    <p class="mb-1 fw-semibold">${item.nombre}</p>
+                    <p class="mb-1 text-muted extra-small">${item.descripcion}</p>
+                    <div class="d-flex align-items-center gap-2">
+                        <button class="btn btn-sm btn-outline-secondary py-0 px-2" onclick="Cart.decrementar(${item.id})">-</button>
+                        <span>${item.cantidad}</span>
+                        <button class="btn btn-sm btn-outline-secondary py-0 px-2" onclick="Cart.incrementar(${item.id})">+</button>
+                    </div>
+                </div>
+                <div class="text-end">
+                    <p class="fw-bold mb-2">$${(item.precio * item.cantidad).toFixed(2)}</p>
+                    <button class="btn btn-sm text-danger p-0" onclick="Cart.eliminarItem(${item.id})">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </div>
+            </div>
+        `).join('');
+
+        const total = this.carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0);
+        totalEl.textContent = `$${total.toFixed(2)}`;
     }
 }
 
