@@ -8,6 +8,7 @@
 body {
     background-color: var(--color-bg-light);
     font-family: system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    padding-top: 2rem;
 }
 .bg-custom-green {
     background-color: var(--color-green);
