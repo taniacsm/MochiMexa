@@ -90,10 +90,10 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             resumen = tienda.cotizar($('direccionPedido').value, codigo);
             $('pedidoSubtotal').textContent = tienda.dinero(resumen.subtotal / 100);
-            $('pedidoDescuento').textContent = `−${tienda.dinero(resumen.descuento / 100)}`;
+            $('pedidoDescuento').textContent = `${tienda.dinero(resumen.descuento / 100)}`;
             $('pedidoEnvio').textContent = resumen.direccion ? tienda.dinero(resumen.envio / 100) : 'Por calcular';
             $('pedidoTotal').textContent = tienda.dinero(resumen.total / 100);
-            $('finalizarPedido').textContent = `Finalizar pedido de prueba – ${tienda.dinero(resumen.total / 100)}`;
+            $('finalizarPedido').textContent = `Finalizar pedido de prueba  ${tienda.dinero(resumen.total / 100)}`;
             $('finalizarPedido').disabled = !resumen.items.length || !metodoElegido || procesando;
         } catch (error) {
             resumen = null;
