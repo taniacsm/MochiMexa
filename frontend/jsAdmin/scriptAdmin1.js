@@ -10,9 +10,12 @@
 
 const state = {
     productos: [],
+    busqueda: '',
+    seleccionProductos: new Set(),
     pedidos: [],
     clientes: [],
     configuracion: {},
+    graficaVentasInstance: null,
     paginacionProductos: {
         paginaActual: 1,
         porPagina: 3, // Respetando la paginación previa de 3 por página
@@ -20,112 +23,22 @@ const state = {
     },
     paginacionPedidos: {
         paginaActual: 1,
-        porPagina: 5,
+        porPagina: 3, // La misma cantidad de filas visibles que Productos.
         filtroEstado: 'Todos'
-    },
-    graficaVentasInstance: null
+    }
+};
+
+// Una sola correspondencia evita pintar un pedido cancelado como entregado.
+const ESTILOS_PEDIDO = {
+    'Pendiente': { estado: 'estadoPendiente', icono: 'pendienteEnvio' },
+    'En camino': { estado: 'estadoCamino', icono: 'caminoEnvio' },
+    'Entregado': { estado: 'estadoEntregado', icono: 'entregadoEnvio' },
+    'Cancelado': { estado: 'estadoCancelado', icono: 'canceladoEnvio' }
 };
 
 // Datos semilla conservando tu catálogo previo con SKU e imágenes
 const DATOS_SEMILLA = {
-    productos: [
-        {
-            id: 1,
-            nombre: "Mochi Tradicional Matcha",
-            sku: "MO-MAT-001",
-            imagen: "/frontend/assets/imagenes/productosCatalogo/mochis/Mochi Matcha.png",
-            categoria: "Mochis",
-            precio: 45,
-            stock: 124,
-            estado: "Activo"
-        },
-        {
-            id: 2,
-            nombre: "Pocky Fresa Kawaii",
-            sku: "PK-FRE-002",
-            imagen: "/frontend/assets/imagenes/productos/pocky-fresa.png",
-            categoria: "Pockys",
-            precio: 35,
-            stock: 12,
-            estado: "Activo"
-        },
-        {
-            id: 3,
-            nombre: "Ramune Soda Original",
-            sku: "BE-RAM-003",
-            imagen: "/frontend/assets/imagenes/productos/ramune-original.png",
-            categoria: "Bebidas",
-            precio: 65,
-            stock: 0,
-            estado: "Inactivo"
-        },
-        {
-            id: 4,
-            nombre: "Mochi Fresa",
-            sku: "MO-FRE-004",
-            imagen: "/frontend/assets/imagenes/productos/mochi-fresa.png",
-            categoria: "Mochis",
-            precio: 50,
-            stock: 30,
-            estado: "Activo"
-        },
-        {
-            id: 5,
-            nombre: "Pocky Chocolate",
-            sku: "PK-CHO-005",
-            imagen: "/frontend/assets/imagenes/productos/pocky-chocolate.png",
-            categoria: "Pockys",
-            precio: 40,
-            stock: 20,
-            estado: "Activo"
-        },
-        {
-            id: 6,
-            nombre: "Ramune Melón",
-            sku: "BE-MEL-006",
-            imagen: "/frontend/assets/imagenes/productos/ramune-melon.png",
-            categoria: "Bebidas",
-            precio: 60,
-            stock: 15,
-            estado: "Activo"
-        },
-        {
-            id: 7,
-            nombre: "Mochi Mango",
-            sku: "MO-MAN-007",
-            imagen: "/frontend/assets/imagenes/productos/mochi-mango.png",
-            categoria: "Mochis",
-            precio: 55,
-            stock: 8,
-            estado: "Activo"
-        },
-        {
-            id: 8,
-            nombre: "Pocky Matcha",
-            sku: "PK-MAT-008",
-            imagen: "/frontend/assets/imagenes/productos/pocky-matcha.png",
-            categoria: "Pockys",
-            precio: 42,
-            stock: 18,
-            estado: "Activo"
-        },
-        {
-            id: 9,
-            nombre: "Ramune Fresa",
-            sku: "BE-FRE-009",
-            imagen: "/frontend/assets/imagenes/productos/ramune-fresa.png",
-            categoria: "Bebidas",
-            precio: 65,
-            stock: 0,
-            estado: "Inactivo"
-        }
-    ],
-    pedidos: [
-        { id: "MX-0992-A", cliente: "Sofía Martínez", ubicacion: "Estado de México", fecha: "24 Oct, 10:30 AM", metodoPago: "Tarjeta", total: 350.00, estado: "Pendiente", tipoEnvio: "Estándar" },
-        { id: "MX-0993-B", cliente: "Carlos Reyes", ubicacion: "Jalisco", fecha: "23 Oct, 14:15 PM", metodoPago: "OXXO Pay", total: 890.50, estado: "En camino", tipoEnvio: "Express" },
-        { id: "MX-0994-C", cliente: "Ana Gómez", ubicacion: "Nuevo León", fecha: "22 Oct, 09:00 AM", metodoPago: "SPEI", total: 120.00, estado: "Entregado", tipoEnvio: "Estándar" },
-        { id: "MX-0995-D", cliente: "Pedro Sola", ubicacion: "Ciudad de México", fecha: "21 Oct, 16:45 PM", metodoPago: "Tarjeta", total: 540.00, estado: "Cancelado", tipoEnvio: "Estándar" }
-    ],
+    pedidos: Mochi.tienda.pedidosSemilla,
     clientes: [
         { id: 1, nombre: "Mariana Valdés", email: "mariana.v@gmail.com", ubicacion: "Ciudad de México", pedidos: 14, ultimaActividad: "Hoy, 10:23 AM", avatar: "../assets/imagenes/nosotros/Frida.jpeg" },
         { id: 2, nombre: "Carlos Ruíz", email: "carlos.j99@gmail.com", ubicacion: "Jalisco", pedidos: 3, ultimaActividad: "Ayer, 04:45 PM", iniciales: "CJ" },
@@ -137,7 +50,7 @@ const DATOS_SEMILLA = {
         correoAdmin: "admin@mochimexa.com",
         envioCdmx: 80,
         envioInterior: 150,
-        metodosPago: { tarjeta: true, spei: true, oxxo: false },
+        metodosPago: { ...Mochi.tienda.metodosPagoPredeterminados },
         notificaciones: { nuevosPedidos: true, stockBajo: true, resumenSemanal: false }
     }
 };
@@ -147,32 +60,16 @@ const DATOS_SEMILLA = {
 // ========================================
 
 async function obtenerProductos() {
-    try {
-        const datos = localStorage.getItem('mochimexa_productos');
-        state.productos = datos ? JSON.parse(datos) : [...DATOS_SEMILLA.productos];
-        return state.productos;
-    } catch (error) {
-        console.error("Error al cargar productos:", error);
-        return [];
-    }
-}
-
-async function crearProducto(nuevoProd) {
-    try {
-        nuevoProd.id = state.productos.length ? Math.max(...state.productos.map(p => p.id)) + 1 : 1;
-        state.productos.push(nuevoProd);
-        guardarProductos();
-        return nuevoProd;
-    } catch (error) {
-        console.error("Error al crear producto:", error);
-        throw error;
-    }
+    // El panel administra exactamente los productos que ve la tienda.
+    const categorias = { mochis: 'Mochis', bebidas: 'Bebidas', poky: 'Pockys', snacks: 'Otros snacks' };
+    state.productos = Mochi.productos.listar().map(p => ({ ...p, categoria: categorias[p.categoria] || p.categoria }));
+    return state.productos;
 }
 
 async function obtenerPedidos() {
     try {
-        const datos = localStorage.getItem('mochimexa_pedidos');
-        state.pedidos = datos ? JSON.parse(datos) : [...DATOS_SEMILLA.pedidos];
+        const datos = Mochi.leer('mochimexa_pedidos', null);
+        state.pedidos = Array.isArray(datos) ? datos : [...DATOS_SEMILLA.pedidos];
         return state.pedidos;
     } catch (error) {
         console.error("Error al cargar pedidos:", error);
@@ -181,23 +78,21 @@ async function obtenerPedidos() {
 }
 
 async function actualizarPedido(id, datosActualizados) {
-    try {
-        const index = state.pedidos.findIndex(p => p.id === id);
-        if (index !== -1) {
-            state.pedidos[index] = { ...state.pedidos[index], ...datosActualizados };
-            guardarPedidos();
-            return state.pedidos[index];
-        }
-    } catch (error) {
-        console.error("Error al actualizar pedido:", error);
-        throw error;
-    }
+    const actual = state.pedidos.find(p => p.id === id);
+    if (!actual || !Object.hasOwn(ESTILOS_PEDIDO, datosActualizados.estado)) return false;
+    const siguiente = state.pedidos.map(p => p.id === id ? { ...p, estado: datosActualizados.estado } : p);
+    if (!Mochi.guardar('mochimexa_pedidos', siguiente)) return false;
+    state.pedidos = siguiente;
+    // Solo después de guardar se actualizan la tabla, las tarjetas y la gráfica.
+    renderTablaPedidos();
+    actualizarDashboard();
+    return true;
 }
 
 async function obtenerClientes() {
     try {
-        const datos = localStorage.getItem('mochimexa_clientes');
-        state.clientes = datos ? JSON.parse(datos) : [...DATOS_SEMILLA.clientes];
+        const datos = Mochi.leer('mochimexa_clientes', null);
+        state.clientes = Array.isArray(datos) ? datos : [...DATOS_SEMILLA.clientes];
         return state.clientes;
     } catch (error) {
         console.error("Error al cargar clientes:", error);
@@ -205,34 +100,29 @@ async function obtenerClientes() {
     }
 }
 
-function guardarProductos() {
-    localStorage.setItem('mochimexa_productos', JSON.stringify(state.productos));
-}
-
 function cargarProductos() {
-    obtenerProductos().then(() => {
+    return obtenerProductos().then(() => {
         mostrarProductos();
+        actualizarDashboard();
     });
 }
 
-function guardarPedidos() {
-    localStorage.setItem('mochimexa_pedidos', JSON.stringify(state.pedidos));
-}
-
 function cargarPedidos() {
-    obtenerPedidos().then(() => {
+    return obtenerPedidos().then(() => {
         renderTablaPedidos();
-        renderTablaPedidosDashboard();
+        actualizarDashboard();
     });
 }
 
 function guardarConfiguracion() {
-    localStorage.setItem('mochimexa_configuracion', JSON.stringify(state.configuracion));
+    if (!Mochi.guardar('mochimexa_configuracion', state.configuracion)) return false;
+    window.dispatchEvent(new Event('mochi:configuracion'));
+    return true;
 }
 
 function cargarConfiguracion() {
-    const datos = localStorage.getItem('mochimexa_configuracion');
-    state.configuracion = datos ? JSON.parse(datos) : { ...DATOS_SEMILLA.configuracion };
+    const datos = Mochi.leer('mochimexa_configuracion', {});
+    state.configuracion = { ...DATOS_SEMILLA.configuracion, ...datos, metodosPago: { ...DATOS_SEMILLA.configuracion.metodosPago, ...datos?.metodosPago }, notificaciones: { ...DATOS_SEMILLA.configuracion.notificaciones, ...datos?.notificaciones } };
     aplicarConfiguracionUI();
 }
 
@@ -245,23 +135,32 @@ function initNavegacion() {
     const secciones = document.querySelectorAll('main > section');
 
     function cambiarSeccion(targetId) {
-        const idLimpio = targetId.replace('#', '') || 'dashboard';
+        const pedido = targetId.replace('#', '');
+        const idLimpio = Array.from(secciones).some(sec => sec.id === pedido) ? pedido : 'dashboard';
         
         secciones.forEach(sec => {
-            sec.style.display = (sec.id === idLimpio) ? 'block' : 'none';
+            sec.hidden = sec.id !== idLimpio;
+            sec.style.display = sec.hidden ? 'none' : 'block';
         });
 
         const menuLinks = document.querySelectorAll('.columna1 .botonesMenu a');
         menuLinks.forEach(link => {
             const href = link.getAttribute('href');
-            if (href && href.includes(idLimpio)) {
+            if (href === `#${idLimpio}`) {
                 link.classList.add('activo');
+                link.setAttribute('aria-current', 'page');
             } else {
                 link.classList.remove('activo');
+                link.removeAttribute('aria-current');
             }
         });
 
-        window.location.hash = idLimpio;
+        if (window.location.hash !== `#${idLimpio}`) window.location.hash = idLimpio;
+        aplicarBusquedaAdmin();
+        if (idLimpio === 'dashboard') {
+            actualizarDashboard();
+            state.graficaVentasInstance?.resize();
+        }
     }
 
     navLinks.forEach(link => {
@@ -274,94 +173,83 @@ function initNavegacion() {
         });
     });
 
-    document.addEventListener('click', (e) => {
-        if (e.target.matches('.pedidoRecienteTitle a')) {
-            e.preventDefault();
-            cambiarSeccion('#pedidos');
-        }
-    });
-
+    window.addEventListener('hashchange', () => cambiarSeccion(location.hash));
     const hashInicial = window.location.hash || '#dashboard';
     cambiarSeccion(hashInicial);
 }
 
 // ========================================
-// 4. DASHBOARD & GRÁFICA (CONSERVANDO TU DISEÑO)
+// 4. DASHBOARD (MISMO DISEÑO, DATOS COMPARTIDOS)
 // ========================================
 
-function initDashboard() {
-    const graficaVentas = document.getElementById("graficaVentas");
-    if (!graficaVentas) return;
+function actualizarDashboard() {
+    const escribir = (id, texto) => {
+        const elemento = document.getElementById(id);
+        if (elemento) elemento.textContent = texto;
+    };
+    const pendientes = state.pedidos.filter(p => p.estado === 'Pendiente').length;
+    const importe = state.pedidos.reduce((total, p) => p.estado === 'Cancelado' ? total : total + (Number(p.total) || 0), 0);
+    const definidos = state.productos.filter(p => p.stock != null && Number.isFinite(Number(p.stock)));
+    const sinInventario = state.productos.length - definidos.length;
+    escribir('resumenImporte', `$${importe.toFixed(2)}`);
+    escribir('resumenPendientes', String(pendientes));
+    escribir('detallePedidos', `${state.pedidos.length} pedidos en total`);
+    escribir('resumenStock', definidos.length ? String(definidos.filter(p => p.stock > 0).length) : 'Por definir');
+    escribir('detalleStock', `${definidos.filter(p => p.stock > 0 && p.stock <= 15).length} con stock bajo · ${sinInventario} sin inventario definido`);
+    escribir('resumenClientes', String(state.clientes.length));
 
-    if (state.graficaVentasInstance) {
-        state.graficaVentasInstance.destroy();
+    const tbody = document.querySelector('.pedidoReciente tbody');
+    if (tbody) {
+        tbody.innerHTML = state.pedidos.slice(0, 4).map(escaparCampos).map(p => `
+            <tr>
+                <td>#${p.id}</td><td>${p.cliente}</td><td>${p.fecha}</td>
+                <td>$${Number(p.total).toFixed(2)}</td>
+                <td><span class="estadoPedido ${ESTILOS_PEDIDO[p.estado]?.estado || ''}">${p.estado}</span></td>
+            </tr>
+        `).join('') || '<tr><td colspan="5">No hay pedidos registrados.</td></tr>';
     }
+    actualizarGraficaPedidos();
+}
 
-    state.graficaVentasInstance = new Chart(graficaVentas, {
-        type: "bar",
+function actualizarGraficaPedidos() {
+    const canvas = document.getElementById('graficaVentas');
+    if (!canvas) return;
+    const labels = Object.keys(ESTILOS_PEDIDO);
+    const valores = labels.map(estado => state.pedidos.filter(p => p.estado === estado).length);
+    const resumen = labels.map((estado, i) => `${estado}: ${valores[i]}`).join('. ');
+    canvas.setAttribute('aria-label', `Pedidos locales por estado. ${resumen}`);
+    const aviso = document.getElementById('estadoGrafica');
+
+    // Si el CDN no carga, el resto del panel sigue funcionando y los datos
+    // de la gráfica continúan disponibles en texto, sin ocultar el problema.
+    if (typeof Chart === 'undefined') {
+        canvas.hidden = true;
+        if (aviso) { aviso.hidden = false; aviso.textContent = `Gráfica no disponible. ${resumen}`; }
+        return;
+    }
+    canvas.hidden = false;
+    if (aviso) aviso.hidden = true;
+    if (state.graficaVentasInstance) {
+        state.graficaVentasInstance.data.datasets[0].data = valores;
+        state.graficaVentasInstance.update();
+        return;
+    }
+    state.graficaVentasInstance = new Chart(canvas, {
+        type: 'bar',
         data: {
-            labels: ["L", "M", "M", "J", "V", "S", "D"],
-            datasets: [
-                {
-                    label: "Ventas",
-                    data: [120, 180, 90, 240, 150, 280, 210],
-                    backgroundColor: [
-                        "#d9e5ce",
-                        "#d9e5ce",
-                        "#d9e5ce",
-                        "#8DBA76",
-                        "#d9e5ce",
-                        "#ffc088",
-                        "#ffc088"
-                    ],
-                    borderRadius: 8
-                }
-            ]
+            labels,
+            datasets: [{ label: 'Pedidos', data: valores, backgroundColor: ['#ffc088', '#8DBA76', '#d9e5ce', '#F4A3C1'], borderRadius: 8 }]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    display: false
-                }
-            },
+            plugins: { legend: { display: false } },
             scales: {
-                x: {
-                    grid: { display: false },
-                    border: { display: false }
-                },
-                y: {
-                    beginAtZero: true,
-                    ticks: { display: false },
-                    grid: { display: false },
-                    border: { display: false }
-                }
+                x: { grid: { display: false }, border: { display: false } },
+                y: { beginAtZero: true, ticks: { precision: 0 }, grid: { display: false }, border: { display: false } }
             }
         }
     });
-}
-
-function renderTablaPedidosDashboard() {
-    const tbody = document.querySelector('.pedidoReciente tbody');
-    if (!tbody) return;
-
-    const ultimosPedidos = state.pedidos.slice(0, 4);
-    tbody.innerHTML = ultimosPedidos.map((ped, index) => {
-        const clasesRow = ['firstRowTableValues', 'secondRowTableValues', 'thirdRowTableValues', 'fourthRowTableValues'];
-        const claseEstado = ped.estado.toLowerCase().replace(' ', '');
-        return `
-            <tr class="${clasesRow[index] || ''}">
-                <td>#${ped.id}</td>
-                <td>${ped.cliente}</td>
-                <td>${ped.fecha}</td>
-                <td>$${Number(ped.total).toFixed(2)}</td>
-                <td>
-                    <span class="estadoPedido ${claseEstado}">${ped.estado}</span>
-                </td>
-            </tr>
-        `;
-    }).join('');
 }
 
 // ========================================
@@ -415,13 +303,28 @@ function initProductos() {
     });
 
     // Nuevo Producto Modal
-    const btnAgregar = document.querySelector('.catalogoHeader .botonAgregar, .columna1 .botonProducto a');
-    if (btnAgregar) {
-        btnAgregar.addEventListener('click', (e) => {
-            e.preventDefault();
+    document.querySelectorAll('.catalogoHeader .botonAgregar, .columna1 .botonProducto a').forEach(boton => {
+        boton.addEventListener('click', event => {
+            event.preventDefault();
             abrirModalNuevoProducto();
         });
-    }
+    });
+
+    // Seleccionar todas aplica a la página visible; la selección se conserva
+    // al paginar y Exportar descarga solo lo seleccionado si hay selección.
+    document.querySelector('#productos thead input[type="checkbox"]')?.addEventListener('change', event => {
+        document.querySelectorAll('.checkboxProducto').forEach(checkbox => {
+            checkbox.checked = event.target.checked;
+            if (checkbox.checked) state.seleccionProductos.add(checkbox.value);
+            else state.seleccionProductos.delete(checkbox.value);
+        });
+    });
+    document.getElementById('tablaProductos')?.addEventListener('change', event => {
+        if (!event.target.matches('.checkboxProducto')) return;
+        if (event.target.checked) state.seleccionProductos.add(event.target.value);
+        else state.seleccionProductos.delete(event.target.value);
+        actualizarSeleccionProductos();
+    });
 
     // Exportar CSV
     const btnExportar = document.querySelector('.catalogoHeader .botonExportar');
@@ -431,10 +334,22 @@ function initProductos() {
 }
 
 function obtenerProductosFiltrados() {
-    if (state.paginacionProductos.filtroCategoria === 'Todos') {
-        return state.productos;
-    }
-    return state.productos.filter(p => p.categoria.toLowerCase() === state.paginacionProductos.filtroCategoria.toLowerCase());
+    return state.productos.filter(p =>
+        (state.paginacionProductos.filtroCategoria === 'Todos' || Mochi.normalizar(p.categoria) === Mochi.normalizar(state.paginacionProductos.filtroCategoria)) &&
+        Mochi.normalizar(`${p.nombre} ${p.sku || ''} ${p.categoria}`).includes(state.busqueda));
+}
+
+function actualizarSeleccionProductos() {
+    const casillas = Array.from(document.querySelectorAll('.checkboxProducto'));
+    const todas = document.querySelector('#productos thead input[type="checkbox"]');
+    if (!todas) return;
+    const marcadas = casillas.filter(c => c.checked).length;
+    todas.checked = casillas.length > 0 && marcadas === casillas.length;
+    todas.indeterminate = marcadas > 0 && marcadas < casillas.length;
+}
+
+function escaparCampos(datos) {
+    return Object.fromEntries(Object.entries(datos).map(([clave, valor]) => [clave, typeof valor === 'string' ? Mochi.escapar(valor) : valor]));
 }
 
 function calcularTotalPaginasProductos() {
@@ -451,16 +366,18 @@ function mostrarProductos() {
 
     const filtrados = obtenerProductosFiltrados();
     const total = filtrados.length;
+    state.paginacionProductos.paginaActual = Math.min(state.paginacionProductos.paginaActual, calcularTotalPaginasProductos());
     const { paginaActual, porPagina } = state.paginacionProductos;
 
     const inicio = (paginaActual - 1) * porPagina;
     const fin = inicio + porPagina;
     const productosPagina = filtrados.slice(inicio, fin);
 
-    productosPagina.forEach(producto => {
+    productosPagina.forEach(datos => {
+        const producto = escaparCampos({ ...datos, imagen: Mochi.imagenSegura(datos.imagen) });
         const fila = document.createElement("tr");
 
-        const claseCategoria = producto.categoria.toLowerCase();
+        const claseCategoria = Mochi.normalizar(producto.categoria).replace(/\s+/g, '-');
 
         let claseStock = "";
         if (producto.stock > 15) {
@@ -473,11 +390,11 @@ function mostrarProductos() {
 
         fila.innerHTML = `
             <td>
-                <input type="checkbox" class="checkboxProducto" value="${producto.id}">
+                <input type="checkbox" class="checkboxProducto" aria-label="Seleccionar ${producto.nombre}" value="${producto.id}" ${state.seleccionProductos.has(String(datos.id)) ? 'checked' : ''}>
             </td>
             <td>
                 <div class="productoInfo">
-                    <img src="${producto.imagen || '/frontend/assets/imagenes/productos/mochi-fresa.png'}" alt="${producto.nombre}" class="productoImagen">
+                    <img src="${producto.imagen || '../assets/imagenes/productosCatalogo/mochis/Mochi Fresa.png'}" alt="${producto.nombre}" class="productoImagen">
                     <div class="productoTexto">
                         <strong>${producto.nombre}</strong>
                         <span>SKU: ${producto.sku || 'N/A'}</span>
@@ -488,13 +405,14 @@ function mostrarProductos() {
                 <span class="categoria categoria-${claseCategoria}">${producto.categoria}</span>
             </td>
             <td>$${Number(producto.precio).toFixed(2)} MXN</td>
-            <td class="${claseStock}">${producto.stock}</td>
+            <td class="${claseStock}">${producto.stock ?? 'Por definir'}</td>
             <td>
                 <span class="estado ${claseEstado}">
                     <span class="puntoEstado"></span>
                     ${producto.estado}
                 </span>
             </td>
+            <td><a class="botonEditar" href="${Mochi.ruta('adminProd.html', { editar: datos.id })}" aria-label="Editar ${producto.nombre}">Editar</a></td>
         `;
 
         tablaProductos.appendChild(fila);
@@ -506,6 +424,8 @@ function mostrarProductos() {
         infoProductos.textContent = `Mostrando ${primerProducto} a ${ultimoProducto} de ${total} productos`;
     }
 
+    if (!total) tablaProductos.innerHTML = '<tr><td colspan="7">No se encontraron productos.</td></tr>';
+    actualizarSeleccionProductos();
     actualizarBotonesPaginacion();
 }
 
@@ -518,8 +438,13 @@ function actualizarBotonesPaginacion() {
     if (botonAnterior) botonAnterior.disabled = state.paginacionProductos.paginaActual === 1;
     if (botonSiguiente) botonSiguiente.disabled = state.paginacionProductos.paginaActual >= totalPaginas;
 
-    botonesPagina.forEach(boton => {
-        const numeroPagina = Number(boton.dataset.pagina);
+    const inicio = Math.max(1, Math.min(state.paginacionProductos.paginaActual - 1, totalPaginas - botonesPagina.length + 1));
+    botonesPagina.forEach((boton, indice) => {
+        // Reutilizar los tres botones existentes permite llegar a páginas nuevas.
+        const numeroPagina = inicio + indice;
+        boton.dataset.pagina = String(numeroPagina);
+        boton.textContent = String(numeroPagina);
+        boton.disabled = numeroPagina > totalPaginas;
         boton.classList.remove("activo");
         if (numeroPagina === state.paginacionProductos.paginaActual) {
             boton.classList.add("activo");
@@ -529,61 +454,26 @@ function actualizarBotonesPaginacion() {
 
 
 
-    eliminarModalExistente('modalNuevoProducto');
-    document.body.insertAdjacentHTML('beforeend', modalHtml);
-    const modalEl = document.getElementById('modalNuevoProducto');
-    const modalInstance = new bootstrap.Modal(modalEl);
-    modalInstance.show();
+// Se reutiliza la página de registro ya diseñada; no se introduce otro formulario.
+function abrirModalNuevoProducto() {
+    location.href = Mochi.ruta('adminProd.html');
+}
 
-    document.getElementById('btnGuardarProducto').addEventListener('click', async () => {
-        const nombre = document.getElementById('prodNombre').value.trim();
-        const categoria = document.getElementById('prodCategoria').value;
-        const precio = parseFloat(document.getElementById('prodPrecio').value);
-        const stock = parseInt(document.getElementById('prodStock').value);
-        const estado = document.getElementById('prodEstado').value;
-
-        if (!nombre || isNaN(precio) || isNaN(stock)) {
-            mostrarToast("Por favor completa todos los campos correctamente.", "warning");
-            return;
-        }
-
-        if (precio < 0 || stock < 0) {
-            mostrarToast("El precio y stock no pueden ser valores negativos.", "danger");
-            return;
-        }
-
-        const skuGenerado = `${categoria.substring(0, 2).toUpperCase()}-NEW-${Math.floor(100 + Math.random() * 900)}`;
-
-        try {
-            await crearProducto({
-                nombre,
-                sku: skuGenerado,
-                imagen: "/frontend/assets/imagenes/productos/mochi-fresa.png",
-                categoria,
-                precio,
-                stock,
-                estado
-            });
-            mostrarProductos();
-            modalInstance.hide();
-            mostrarToast("Producto agregado exitosamente.", "success");
-        } catch (error) {
-            mostrarToast("Ocurrió un error al guardar el producto.", "danger");
-        }
-    });
-
+// Escapar comillas y fórmulas evita columnas rotas o fórmulas ejecutables al
+// abrir un CSV que contiene nombres escritos por el usuario.
+function celdaCSV(valor) {
+    let texto = String(valor ?? '');
+    if (/^[\s]*[=+@-]/.test(texto)) texto = "'" + texto;
+    return '"' + texto.replace(/"/g, '""') + '"';
+}
 
 function exportarProductosCSV() {
-    if (!state.productos.length) {
-        mostrarToast("No hay productos para exportar.", "warning");
-        return;
-    }
-    let csv = "ID,Nombre,SKU,Categoria,Precio,Stock,Estado\n";
-    state.productos.forEach(p => {
-        csv += `"${p.id}","${p.nombre}","${p.sku || ''}","${p.categoria}","${p.precio}","${p.stock}","${p.estado}"\n`;
-    });
-    descargarCSV("productos_mochimexa.csv", csv);
-    mostrarToast("Catálogo exportado a CSV.", "info");
+    const lista = state.seleccionProductos.size ? state.productos.filter(p => state.seleccionProductos.has(String(p.id))) : obtenerProductosFiltrados();
+    if (!lista.length) return mostrarToast('No hay productos para exportar.', 'warning');
+    const filas = [['ID', 'Nombre', 'SKU', 'Categoria', 'Precio', 'Stock', 'Estado'],
+        ...lista.map(p => [p.id, p.nombre, p.sku, p.categoria, p.precio, p.stock, p.estado])];
+    descargarCSV('productos_mochimexa.csv', filas.map(f => f.map(celdaCSV).join(',')).join('\n'));
+    mostrarToast('Productos exportados a CSV.', 'info');
 }
 
 // ========================================
@@ -601,12 +491,24 @@ function initPedidos() {
         btnExportar.addEventListener('click', exportarPedidosCSV);
     }
 
-    document.addEventListener('click', (e) => {
-        if (e.target.classList.contains('accionesPedido')) {
-            const tr = e.target.closest('tr');
+    document.querySelector('#pedidos .tablaPedidos tbody')?.addEventListener('click', (e) => {
+        const accion = e.target.closest('.accionesPedido, [data-editar-pedido]');
+        if (accion) {
+            const tr = accion.closest('tr');
             const id = tr ? tr.dataset.id : null;
             if (id) abrirModalAccionesPedido(id);
         }
+    });
+
+    // Un único listener reutiliza los botones aunque cambien sus números,
+    // igual que en Productos. Los símbolos de las flechas no son la lógica.
+    document.querySelector('.paginacionPedidos')?.addEventListener('click', event => {
+        const boton = event.target.closest('button');
+        if (!boton || boton.disabled) return;
+        if (boton.dataset.accion === 'anterior') state.paginacionPedidos.paginaActual--;
+        else if (boton.dataset.accion === 'siguiente') state.paginacionPedidos.paginaActual++;
+        else if (boton.dataset.pagina) state.paginacionPedidos.paginaActual = Number(boton.dataset.pagina);
+        renderTablaPedidos();
     });
 }
 
@@ -614,16 +516,23 @@ function renderTablaPedidos() {
     const tbody = document.querySelector('#pedidos .tablaPedidos tbody');
     if (!tbody) return;
 
-    let pedidosFiltrados = state.pedidos;
-    if (state.paginacionPedidos.filtroEstado !== 'Todos') {
-        pedidosFiltrados = state.pedidos.filter(p => p.estado.toLowerCase() === state.paginacionPedidos.filtroEstado.toLowerCase());
-    }
+    const pedidosFiltrados = obtenerPedidosFiltrados();
+    const totalPaginas = Math.max(1, Math.ceil(pedidosFiltrados.length / state.paginacionPedidos.porPagina));
+    state.paginacionPedidos.paginaActual = Math.max(1, Math.min(state.paginacionPedidos.paginaActual, totalPaginas));
+    const inicio = (state.paginacionPedidos.paginaActual - 1) * state.paginacionPedidos.porPagina;
+    const visibles = pedidosFiltrados.slice(inicio, inicio + state.paginacionPedidos.porPagina);
+    const informacion = document.querySelector('.paginacionPedidos p');
+    if (informacion) informacion.textContent = `Mostrando ${visibles.length ? inicio + 1 : 0} a ${inicio + visibles.length} de ${pedidosFiltrados.length} pedidos`;
+    actualizarPaginacionPedidos(totalPaginas);
+    const filtro = document.querySelector('.pedidosHeader .botonFiltrar');
+    filtro?.setAttribute('aria-pressed', String(state.paginacionPedidos.filtroEstado !== 'Todos'));
+    filtro?.setAttribute('aria-label', `Filtrar pedidos. Estado actual: ${state.paginacionPedidos.filtroEstado}`);
 
-    tbody.innerHTML = pedidosFiltrados.map(ped => `
+    tbody.innerHTML = visibles.map(escaparCampos).map(ped => `
         <tr data-id="${ped.id}">
             <td>
                 <div class="guiaPedido">
-                    <div class="iconoEnvio ${ped.estado === 'Pendiente' ? 'pendienteEnvio' : ped.estado === 'En camino' ? 'caminoEnvio' : 'entregadoEnvio'}">🚚</div>
+                    <div class="iconoEnvio ${ESTILOS_PEDIDO[ped.estado]?.icono || ''}">🚚</div>
                     <div class="guiaTexto">
                         <strong>#${ped.id}</strong>
                         <span>${ped.tipoEnvio || 'Estándar'}</span>
@@ -639,20 +548,41 @@ function renderTablaPedidos() {
             <td>${ped.fecha}</td>
             <td><span class="metodoPago">▣ ${ped.metodoPago}</span></td>
             <td>
-                <span class="estadoPedido ${ped.estado === 'Pendiente' ? 'estadoPendiente' : ped.estado === 'En camino' ? 'estadoCamino' : 'estadoEntregado'}">
+                <button type="button" class="estadoPedido ${ESTILOS_PEDIDO[ped.estado]?.estado || ''}" data-editar-pedido aria-label="Cambiar estado del pedido ${ped.id}: ${ped.estado}">
                     ${ped.estado}⌄
-                </span>
+                </button>
             </td>
             <td>
-                <button class="accionesPedido">⋮</button>
+                <button type="button" class="accionesPedido" aria-label="Editar pedido ${ped.id}" title="Editar pedido">⋮</button>
             </td>
         </tr>
-    `).join('');
+    `).join('') || '<tr><td colspan="6">No se encontraron pedidos.</td></tr>';
+}
+
+function actualizarPaginacionPedidos(totalPaginas) {
+    const botones = Array.from(document.querySelectorAll('.paginacionPedidos .paginaPedido'));
+    const paginaActual = state.paginacionPedidos.paginaActual;
+    const primera = Math.max(1, Math.min(paginaActual - 1, totalPaginas - botones.length + 1));
+    botones.forEach((boton, indice) => {
+        const numero = primera + indice;
+        boton.textContent = String(numero);
+        boton.dataset.pagina = String(numero);
+        boton.disabled = numero > totalPaginas;
+        boton.classList.toggle('activa', numero === paginaActual);
+        boton.setAttribute('aria-label', `Página ${numero} de pedidos`);
+        if (numero === paginaActual) boton.setAttribute('aria-current', 'page');
+        else boton.removeAttribute('aria-current');
+    });
+    const anterior = document.querySelector('.paginacionPedidos [data-accion="anterior"]');
+    const siguiente = document.querySelector('.paginacionPedidos [data-accion="siguiente"]');
+    if (anterior) anterior.disabled = paginaActual === 1;
+    if (siguiente) siguiente.disabled = paginaActual >= totalPaginas;
 }
 
 function abrirModalAccionesPedido(idPedido) {
-    const pedido = state.pedidos.find(p => p.id === idPedido);
-    if (!pedido) return;
+    const original = state.pedidos.find(p => p.id === idPedido);
+    if (!original) return;
+    const pedido = escaparCampos(original);
 
     const modalHtml = `
         <div class="modal fade" id="modalAccionesPedido" tabindex="-1" aria-hidden="true">
@@ -690,11 +620,14 @@ function abrirModalAccionesPedido(idPedido) {
     const modalInstance = new bootstrap.Modal(modalEl);
     modalInstance.show();
 
-    document.getElementById('btnActualizarEstadoPedido').addEventListener('click', async () => {
+    document.getElementById('btnActualizarEstadoPedido').addEventListener('click', async event => {
+        const boton = event.currentTarget;
+        if (boton.disabled) return;
+        boton.disabled = true;
         const nuevoEstado = document.getElementById('selectNuevoEstado').value;
-        await actualizarPedido(pedido.id, { estado: nuevoEstado });
-        renderTablaPedidos();
-        renderTablaPedidosDashboard();
+        const guardado = await actualizarPedido(original.id, { estado: nuevoEstado });
+        boton.disabled = false;
+        if (!guardado) return;
         modalInstance.hide();
         mostrarToast(`Estado de pedido #${pedido.id} actualizado a "${nuevoEstado}".`, "success");
     });
@@ -732,24 +665,27 @@ function abrirModalFiltroPedidos() {
     const modalInstance = new bootstrap.Modal(modalEl);
     modalInstance.show();
 
+    document.getElementById('selectFiltroEstado').value = state.paginacionPedidos.filtroEstado;
     document.getElementById('btnAplicarFiltroPedido').addEventListener('click', () => {
+        state.paginacionPedidos.paginaActual = 1;
         state.paginacionPedidos.filtroEstado = document.getElementById('selectFiltroEstado').value;
         renderTablaPedidos();
         modalInstance.hide();
     });
 }
 
+function obtenerPedidosFiltrados() {
+    return state.pedidos.filter(p => (state.paginacionPedidos.filtroEstado === 'Todos' || p.estado === state.paginacionPedidos.filtroEstado) &&
+        Mochi.normalizar(`${p.id} ${p.cliente} ${p.estado} ${p.ubicacion}`).includes(state.busqueda));
+}
+
 function exportarPedidosCSV() {
-    if (!state.pedidos.length) {
-        mostrarToast("No hay pedidos para exportar.", "warning");
-        return;
-    }
-    let csv = "ID,Cliente,Ubicacion,Fecha,MetodoPago,Total,Estado\n";
-    state.pedidos.forEach(p => {
-        csv += `"${p.id}","${p.cliente}","${p.ubicacion}","${p.fecha}","${p.metodoPago}","${p.total}","${p.estado}"\n`;
-    });
-    descargarCSV("pedidos_mochimexa.csv", csv);
-    mostrarToast("Lista de pedidos exportada a CSV.", "info");
+    const lista = obtenerPedidosFiltrados();
+    if (!lista.length) return mostrarToast('No hay pedidos para exportar.', 'warning');
+    const filas = [['ID', 'Cliente', 'Ubicacion', 'Fecha', 'MetodoPago', 'Total', 'Estado'],
+        ...lista.map(p => [p.id, p.cliente, p.ubicacion, p.fecha, p.metodoPago, p.total, p.estado])];
+    descargarCSV('pedidos_mochimexa.csv', filas.map(f => f.map(celdaCSV).join(',')).join('\n'));
+    mostrarToast('Pedidos exportados a CSV.', 'info');
 }
 
 // ========================================
@@ -759,6 +695,7 @@ function exportarPedidosCSV() {
 function initClientes() {
     obtenerClientes().then(() => {
         renderTablaClientes();
+        actualizarDashboard();
     });
 
     document.addEventListener('click', (e) => {
@@ -777,9 +714,9 @@ function renderTablaClientes(clientesFiltrados = null) {
     const tbody = document.querySelector('#clientes table tbody');
     if (!tbody) return;
 
-    const lista = clientesFiltrados || state.clientes;
+    const lista = clientesFiltrados || state.clientes.filter(c => Mochi.normalizar(`${c.nombre} ${c.email} ${c.ubicacion}`).includes(state.busqueda));
 
-    tbody.innerHTML = lista.map(c => `
+    tbody.innerHTML = lista.map(escaparCampos).map(c => `
         <tr>
             <td>
                 <div class="cliente-info-container">
@@ -798,10 +735,11 @@ function renderTablaClientes(clientesFiltrados = null) {
             <td>${c.ultimaActividad}</td>
             <td><button class="btn btn-sm btn-outline-secondary">Detalles</button></td>
         </tr>
-    `).join('');
+    `).join('') || '<tr><td colspan="5">No se encontraron clientes.</td></tr>';
 }
 
-function mostrarModalDetalleCliente(cliente) {
+function mostrarModalDetalleCliente(original) {
+    const cliente = escaparCampos(original);
     const modalHtml = `
         <div class="modal fade" id="modalDetalleCliente" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog">
@@ -869,11 +807,8 @@ function aplicarConfiguracionUI() {
     }
 
     const pagoSwitches = document.querySelectorAll('#configuracion .metodosPago input[type="checkbox"]');
-    if (pagoSwitches.length >= 3) {
-        pagoSwitches[0].checked = cfg.metodosPago.tarjeta;
-        pagoSwitches[1].checked = cfg.metodosPago.spei;
-        pagoSwitches[2].checked = cfg.metodosPago.oxxo;
-    }
+    // Cada interruptor se identifica por su método, no por su posición visual.
+    pagoSwitches.forEach(input => { input.checked = cfg.metodosPago[input.dataset.metodoPago] === true; });
 
     const notifSwitches = document.querySelectorAll('#configuracion .notificacionesAdmin input[type="checkbox"]');
     if (notifSwitches.length >= 3) {
@@ -902,7 +837,7 @@ function guardarAjustesDesdeUI() {
     const envioCdmx = parseFloat(enviosInputs[0]?.value || 0);
     const envioInterior = parseFloat(enviosInputs[1]?.value || 0);
 
-    if (envioCdmx < 0 || envioInterior < 0) {
+    if (!Number.isFinite(envioCdmx) || !Number.isFinite(envioInterior) || envioCdmx < 0 || envioInterior < 0) {
         mostrarToast("Los costos de envío no pueden ser negativos.", "danger");
         return;
     }
@@ -915,11 +850,7 @@ function guardarAjustesDesdeUI() {
         correoAdmin: correo,
         envioCdmx,
         envioInterior,
-        metodosPago: {
-            tarjeta: pagoSwitches[0]?.checked || false,
-            spei: pagoSwitches[1]?.checked || false,
-            oxxo: pagoSwitches[2]?.checked || false
-        },
+        metodosPago: Object.fromEntries(Array.from(pagoSwitches, input => [input.dataset.metodoPago, input.checked])),
         notificaciones: {
             nuevosPedidos: notifSwitches[0]?.checked || false,
             stockBajo: notifSwitches[1]?.checked || false,
@@ -927,76 +858,34 @@ function guardarAjustesDesdeUI() {
         }
     };
 
-    guardarConfiguracion();
-    mostrarToast("Configuración guardada correctamente en el sistema.", "success");
+    if (!guardarConfiguracion()) return;
+    mostrarToast("Preferencias guardadas en este navegador. No se activan cobros ni correos automáticos.", "success");
 }
 
 // ========================================
 // 9. BUSCADOR DEL NAVBAR
 // ========================================
 
+function aplicarBusquedaAdmin() {
+    mostrarProductos();
+    renderTablaPedidos();
+    renderTablaClientes();
+}
+
 function initBuscador() {
     const searchInput = document.querySelector('.custom-search-input');
     if (!searchInput) return;
-
-    searchInput.addEventListener('input', (e) => {
-        const query = e.target.value.toLowerCase().trim();
-        if (query.length === 0) {
-            mostrarProductos();
-            renderTablaClientes();
-            return;
-        }
-
-        const productosCoincidentes = state.productos.filter(p => 
-            p.nombre.toLowerCase().includes(query) || p.categoria.toLowerCase().includes(query)
-        );
-
-        const clientesCoincidentes = state.clientes.filter(c => 
-            c.nombre.toLowerCase().includes(query) || c.email.toLowerCase().includes(query) || c.ubicacion.toLowerCase().includes(query)
-        );
-
-        if (document.getElementById('productos').style.display !== 'none') {
-            renderTablaProductosBusqueda(productosCoincidentes);
-        } else if (document.getElementById('clientes').style.display !== 'none') {
-            renderTablaClientes(clientesCoincidentes);
-        }
-    });
-}
-
-function renderTablaProductosBusqueda(lista) {
-    const tablaProductos = document.getElementById("tablaProductos");
-    if (!tablaProductos) return;
-
-    tablaProductos.innerHTML = "";
-    lista.forEach(producto => {
-        const fila = document.createElement("tr");
-
-        const claseCategoria = producto.categoria.toLowerCase();
-        let claseStock = producto.stock > 15 ? "stockBueno" : producto.stock > 0 ? "stockBajo" : "";
-        const claseEstado = (producto.estado || 'activo').toLowerCase();
-
-        fila.innerHTML = `
-            <td><input type="checkbox" class="checkboxProducto" value="${producto.id}"></td>
-            <td>
-                <div class="productoInfo">
-                    <img src="${producto.imagen || '/frontend/assets/imagenes/productos/mochi-fresa.png'}" alt="${producto.nombre}" class="productoImagen">
-                    <div class="productoTexto">
-                        <strong>${producto.nombre}</strong>
-                        <span>SKU: ${producto.sku || 'N/A'}</span>
-                    </div>
-                </div>
-            </td>
-            <td><span class="categoria categoria-${claseCategoria}">${producto.categoria}</span></td>
-            <td>$${Number(producto.precio).toFixed(2)} MXN</td>
-            <td class="${claseStock}">${producto.stock}</td>
-            <td>
-                <span class="estado ${claseEstado}">
-                    <span class="puntoEstado"></span>
-                    ${producto.estado}
-                </span>
-            </td>
-        `;
-        tablaProductos.appendChild(fila);
+    const buscar = () => {
+        state.busqueda = Mochi.normalizar(searchInput.value);
+        state.paginacionProductos.paginaActual = 1;
+        state.paginacionPedidos.paginaActual = 1;
+        // En el resumen o ajustes, buscar abre el catálogo administrativo.
+        if (!['#productos', '#pedidos', '#clientes'].includes(location.hash)) location.hash = 'productos';
+        aplicarBusquedaAdmin();
+    };
+    searchInput.addEventListener('input', buscar);
+    searchInput.addEventListener('keydown', event => {
+        if (event.key === 'Enter') { event.preventDefault(); buscar(); }
     });
 }
 
@@ -1010,12 +899,12 @@ function initNavbarIconosYFooter() {
     if (navIcons.length >= 3) {
         navIcons[0].addEventListener('click', (e) => {
             e.preventDefault();
-            abrirModalInfo("Notificaciones", "🔔 Tienes 2 pedidos nuevos pendientes por revisar.");
+            abrirModalInfo('Notificaciones', `${state.pedidos.filter(p => p.estado === 'Pendiente').length} pedidos pendientes en los datos locales de demostración.`);
         });
 
         navIcons[1].addEventListener('click', (e) => {
             e.preventDefault();
-            abrirModalInfo("Centro de Ayuda", "Para soporte técnico comunícate a soporte@mochimexa.com.");
+            location.href = Mochi.ruta('contactanos.html', { asunto: 'soporte' });
         });
 
         navIcons[2].addEventListener('click', (e) => {
@@ -1025,17 +914,11 @@ function initNavbarIconosYFooter() {
         });
     }
 
-    const footerLinks = document.querySelectorAll('footer .linksFooter a');
-    footerLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const titulo = link.textContent.trim();
-            abrirModalInfo(titulo, `La sección de <strong>${titulo}</strong> se encuentra actualmente en desarrollo.`);
-        });
-    });
+
 }
 
 function mostrarToast(mensaje, tipo = "info") {
+    if (!window.bootstrap) { alert(mensaje); return; }
     let container = document.getElementById('toastContainer');
     if (!container) {
         container = document.createElement('div');
@@ -1049,7 +932,7 @@ function mostrarToast(mensaje, tipo = "info") {
     const toastHtml = `
         <div id="${toastId}" class="toast align-items-center text-bg-${tipo} border-0" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="d-flex">
-                <div class="toast-body">${mensaje}</div>
+                <div class="toast-body">${Mochi.escapar(mensaje)}</div>
                 <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
             </div>
         </div>
@@ -1058,6 +941,7 @@ function mostrarToast(mensaje, tipo = "info") {
     container.insertAdjacentHTML('beforeend', toastHtml);
     const toastEl = document.getElementById(toastId);
     const toast = new bootstrap.Toast(toastEl, { delay: 3500 });
+    toastEl.addEventListener('hidden.bs.toast', () => toastEl.remove());
     toast.show();
 }
 
@@ -1098,7 +982,7 @@ function eliminarModalExistente(idModal) {
 }
 
 function descargarCSV(nombreArchivo, contenidoCSV) {
-    const blob = new Blob([contenidoCSV], { type: 'text/csv;charset=utf-8;' });
+    const blob = new Blob(['\ufeff', contenidoCSV], { type: 'text/csv;charset=utf-8;' });
     const link = document.createElement('a');
     const url = URL.createObjectURL(blob);
     link.setAttribute('href', url);
@@ -1107,6 +991,7 @@ function descargarCSV(nombreArchivo, contenidoCSV) {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
 // ========================================
@@ -1118,13 +1003,24 @@ document.addEventListener('DOMContentLoaded', async () => {
         initNavegacion();
         await cargarProductos();
         await cargarPedidos();
-        initDashboard();
         initProductos();
         initPedidos();
         initClientes();
         initConfiguracion();
         initBuscador();
         initNavbarIconosYFooter();
+        // Productos y Pedidos se refrescan al volver y entre pestañas, sin
+        // perder el filtro actual ni dejar al Dashboard con un estado anterior.
+        window.addEventListener('pageshow', async () => {
+            await cargarProductos();
+            await cargarPedidos();
+        });
+        window.addEventListener('mochi:productos', cargarProductos);
+        window.addEventListener('mochi:pedidos', cargarPedidos);
+        window.addEventListener('storage', event => {
+            if (event.key === null || ['mochiProductosEditados', 'catalogoProductos', 'mochimexa_productos'].includes(event.key)) cargarProductos();
+            if (event.key === null || event.key === 'mochimexa_pedidos') cargarPedidos();
+        });
     } catch (error) {
         console.error("Error al inicializar el panel Admin:", error);
     }

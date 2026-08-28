@@ -10,11 +10,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="../css/despliegueCarrito.css">
+    <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/index.css">
     
 </head>
 
-<body>
+<body class="pagina-inicio">
     <div id="mochiNav"></div>
         <!-- Barra de navegación-->
     <div class="hero-outer-wrapper position-relative overflow-hidden w-100">
@@ -65,7 +66,7 @@
                     en la puerta de tu hogar.
                 </p>
                 <div class="d-flex flex-wrap align-items-center gap-3">
-                    <a href="/frontend/pages/catalogo.html"
+                    <a href="../pages/catalogo.html"
                         class="btn buttonCatalogo text-white rounded-pill px-4 py-2 fw-semibold d-inline-flex align-items-center gap-2 shadow-sm">
                         Ver Catálogo
                         <i class="bi bi-arrow-right"></i>
@@ -91,8 +92,8 @@
                 <div class="col-12 col-sm-6 col-md-4">
                     <div class="card category-card border-0 rounded-4 overflow-hidden h-100">
                         <div class="category-img-wrapper">
-                            <a href="catalogo.html">
-                            <img src="/frontend/assets/imagenes/productosCatalogo/mochis/mochis.png"
+                            <a href="catalogo.html?categoria=mochis">
+                            <img src="../assets/imagenes/productosCatalogo/mochis/mochis.png"
                                 class="card-img-top object-fit-cover h-100 w-100" alt="Snacks">
                             </a>
                         </div>
@@ -104,8 +105,8 @@
                 <div class="col-12 col-sm-6 col-md-4">
                     <div class="card category-card border-0 rounded-4 overflow-hidden h-100">
                         <div class="category-img-wrapper">
-                            <a href="catalogo.html">
-                            <img src="/frontend/assets/imagenes/productosCatalogo/pokis/Pokys Cholocate.png"
+                            <a href="catalogo.html?categoria=poky">
+                            <img src="../assets/imagenes/productosCatalogo/pokis/Pokys Cholocate.png"
                                 class="card-img-top object-fit-cover h-100 w-100" alt="Pockys">
                                 </a>
                         </div>
@@ -117,8 +118,8 @@
                 <div class="col-12 col-sm-6 col-md-4">
                     <div class="card category-card border-0 rounded-4 overflow-hidden h-100">
                         <div class="category-img-wrapper">
-                            <a href="catalogo.html">
-                            <img src="/frontend/assets/imagenes/productosCatalogo/ramune/Ramune Natural.png"
+                            <a href="catalogo.html?categoria=bebidas">
+                            <img src="../assets/imagenes/productosCatalogo/ramune/Ramune Natural.png"
                                 class="card-img-top object-fit-cover h-100 w-100" alt="Bebidas">
                                 </a>
                         </div>
@@ -146,22 +147,22 @@
             </div>
             <div class="row g-4">
                 <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="card product-card border-0 rounded-4 overflow-hidden h-100 bg-white">
+                    <div data-product-id="mochi-matcha" class="card product-card border-0 rounded-4 overflow-hidden h-100 bg-white">
                         <div class="position-relative product-img-wrapper">
                             <span
                                 class="badge bg-custom-green position-absolute top-0 start-0 m-3 rounded-pill px-2 py-1 small">Top
                                 1</span>
-                            <img id="imgprod1" src="/frontend/assets/imagenes/productosCatalogo/mochis/Mochi Matcha.png"
-                                class="card-img-top object-fit-cover h-100 w-100" alt="Mochi Matcha">
+                            <a class="d-block h-100" href="producto.html?id=mochi-matcha"><img id="imgprod1" src="../assets/imagenes/productosCatalogo/mochis/Mochi Matcha.png"
+                                class="card-img-top object-fit-cover h-100 w-100" alt="Mochi Matcha"></a>
                         </div>
                         <div class="card-body d-flex flex-column justify-content-between p-3">
                             <div>
-                                <h5 id="nameprod1" class="fw-bold text-dark fs-6 mb-1">Mochi Matcha</h5>
-                                <p id="descprod1" class="text-muted extra-small mb-3">Matcha de Uji + Toque de Vainilla</p>
+                                <a class="text-reset text-decoration-none" href="producto.html?id=mochi-matcha"><h5 id="nameprod1" class="fw-bold text-dark fs-6 mb-1">Mochi Matcha</h5></a>
+                                <p id="descprod1" class="text-muted extra-small mb-3">Matcha de Uji + Toque de Vainilla.</p>
                             </div>
                             <div class="d-flex justify-content-between align-items-center mt-auto">
                                 <span id="priceprod1" class="fw-bold text-custom-green fs-5">$45.00</span>
-                                <button onclick="Cart.additem(1)" type="button"
+                                <button onclick="Cart.additem('mochi-matcha', this)" type="button"
                                     class="btn btn-add-cart rounded-circle p-0 d-flex align-items-center justify-content-center"
                                     aria-label="Agregar">
                                     <i class="bi bi-plus-lg"></i>
@@ -171,19 +172,19 @@
                     </div>
                 </div>
                 <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="card product-card border-0 rounded-4 overflow-hidden h-100 bg-white">
+                    <div data-product-id="pocky-fresa" class="card product-card border-0 rounded-4 overflow-hidden h-100 bg-white">
                         <div class="position-relative product-img-wrapper">
-                            <img id="imgprod2" src="/frontend/assets/imagenes/productosCatalogo/pokis/Pokys Fresa.png"
-                                class="card-img-top object-fit-cover h-100 w-100" alt="Pocky Fresa">
+                            <a class="d-block h-100" href="producto.html?id=pocky-fresa"><img id="imgprod2" src="../assets/imagenes/productosCatalogo/pokis/Pokys Fresa.png"
+                                class="card-img-top object-fit-cover h-100 w-100" alt="Pocky Fresa"></a>
                         </div>
                         <div class="card-body d-flex flex-column justify-content-between p-3">
                             <div>
-                                <h5 id="nameprod2"  class="fw-bold text-dark fs-6 mb-1">Pocky Fresa</h5>
-                                <p  id="descprod2" class="text-muted extra-small mb-3">Doble cobertura de fresa natural</p>
+                                <a class="text-reset text-decoration-none" href="producto.html?id=pocky-fresa"><h5 id="nameprod2"  class="fw-bold text-dark fs-6 mb-1">Poky Fresa</h5></a>
+                                <p  id="descprod2" class="text-muted extra-small mb-3">Doble cobertura de Fresa Natural.</p>
                             </div>
                             <div class="d-flex justify-content-between align-items-center mt-auto">
-                                <span id="priceprod2"  class="fw-bold text-custom-green fs-5">$38.00</span>
-                                <button onclick="Cart.additem(2)" type="button"
+                                <span id="priceprod2"  class="fw-bold text-custom-green fs-5">$35.00</span>
+                                <button onclick="Cart.additem('pocky-fresa', this)" type="button"
                                     class="btn btn-add-cart rounded-circle p-0 d-flex align-items-center justify-content-center"
                                     aria-label="Agregar">
                                     <i class="bi bi-plus-lg"></i>
@@ -193,21 +194,21 @@
                     </div>
                 </div>
                 <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="card product-card border-0 rounded-4 overflow-hidden h-100 bg-white">
+                    <div data-product-id="ramune-natural" class="card product-card border-0 rounded-4 overflow-hidden h-100 bg-white">
                         <div class="position-relative product-img-wrapper">
                             <span
                                 class="badge bg-custom-orange position-absolute top-0 start-0 m-3 rounded-pill px-2 py-1 small">Oferta</span>
-                            <img id="imgprod3"  src="/frontend/assets/imagenes/productosCatalogo/ramune/Ramune Natural.png"
-                                class="card-img-top object-fit-cover h-100 w-100" alt="Ramune Original">
+                            <a class="d-block h-100" href="producto.html?id=ramune-natural"><img id="imgprod3"  src="../assets/imagenes/productosCatalogo/ramune/Ramune Natural.png"
+                                class="card-img-top object-fit-cover h-100 w-100" alt="Ramune Original"></a>
                         </div>
                         <div class="card-body d-flex flex-column justify-content-between p-3">
                             <div>
-                                <h5 id="nameprod3"  class="fw-bold text-dark fs-6 mb-1">Ramune Original</h5>
-                                <p id="descprod3"  class="text-muted extra-small mb-3">Refresco icónico con canica</p>
+                                <a class="text-reset text-decoration-none" href="producto.html?id=ramune-natural"><h5 id="nameprod3"  class="fw-bold text-dark fs-6 mb-1">Ramune Natural</h5></a>
+                                <p id="descprod3"  class="text-muted extra-small mb-3">Refresco icónico con canica sabor natural.</p>
                             </div>
                             <div class="d-flex justify-content-between align-items-center mt-auto">
-                                <span id="priceprod3" class="fw-bold text-custom-green fs-5">$55.00</span>
-                                <button onclick="Cart.additem(3)"  type="button"
+                                <span id="priceprod3" class="fw-bold text-custom-green fs-5">$85.00</span>
+                                <button onclick="Cart.additem('ramune-natural', this)"  type="button"
                                     class="btn btn-add-cart rounded-circle p-0 d-flex align-items-center justify-content-center"
                                     aria-label="Agregar">
                                     <i class="bi bi-plus-lg"></i>
@@ -217,19 +218,19 @@
                     </div>
                 </div>
                 <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="card product-card border-0 rounded-4 overflow-hidden h-100 bg-white">
+                    <div data-product-id="kitkat-sake" class="card product-card border-0 rounded-4 overflow-hidden h-100 bg-white">
                         <div class="position-relative product-img-wrapper">
-                            <img id="imgprod4" src="/frontend/assets/imagenes/productosCatalogo/kitkat/kitKatSake.jpg"
-                                class="card-img-top object-fit-cover h-100 w-100" alt="KitKat Sake">
+                            <a class="d-block h-100" href="producto.html?id=kitkat-sake"><img id="imgprod4" src="../assets/imagenes/productosCatalogo/kitkat/kitKatSake.jpg"
+                                class="card-img-top object-fit-cover h-100 w-100" alt="KitKat Sake"></a>
                         </div>
                         <div class="card-body d-flex flex-column justify-content-between p-3">
                             <div>
-                                <h5 id="nameprod4" class="fw-bold text-dark fs-6 mb-1">KitKat Sake</h5>
-                                <p id="descprod4" class="text-muted extra-small mb-3">Edición especial Japón</p>
+                                <a class="text-reset text-decoration-none" href="producto.html?id=kitkat-sake"><h5 id="nameprod4" class="fw-bold text-dark fs-6 mb-1">KitKat Sake</h5></a>
+                                <p id="descprod4" class="text-muted extra-small mb-3">Edición especial Japón.</p>
                             </div>
                             <div class="d-flex justify-content-between align-items-center mt-auto">
                                 <span id="priceprod4" class="fw-bold text-custom-green fs-5">$62.00</span>
-                                <button onclick="Cart.additem(4)" type="button"
+                                <button onclick="Cart.additem('kitkat-sake', this)" type="button"
                                     class="btn btn-add-cart rounded-circle p-0 d-flex align-items-center justify-content-center"
                                     aria-label="Agregar">
                                     <i class="bi bi-plus-lg"></i>
@@ -240,19 +241,19 @@
                 </div>
                 <!--Aqui empiezan los siguientes 6 productos
                 <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="card product-card border-0 rounded-4 overflow-hidden h-100 bg-white">
+                    <div data-product-id="mochi-fresa" class="card product-card border-0 rounded-4 overflow-hidden h-100 bg-white">
                         <div class="position-relative product-img-wrapper">
-                            <img id="imgprod4" src="/frontend/assets/imagenes/productosCatalogo/mochis/Mochi Fresa.png"
-                                class="card-img-top object-fit-cover h-100 w-100" alt="Mochi Fresa">
+                            <a class="d-block h-100" href="producto.html?id=mochi-fresa"><img id="imgprod5" src="../assets/imagenes/productosCatalogo/mochis/Mochi Fresa.png"
+                                class="card-img-top object-fit-cover h-100 w-100" alt="Mochi Fresa"></a>
                         </div>
                         <div class="card-body d-flex flex-column justify-content-between p-3">
                             <div>
-                                <h5 id="nameprod5" class="fw-bold text-dark fs-6 mb-1">Mochi Fresa</h5>
-                                <p id="descprod5" class="text-muted extra-small mb-3">Edición Fresa Natutal</p>
+                                <a class="text-reset text-decoration-none" href="producto.html?id=mochi-fresa"><h5 id="nameprod5" class="fw-bold text-dark fs-6 mb-1">Mochi Fresa</h5></a>
+                                <p id="descprod5" class="text-muted extra-small mb-3">Mochi con Fresa Natural.</p>
                             </div>
                             <div class="d-flex justify-content-between align-items-center mt-auto">
                                 <span id="priceprod5" class="fw-bold text-custom-green fs-5">$45.00</span>
-                                <button onclick="Cart.additem(5)" type="button"
+                                <button onclick="Cart.additem('mochi-fresa', this)" type="button"
                                     class="btn btn-add-cart rounded-circle p-0 d-flex align-items-center justify-content-center"
                                     aria-label="Agregar">
                                     <i class="bi bi-plus-lg"></i>
@@ -262,19 +263,19 @@
                     </div>
                 </div>
                 <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="card product-card border-0 rounded-4 overflow-hidden h-100 bg-white">
+                    <div data-product-id="pocky-oreo" class="card product-card border-0 rounded-4 overflow-hidden h-100 bg-white">
                         <div class="position-relative product-img-wrapper">
-                            <img id="imgprod6" src="/frontend/assets/imagenes/productosCatalogo/pokis/Pokys Cookies & Cream.png"
-                                class="card-img-top object-fit-cover h-100 w-100" alt="Pokis Galleta">
+                            <a class="d-block h-100" href="producto.html?id=pocky-oreo"><img id="imgprod6" src="../assets/imagenes/productosCatalogo/pokis/Pokys Cookies & Cream.png"
+                                class="card-img-top object-fit-cover h-100 w-100" alt="Pokis Galleta"></a>
                         </div>
                         <div class="card-body d-flex flex-column justify-content-between p-3">
                             <div>
-                                <h5 id="nameprod6" class="fw-bold text-dark fs-6 mb-1">Pokis Galleta</h5>
-                                <p id="descprod6" class="text-muted extra-small mb-3">Edición Cookies & Cream</p>
+                                <a class="text-reset text-decoration-none" href="producto.html?id=pocky-oreo"><h5 id="nameprod6" class="fw-bold text-dark fs-6 mb-1">Pokys Oreo</h5></a>
+                                <p id="descprod6" class="text-muted extra-small mb-3">Doble cobertura de oreo.</p>
                             </div>
                             <div class="d-flex justify-content-between align-items-center mt-auto">
-                                <span id="priceprod6" class="fw-bold text-custom-green fs-5">$38.00</span>
-                                <button onclick="Cart.additem(6)" type="button"
+                                <span id="priceprod6" class="fw-bold text-custom-green fs-5">$85.00</span>
+                                <button onclick="Cart.additem('pocky-oreo', this)" type="button"
                                     class="btn btn-add-cart rounded-circle p-0 d-flex align-items-center justify-content-center"
                                     aria-label="Agregar">
                                     <i class="bi bi-plus-lg"></i>
@@ -284,19 +285,19 @@
                     </div>
                 </div>
                 <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="card product-card border-0 rounded-4 overflow-hidden h-100 bg-white">
+                    <div data-product-id="ramune-uva" class="card product-card border-0 rounded-4 overflow-hidden h-100 bg-white">
                         <div class="position-relative product-img-wrapper">
-                            <img id="imgprod7" src="/frontend/assets/imagenes/productosCatalogo/ramune/Ramune Uva.png"
-                                class="card-img-top object-fit-cover h-100 w-100" alt="Ramune Uva">
+                            <a class="d-block h-100" href="producto.html?id=ramune-uva"><img id="imgprod7" src="../assets/imagenes/productosCatalogo/ramune/Ramune Uva.png"
+                                class="card-img-top object-fit-cover h-100 w-100" alt="Ramune Uva"></a>
                         </div>
                         <div class="card-body d-flex flex-column justify-content-between p-3">
                             <div>
-                                <h5 id="nameprod7" class="fw-bold text-dark fs-6 mb-1">Ramune Uva</h5>
-                                <p id="descprod7" class="text-muted extra-small mb-3">Refresco icónico con canica</p>
+                                <a class="text-reset text-decoration-none" href="producto.html?id=ramune-uva"><h5 id="nameprod7" class="fw-bold text-dark fs-6 mb-1">Ramune Uva</h5></a>
+                                <p id="descprod7" class="text-muted extra-small mb-3">Refresco icónico con canica sabor uva.</p>
                             </div>
                             <div class="d-flex justify-content-between align-items-center mt-auto">
                                 <span id="priceprod7" class="fw-bold text-custom-green fs-5">$55.00</span>
-                                <button onclick="Cart.additem(7)" type="button"
+                                <button onclick="Cart.additem('ramune-uva', this)" type="button"
                                     class="btn btn-add-cart rounded-circle p-0 d-flex align-items-center justify-content-center"
                                     aria-label="Agregar">
                                     <i class="bi bi-plus-lg"></i>
@@ -306,19 +307,19 @@
                     </div>
                 </div>
                 <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="card product-card border-0 rounded-4 overflow-hidden h-100 bg-white">
+                    <div data-product-id="mochi-lychee" class="card product-card border-0 rounded-4 overflow-hidden h-100 bg-white">
                         <div class="position-relative product-img-wrapper">
-                            <img id="imgprod8" src="/frontend/assets/imagenes/productosCatalogo/mochis/Mochi Lychee.png"
-                                class="card-img-top object-fit-cover h-100 w-100" alt="Mochi de lychee">
+                            <a class="d-block h-100" href="producto.html?id=mochi-lychee"><img id="imgprod8" src="../assets/imagenes/productosCatalogo/mochis/Mochi Lychee.png"
+                                class="card-img-top object-fit-cover h-100 w-100" alt="Mochi de lychee"></a>
                         </div>
                         <div class="card-body d-flex flex-column justify-content-between p-3">
                             <div>
-                                <h5 id="nameprod8" class="fw-bold text-dark fs-6 mb-1">Mochi sabor Lychee</h5>
-                                <p id="descprod8" class="text-muted extra-small mb-3">Edición Lychee Natural</p>
+                                <a class="text-reset text-decoration-none" href="producto.html?id=mochi-lychee"><h5 id="nameprod8" class="fw-bold text-dark fs-6 mb-1">Mochi sabor Lychee</h5></a>
+                                <p id="descprod8" class="text-muted extra-small mb-3">Edición Lychee Natural.</p>
                             </div>
                             <div class="d-flex justify-content-between align-items-center mt-auto">
                                 <span id="priceprod8" class="fw-bold text-custom-green fs-5">$45.00</span>
-                                <button onclick="Cart.additem(8)" type="button"
+                                <button onclick="Cart.additem('mochi-lychee', this)" type="button"
                                     class="btn btn-add-cart rounded-circle p-0 d-flex align-items-center justify-content-center"
                                     aria-label="Agregar">
                                     <i class="bi bi-plus-lg"></i>
@@ -328,19 +329,19 @@
                     </div>
                 </div>
                 <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="card product-card border-0 rounded-4 overflow-hidden h-100 bg-white">
+                    <div data-product-id="pocky-matcha" class="card product-card border-0 rounded-4 overflow-hidden h-100 bg-white">
                         <div class="position-relative product-img-wrapper">
-                            <img id="imgprod9" src="/frontend/assets/imagenes/productosCatalogo/pokis/Pokys Matcha.png"
-                                class="card-img-top object-fit-cover h-100 w-100" alt="Pokis Matcha">
+                            <a class="d-block h-100" href="producto.html?id=pocky-matcha"><img id="imgprod9" src="../assets/imagenes/productosCatalogo/pokis/Pokys Matcha.png"
+                                class="card-img-top object-fit-cover h-100 w-100" alt="Pokis Matcha"></a>
                         </div>
                         <div class="card-body d-flex flex-column justify-content-between p-3">
                             <div>
-                                <h5 id="nameprod9" class="fw-bold text-dark fs-6 mb-1">Pokis Matcha</h5>
-                                <p id="descprod9" class="text-muted extra-small mb-3">Edición especial Matcha</p>
+                                <a class="text-reset text-decoration-none" href="producto.html?id=pocky-matcha"><h5 id="nameprod9" class="fw-bold text-dark fs-6 mb-1">Pokis Matcha</h5></a>
+                                <p id="descprod9" class="text-muted extra-small mb-3">Edición especial Matcha.</p>
                             </div>
                             <div class="d-flex justify-content-between align-items-center mt-auto">
                                 <span id="priceprod9" class="fw-bold text-custom-green fs-5">$38.00</span>
-                                <button onclick="Cart.additem(9)" type="button"
+                                <button onclick="Cart.additem('pocky-matcha', this)" type="button"
                                     class="btn btn-add-cart rounded-circle p-0 d-flex align-items-center justify-content-center"
                                     aria-label="Agregar">
                                     <i class="bi bi-plus-lg"></i>
@@ -350,19 +351,19 @@
                     </div>
                 </div>
                 <div class="col-12 col-sm-6 col-lg-3">
-                    <div class="card product-card border-0 rounded-4 overflow-hidden h-100 bg-white">
+                    <div data-product-id="ramune-melon" class="card product-card border-0 rounded-4 overflow-hidden h-100 bg-white">
                         <div class="position-relative product-img-wrapper">
-                            <img id="imgprod10" src="/frontend/assets/imagenes/productosCatalogo/ramune/Ramune Melon.png"
-                                class="card-img-top object-fit-cover h-100 w-100" alt="Ramune Melón">
+                            <a class="d-block h-100" href="producto.html?id=ramune-melon"><img id="imgprod10" src="../assets/imagenes/productosCatalogo/ramune/Ramune Melon.png"
+                                class="card-img-top object-fit-cover h-100 w-100" alt="Ramune Melón"></a>
                         </div>
                         <div class="card-body d-flex flex-column justify-content-between p-3">
                             <div>
-                                <h5 id="nameprod10" class="fw-bold text-dark fs-6 mb-1">Ramune Melón</h5>
-                                <p id="descprod10" class="text-muted extra-small mb-3">Refresco icónico con canica</p>
+                                <a class="text-reset text-decoration-none" href="producto.html?id=ramune-melon"><h5 id="nameprod10" class="fw-bold text-dark fs-6 mb-1">Ramune Melón</h5></a>
+                                <p id="descprod10" class="text-muted extra-small mb-3">Refresco icónico con canica sabor melón.</p>
                             </div>
                             <div class="d-flex justify-content-between align-items-center mt-auto">
                                 <span id="priceprod10" class="fw-bold text-custom-green fs-5">$55.00</span>
-                                <button onclick="Cart.additem(10)" type="button"
+                                <button onclick="Cart.additem('ramune-melon', this)" type="button"
                                     class="btn btn-add-cart rounded-circle p-0 d-flex align-items-center justify-content-center"
                                     aria-label="Agregar">
                                     <i class="bi bi-plus-lg"></i>
@@ -379,6 +380,8 @@
     
     <div id="mochiFooter"></div>
     <div id="contenedorCarrito"></div>
+    <script src="../js/mochi.js"></script>
+    <script src="../js/productos.js"></script>
     <script src="../js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"

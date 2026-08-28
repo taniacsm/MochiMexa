@@ -38,12 +38,12 @@
                 <div class="logoAdmin">
 
                     <img
-                        src="/frontend/assets/imagenes/nosotros/LogoNegro.png"
+                        src="../assets/imagenes/iconos/logos/LogoNegro.png"
                         alt="Logo MochiMexa"
                     >
 
                     <div>
-                        <a href="">MochiMexa Admin</a>
+                        <a href="#dashboard">MochiMexa Admin</a>
                         <p>Panel de control</p>
                     </div>
 
@@ -51,9 +51,9 @@
 
                 <div class="botonProducto">
 
-                    <a href="/frontend/pages/adminProd.html">
+                    <a href="../pages/adminProd.html">
                         <img
-                            src="/frontend/assets/imagenes/iconos/plus-solid.png"
+                            src="../assets/imagenes/iconos/plus-solid.png"
                             alt=""
                         >
                         Nuevo producto
@@ -63,33 +63,33 @@
 
                 <div class="botonesMenu">
 
-                    <a href="">
+                    <a href="#dashboard">
                         <img
-                            src="/frontend/assets/imagenes/iconos/table-solid.png"
+                            src="../assets/imagenes/iconos/table-solid.png"
                             alt=""
                         >
                         Dashboard
                     </a>
 
-                    <a href="">
+                    <a href="#productos">
                         <img
-                            src="/frontend/assets/imagenes/iconos/box-archive-solid.png"
+                            src="../assets/imagenes/iconos/box-archive-solid.png"
                             alt=""
                         >
                         Productos
                     </a>
 
-                    <a href="/frontend/pages/adminProd.html">
+                    <a href="#pedidos">
                         <img
-                            src="/frontend/assets/imagenes/iconos/cart-shopping-solid.png"
+                            src="../assets/imagenes/iconos/cart-shopping-solid.png"
                             alt=""
                         >
                         Pedidos
                     </a>
 
-                    <a href="">
+                    <a href="#clientes">
                         <img
-                            src="/frontend/assets/imagenes/iconos/users-solid.png"
+                            src="../assets/imagenes/iconos/users-solid.png"
                             alt=""
                         >
                         Clientes
@@ -97,7 +97,7 @@
 
                     <a href="#configuracion">
                         <img
-                            src="/frontend/assets/imagenes/iconos/gear-solid.png"
+                            src="../assets/imagenes/iconos/gear-solid.png"
                             alt=""
                         >
                         Configuración
@@ -114,37 +114,37 @@
                 <!-- NAV -->
                 <nav class="adminNav">
 
-                    <a href="">MochiMexa</a>
+                    <a href="../pages/index.html">MochiMexa</a>
 
                     <div>
                         <input
                             class="form-control custom-search-input"
                             type="search"
-                            placeholder="Buscar en dashboard..."
-                            aria-label="Buscar dulce"
+                            placeholder="Buscar en el panel..."
+                            aria-label="Buscar productos, pedidos o clientes" enterkeyhint="search"
                         >
                     </div>
 
                     <div>
-                        <a href="">
+                        <a href="#pedidos" aria-label="Notificaciones">
                             <img
                                 class="iconNav"
-                                src="/frontend/assets/imagenes/iconos/bell-regular.png"
+                                src="../assets/imagenes/iconos/bell-regular.png"
                                 alt=""
                             >
                         </a>
 
-                        <a href="">
+                        <a href="../pages/contactanos.html?asunto=soporte#formTeam" aria-label="Ayuda">
                             <img
                                 class="iconNav"
-                                src="/frontend/assets/imagenes/iconos/circle-question-regular.png"
+                                src="../assets/imagenes/iconos/circle-question-regular.png"
                                 alt=""
                             >
                         </a>
 
-                        <a href="">
+                        <a href="#configuracion" aria-label="Mi configuración">
                             <img
-                                src="/frontend/assets/imagenes/nosotros/andy_gomez_nb_circulo.png"
+                                src="../assets/imagenes/nosotros/andy_gomez_nb_circulo.png"
                                 alt=""
                             >
                         </a>
@@ -158,7 +158,7 @@
                     <h1>¡Hola, Admin!</h1>
 
                     <p>
-                        Aquí está el resumen de MochiMexa hoy.
+                        Resumen de MochiMexa con los datos locales de demostración.
                     </p>
 
 
@@ -170,16 +170,16 @@
 
                                 <span>
                                     <img
-                                        src="/frontend/assets/imagenes/iconos/sack-dollar-solid.png"
+                                        src="../assets/imagenes/iconos/sack-dollar-solid.png"
                                         alt=""
                                     >
-                                    Ventas totales
+                                    Importe de pedidos
                                 </span>
 
-                                <h3>$12,450</h3>
+                                <h3 id="resumenImporte">—</h3>
 
                                 <span class="positive">
-                                    +15% esta semana
+                                    Sin incluir cancelados
                                 </span>
 
                             </div>
@@ -191,16 +191,16 @@
 
                                 <span>
                                     <img
-                                        src="/frontend/assets/imagenes/iconos/basket-shopping-solid.png"
+                                        src="../assets/imagenes/iconos/basket-shopping-solid.png"
                                         alt=""
                                     >
-                                    Pedidos nuevos
+                                    Pedidos pendientes
                                 </span>
 
-                                <h3>34</h3>
+                                <h3 id="resumenPendientes">—</h3>
 
-                                <span class="pendent">
-                                    12 por enviar
+                                <span class="pendent" id="detallePedidos">
+                                    Cargando pedidos…
                                 </span>
 
                             </div>
@@ -212,16 +212,16 @@
 
                                 <span>
                                     <img
-                                        src="/frontend/assets/imagenes/iconos/boxes-stacked-solid.png"
+                                        src="../assets/imagenes/iconos/boxes-stacked-solid.png"
                                         alt=""
                                     >
                                     Productos en stock
                                 </span>
 
-                                <h3>856</h3>
+                                <h3 id="resumenStock">—</h3>
 
-                                <span class="negative">
-                                    5 bajos en stock
+                                <span class="negative" id="detalleStock">
+                                    Cargando inventario…
                                 </span>
 
                             </div>
@@ -233,16 +233,16 @@
 
                                 <span>
                                     <img
-                                        src="/frontend/assets/imagenes/iconos/user-check-solid.png"
+                                        src="../assets/imagenes/iconos/user-check-solid.png"
                                         alt=""
                                     >
-                                    Clientes activos
+                                    Clientes registrados
                                 </span>
 
-                                <h3>1,240</h3>
+                                <h3 id="resumenClientes">—</h3>
 
                                 <span class="positive">
-                                    +42 este mes
+                                    Directorio local
                                 </span>
 
                             </div>
@@ -260,14 +260,14 @@
                             <div class="ventaSemanal">
 
                                 <h4>
-                                    Ventas semanales
+                                    Pedidos por estado
                                 </h4>
                                 <!--
-                                Aquí Chart.js va a dibujar nuestra gráfica.
-                                Nosotros NO dibujamos las barras manualmente.
+                                La gráfica usa los mismos pedidos que la tabla, sin cifras semanales inventadas.
                                 -->
+                                <p id="estadoGrafica" class="small text-muted" role="status" hidden></p>
                                 <div class="contenedorGrafica">
-                                    <canvas id="graficaVentas"></canvas>
+                                    <canvas id="graficaVentas" role="img" aria-label="Pedidos por estado"></canvas>
                                 </div>
 
                             </div>
@@ -285,7 +285,7 @@
                                         Pedidos recientes
                                     </h4>
 
-                                    <a href="">
+                                    <a href="#pedidos">
                                         Ver todos
                                     </a>
                                 </div>
@@ -307,47 +307,7 @@
 
 
                                     <tbody>
-
-                                        <tr class="firstRowTableValues">
-                                            <td>#0001</td>
-                                            <td>Ana López</td>
-                                            <td>Hoy, 10:23 AM</td>
-                                            <td>$350.00</td>
-                                            <td>
-                                                <span class="estadoPedido pendiente">Pendiente</span>
-                                            </td>
-                                        </tr>
-
-                                        <tr class="secondRowTableValues">
-                                            <td>#0002</td>
-                                            <td>Carlos Ruíz</td>
-                                            <td>Ayer, 04:45 PM</td>
-                                            <td>$890.50</td>
-                                            <td>
-                                                <span class="estadoPedido enviado">Enviado</span>
-                                            </td>
-                                        </tr>
-
-                                        <tr class="thirdRowTableValues">
-                                            <td>#0003</td>
-                                            <td>Sofía Martínez</td>
-                                            <td>Ayer, 11:10 AM</td>
-                                            <td>$120.00</td>
-                                            <td>
-                                                <span class="estadoPedido enviado">Enviado</span>
-                                            </td>
-                                        </tr>
-
-                                        <tr class="fourthRowTableValues">
-                                            <td>#0004</td>
-                                            <td>Sofía Martínez</td>
-                                            <td>12 Ago, 09:00 AM</td>
-                                            <td>$540.00</td>
-                                            <td>
-                                                <span class="estadoPedido entregado">Entregado</span>
-                                            </td>
-                                        </tr>
-
+                                        <!-- El resumen se genera con los pedidos guardados. -->
                                     </tbody>
 
                                 </table>
@@ -360,7 +320,7 @@
 
                 </section>
 
-                <section id="productos">
+                <section id="productos" hidden>
 
                     <div class="row g-4">
 
@@ -393,7 +353,7 @@
                                         Exportar
                                     </button>
 
-                                    <button class="botonAgregar">
+                                    <button class="botonAgregar" aria-label="Registrar producto" title="Registrar producto">
                                         +
                                     </button>
 
@@ -423,6 +383,7 @@
                                 <button class="filtro">
                                     Bebidas
                                 </button>
+                                <button class="filtro">Otros snacks</button>
 
                             </div>
 
@@ -452,6 +413,7 @@
                                             <th>Stock</th>
 
                                             <th>Estado</th>
+                                            <th>Acciones</th>
 
                                         </tr>
 
@@ -508,7 +470,7 @@
 
                 </section>
 
-                <section id="pedidos">
+                <section id="pedidos" hidden>
 
                     <!-- ENCABEZADO -->
                     <div class="pedidosHeader">
@@ -553,186 +515,7 @@
 
 
                             <tbody>
-
-                                <!-- PEDIDO 1 -->
-                                <tr>
-
-                                    <td>
-                                        <div class="guiaPedido">
-
-                                            <div class="iconoEnvio pendienteEnvio">
-                                                🚚
-                                            </div>
-
-                                            <div class="guiaTexto">
-                                                <strong>#MX-0992-A</strong>
-                                                <span>Estándar</span>
-                                            </div>
-
-                                        </div>
-                                    </td>
-
-
-                                    <td>
-                                        <div class="clientePedido">
-
-                                            <strong>Sofía Martínez</strong>
-
-                                            <span>
-                                                ⌖ Estado de México
-                                            </span>
-
-                                        </div>
-                                    </td>
-
-
-                                    <td>
-                                        24 Oct, 10:30 AM
-                                    </td>
-
-
-                                    <td>
-                                        <span class="metodoPago">
-                                            ▣ Tarjeta
-                                        </span>
-                                    </td>
-
-
-                                    <td>
-                                        <span class="estadoPedido estadoPendiente">
-                                            Pendiente⌄
-                                        </span>
-                                    </td>
-
-
-                                    <td>
-                                        <button class="accionesPedido">
-                                            ⋮
-                                        </button>
-                                    </td>
-
-                                </tr>
-
-
-                                <!-- PEDIDO 2 -->
-                                <tr>
-
-                                    <td>
-                                        <div class="guiaPedido">
-
-                                            <div class="iconoEnvio caminoEnvio">
-                                                🚚
-                                            </div>
-
-                                            <div class="guiaTexto">
-                                                <strong>#MX-0993-B</strong>
-                                                <span>Express</span>
-                                            </div>
-
-                                        </div>
-                                    </td>
-
-
-                                    <td>
-                                        <div class="clientePedido">
-
-                                            <strong>Carlos Reyes</strong>
-
-                                            <span>
-                                                ⌖ Jalisco
-                                            </span>
-
-                                        </div>
-                                    </td>
-
-
-                                    <td>
-                                        23 Oct, 14:15 PM
-                                    </td>
-
-
-                                    <td>
-                                        <span class="metodoPago">
-                                            ▣ OXXO Pay
-                                        </span>
-                                    </td>
-
-
-                                    <td>
-                                        <span class="estadoPedido estadoCamino">
-                                            En camino⌄
-                                        </span>
-                                    </td>
-
-
-                                    <td>
-                                        <button class="accionesPedido">
-                                            ⋮
-                                        </button>
-                                    </td>
-
-                                </tr>
-
-
-                                <!-- PEDIDO 3 -->
-                                <tr>
-
-                                    <td>
-                                        <div class="guiaPedido">
-
-                                            <div class="iconoEnvio entregadoEnvio">
-                                                🚚
-                                            </div>
-
-                                            <div class="guiaTexto">
-                                                <strong>#MX-0994-C</strong>
-                                                <span>Estándar</span>
-                                            </div>
-
-                                        </div>
-                                    </td>
-
-
-                                    <td>
-                                        <div class="clientePedido">
-
-                                            <strong>Ana Gómez</strong>
-
-                                            <span>
-                                                ⌖ Nuevo León
-                                            </span>
-
-                                        </div>
-                                    </td>
-
-
-                                    <td>
-                                        22 Oct, 09:00 AM
-                                    </td>
-
-
-                                    <td>
-                                        <span class="metodoPago">
-                                            ▣ SPEI
-                                        </span>
-                                    </td>
-
-
-                                    <td>
-                                        <span class="estadoPedido estadoEntregado">
-                                            Entregado⌄
-                                        </span>
-                                    </td>
-
-
-                                    <td>
-                                        <button class="accionesPedido">
-                                            ⋮
-                                        </button>
-                                    </td>
-
-                                </tr>
-
+                                <!-- JS muestra los pedidos filtrados de la página actual. -->
                             </tbody>
 
                         </table>
@@ -741,27 +524,27 @@
                         <!-- PAGINACIÓN -->
                         <div class="paginacionPedidos">
 
-                            <p>
-                                Mostrando 3 de 45 pedidos
+                            <p aria-live="polite">
+                                Cargando pedidos…
                             </p>
 
                             <div>
 
-                                <button>‹</button>
+                                <button type="button" data-accion="anterior" aria-label="Página anterior de pedidos">‹</button>
 
-                                <button class="paginaPedido activa">
+                                <button type="button" class="paginaPedido activa" data-pagina="1">
                                     1
                                 </button>
 
-                                <button class="paginaPedido">
+                                <button type="button" class="paginaPedido" data-pagina="2">
                                     2
                                 </button>
 
-                                <button class="paginaPedido">
+                                <button type="button" class="paginaPedido" data-pagina="3">
                                     3
                                 </button>
 
-                                <button>›</button>
+                                <button type="button" data-accion="siguiente" aria-label="Página siguiente de pedidos">›</button>
 
                             </div>
 
@@ -772,7 +555,7 @@
                 </section>
 
 
-                <section id="clientes">
+                <section id="clientes" hidden>
                     <div class="row">
                         <h1>Directorio de clientes</h1>
                         <p>Gestiona tu base de clientes, revisa su historial y fomenta la lealtad.</p>
@@ -897,7 +680,7 @@
                             </div>
 
                         </div> 
-                    </div>
+
 
 
 
@@ -906,7 +689,7 @@
                 </section>
 
 
-<section id="configuracion">
+<section id="configuracion" hidden>
 
     <div class="configuracionContenido">
 
@@ -928,7 +711,7 @@
                         <div class="col-md-2">
 
                             <img
-                                src="/frontend/assets/imagenes/nosotros/andy_gomez_nb_circulo.png"
+                                src="../assets/imagenes/nosotros/andy_gomez_nb_circulo.png"
                                 alt="Foto del administrador"
                                 class="fotoAdmin"
                             >
@@ -1044,7 +827,7 @@
                     <h4>
                         Métodos de Pago
                     </h4>
-
+                    <p class="small">Elige las opciones disponibles en el resumen de pedido. Solo son métodos de prueba; no activan cobros.</p>
 
                     <!-- TARJETA -->
                     <div class="opcionPago">
@@ -1057,6 +840,8 @@
 
                             <input
                                 type="checkbox"
+                                data-metodo-pago="tarjeta"
+                                aria-label="Habilitar tarjeta en el resumen de pedido"
                                 checked
                             >
 
@@ -1078,6 +863,8 @@
 
                             <input
                                 type="checkbox"
+                                data-metodo-pago="spei"
+                                aria-label="Habilitar SPEI en el resumen de pedido"
                                 checked
                             >
 
@@ -1099,12 +886,23 @@
 
                             <input
                                 type="checkbox"
+                                data-metodo-pago="oxxo"
+                                aria-label="Habilitar OXXO en el resumen de pedido"
                             >
 
                             <span class="sliderPago"></span>
 
                         </label>
 
+                    </div>
+
+                    <!-- Se añade PayPal al mismo grupo sin mover los contenedores de ajustes. -->
+                    <div class="opcionPago">
+                        <span>PayPal</span>
+                        <label class="switchPago">
+                            <input type="checkbox" data-metodo-pago="paypal" aria-label="Habilitar PayPal en el resumen de pedido" checked>
+                            <span class="sliderPago"></span>
+                        </label>
                     </div>
 
                 </div>
@@ -1209,15 +1007,15 @@
 
                     <div class="linksFooter">
 
-                        <a href="">
+                        <a href="../pages/contactanos.html?asunto=soporte#formTeam">
                             Soporte
                         </a>
 
-                        <a href="">
+                        <a href="../pages/contactanos.html?asunto=privacidad#formTeam">
                             Privacidad
                         </a>
 
-                        <a href="">
+                        <a href="../pages/contactanos.html?asunto=terminos#formTeam">
                             Términos
                         </a>
 
@@ -1236,11 +1034,15 @@
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
     </script>
 
-    <!-- Librería Chart.js: nos permite crear gráficas, Chart.js debe ir antes de tu archivo adminProd.js, porque adminProd.js va a utilizar Chart.js. -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 
     <!-- Nuestro archivo JavaScript -->
-    <script src="/frontend/jsAdmin/scriptAdmin1.js"></script>
+    <script src="../js/mochi.js"></script>
+    <script src="../js/productos.js"></script>
+    <script src="../js/tienda.js"></script>
+    <!-- Se restaura la misma librería que usaba el Dashboard original. -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../jsAdmin/scriptAdmin1.js"></script>
 
 </body>
 

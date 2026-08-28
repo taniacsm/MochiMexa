@@ -1,4 +1,4 @@
-<div class="modal fade modal-carrito-derecha" id="carritoModal" tabindex="-1" aria-hidden="true">
+<div class="modal fade modal-carrito-derecha" id="carritoModal" tabindex="-1" aria-hidden="true" aria-labelledby="carritoModalLabel">
     <div class="modal-dialog">
         <div class="modal-content">
             
@@ -11,7 +11,7 @@
             <!-- Cuerpo del Modal (Productos y Totales) -->
             <div class="modal-body">
                 <!-- Se inyectan los productos -->
-                <div id="listaCarrito"></div>
+                <div id="listaCarrito" aria-live="polite"></div>
 
                 <!-- Total -->
                 <div class="d-flex justify-content-between align-items-center fw-bold mt-3 mb-2">

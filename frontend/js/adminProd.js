@@ -1,158 +1,127 @@
+/* El mismo formulario sirve para registrar y editar. ?editar=ID carga el artículo
+ * concreto; guardar actualiza ese ID sin duplicarlo ni cambiar otros productos. */
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('form-registro-producto');
-    
-    // Elementos de la Vista Previa (Card)
-    const previewTitulo = document.getElementById('previewTitulo');
-    const previewDescripcion = document.getElementById('previewDescripcion');
-    const previewPrecio = document.getElementById('previewPrecio');
-    const previewImagen = document.getElementById('previewImagen');
+    const nombre = document.getElementById('nombreProducto');
+    const descripcion = document.getElementById('descripcionProducto');
+    const categoria = document.getElementById('categoriaProducto');
+    const foto = document.getElementById('fotoProducto');
+    const precio = document.getElementById('precioProducto');
+    const stock = document.getElementById('stockProducto');
+    const vista = {
+        titulo: document.getElementById('previewTitulo'), descripcion: document.getElementById('previewDescripcion'),
+        precio: document.getElementById('previewPrecio'), imagen: document.getElementById('previewImagen')
+    };
+    const botonGuardar = form.querySelector('button[type="submit"]');
+    const idEditar = new URLSearchParams(location.search).get('editar');
+    let original = idEditar ? Mochi.productos.obtener(idEditar) : null;
+    const imagenInicial = vista.imagen.src;
+    let imagenLista = true, versionImagen = 0;
 
-    // inputs del Formulario
-    const nombreInput = document.getElementById('nombreProducto');
-    const descripcionInput = document.getElementById('descripcionProducto');
-    const categoriaSelect = document.getElementById('categoriaProducto');
-    const fotoInput = document.getElementById('fotoProducto');
-    const precioInput = document.getElementById('precioProducto');
-    const stockInput = document.getElementById('stockProducto');
+    function alerta(mensaje, tipo = 'danger') {
+        form.querySelector('.alert')?.remove();
+        const aviso = document.createElement('div');
+        aviso.className = `alert alert-${tipo} alert-dismissible fade show my-3 rounded-3`;
+        aviso.setAttribute('role', 'alert');
+        aviso.innerHTML = `${Mochi.escapar(mensaje)}
+            ${tipo === 'success' ? `<div class="mt-2"><a href="${Mochi.ruta('catalogo.html')}" class="alert-link">Ver catálogo</a> · <a href="../pagesAdmin/homeAdmin.html#productos" class="alert-link">Volver a productos</a></div>` : ''}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar aviso"></button>`;
+        form.insertBefore(aviso, form.firstChild);
+        aviso.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
 
-    // Sincronización con la Vista Previa 
-    nombreInput.addEventListener('input', (e) => {
-        previewTitulo.textContent = e.target.value.trim() || 'Nombre del Producto';
-    });
+    if (idEditar && !original) {
+        document.getElementById('tituloProducto').textContent = 'Producto no encontrado';
+        botonGuardar.disabled = true;
+        alerta('No existe el producto solicitado. Vuelve al catálogo administrativo para seleccionar otro.');
+        return;
+    }
+    if (original) {
+        document.title = 'Editar producto | MochiMexa';
+        document.getElementById('tituloProducto').textContent = 'Editar Producto';
+        document.getElementById('descripcionFormulario').textContent = 'Actualiza este artículo. Los cambios se reflejarán en Inicio, Catálogo y Administración.';
+        botonGuardar.textContent = 'Guardar cambios';
+    }
 
-    descripcionInput.addEventListener('input', (e) => {
-        previewDescripcion.textContent = e.target.value.trim() || 'Descripción previa del producto...';
-    });
-
-    precioInput.addEventListener('input', (e) => {
-        const val = parseFloat(e.target.value);
-        previewPrecio.textContent = !isNaN(val) ? `$${val.toFixed(2)}` : '$0.00';
-    });
-
-    // Cargar imagen local en la vista previa
-    fotoInput.addEventListener('change', (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = (event) => {
-                previewImagen.src = event.target.result;
-            };
-            reader.readAsDataURL(file);
+    function actualizarVista() {
+        vista.titulo.textContent = nombre.value.trim() || 'Nombre Del Producto';
+        vista.descripcion.textContent = descripcion.value.trim() || 'Descripción previa del producto para previsualización en el catálogo...';
+        vista.precio.textContent = Number.isFinite(Number(precio.value)) ? `$${Number(precio.value).toFixed(2)}` : '$0.00';
+    }
+    function restablecer() {
+        versionImagen++;
+        imagenLista = true;
+        botonGuardar.disabled = false;
+        if (original) {
+            nombre.value = original.nombre;
+            descripcion.value = original.descripcion;
+            categoria.value = original.categoria;
+            precio.value = original.precio;
+            stock.value = original.stock ?? '';
+            foto.value = '';
+        }
+        vista.imagen.src = original?.imagen || imagenInicial;
+        actualizarVista();
+    }
+    // En edición, Resetear recupera lo último guardado, no un formulario vacío.
+    form.addEventListener('reset', event => {
+        if (original) { event.preventDefault(); restablecer(); }
+        else {
+            versionImagen++;
+            imagenLista = true;
+            botonGuardar.disabled = false;
+            vista.imagen.src = imagenInicial;
+            vista.titulo.textContent = 'Nombre Del Producto';
+            vista.descripcion.textContent = 'Descripción previa del producto para previsualización en el catálogo...';
+            vista.precio.textContent = '$0.00';
         }
     });
+    [nombre, descripcion, precio].forEach(campo => campo.addEventListener('input', actualizarVista));
+    if (original) restablecer();
 
-
-    // Validación y Alertas de Bootstrap ---
-    form.addEventListener('submit', (e) => {
-        e.preventDefault(); // Detiene el envío nativo del formulario
-
-    // Eliminar alertas previas si existen
-        const alertaPrevia = form.querySelector('.alert');
-        if (alertaPrevia) alertaPrevia.remove();
-
-    // Inicializamos array de errores
-        let errores = [];
-
-    // Validaciones personalizadas
-        if (nombreInput.value.trim().length < 3) {
-            errores.push('El nombre del producto debe tener al menos 3 caracteres.');
-        }
-
-        if (descripcionInput.value.trim().length < 10) {
-            errores.push('La descripción debe ser más detallada (mínimo 10 caracteres).');
-        }
-
-        if (categoriaSelect.selectedIndex === 0 || categoriaSelect.value === 'Selecciona una categoría') {
-            errores.push('Por favor, selecciona una categoría válida.');
-        }
-
-        const precioValue = parseFloat(precioInput.value);
-        if (isNaN(precioValue) || precioValue <= 0) {
-            errores.push('El precio debe ser un número mayor a 0.');
-        }
-
-        const stockValue = parseInt(stockInput.value, 10);
-        if (isNaN(stockValue) || stockValue < 0) {
-            errores.push('El stock no puede ser un número negativo.');
-        }
-
-        // Si hay errores, mostrar la alerta de Bootstrap y detener el flujo
-        if (errores.length > 0) {
-            mostrarAlerta(errores, 'danger');
+    foto.addEventListener('change', () => {
+        const version = ++versionImagen;
+        const archivo = foto.files[0];
+        imagenLista = true;
+        botonGuardar.disabled = false;
+        if (!archivo) { vista.imagen.src = original?.imagen || imagenInicial; return; }
+        if (!['image/png', 'image/jpeg', 'image/webp', 'image/gif'].includes(archivo.type) || archivo.size > 2 * 1024 * 1024) {
+            foto.value = '';
+            vista.imagen.src = original?.imagen || imagenInicial;
+            alerta('Usa una imagen PNG, JPG, WebP o GIF de hasta 2 MB.');
             return;
         }
-
-
-
-    // Generación del Objeto JSON y Guardado en LocalStorage ---
-        
-        const productoNuevoCatalogo = {
-            nombre: nombreInput.value.trim(),
-            descripcion: descripcionInput.value.trim(),
-            categoria: categoriaSelect.value,
-            precio: precioValue,
-            stock: stockValue,
-            // Guardamos la imagen desde la vista previa 
-            imagen: fotoInput.files.length > 0 ? previewImagen.src : '',
-            fechaRegistro: new Date()//.toISOString()
+        imagenLista = false;
+        botonGuardar.disabled = true;
+        const lector = new FileReader();
+        lector.onload = event => {
+            if (version !== versionImagen) return;
+            vista.imagen.src = event.target.result;
+            imagenLista = true;
+            botonGuardar.disabled = false;
         };
-
-    // Mostramos el resultado en consola
-            
-            console.log("String JSON listo para enviar:", productoNuevoCatalogo);
-
-    // Obtener inventario actual de localStorage o crear array vacío si no existe
-        let catalogo = JSON.parse(localStorage.getItem('catalogoProductos')) || [];
-        
-    // Añadir el nuevo producto
-        catalogo.push(productoNuevoCatalogo);
-
-    // Guardar array actualizado en LocalStorage convirtiéndolo a String JSON
-        localStorage.setItem('catalogoProductos', JSON.stringify(catalogo));
-
-    // Mostrar alerta de producto registrado
-        mostrarAlerta(['¡Producto registrado con éxito y guardado en la base de datos local!'], 'success');
-
-    // Limpiar el formulario 
-        form.reset();
-        setTimeout(() => {
-            previewTitulo.textContent = 'Mochi de Matcha Premium';
-            previewDescripcion.textContent = 'Descripción previa del producto para previsualización en el catálogo...';
-            previewPrecio.textContent = '$0.00';
-            previewImagen.src = '';
-            
-        // Remover la alerta de éxito tras unos segundos
-            const alertaExito = form.querySelector('.alert');
-            if (alertaExito) alertaExito.remove();
-        }, 3500);
+        lector.onerror = () => {
+            if (version !== versionImagen) return;
+            imagenLista = true;
+            botonGuardar.disabled = false;
+            foto.value = '';
+            vista.imagen.src = original?.imagen || imagenInicial;
+            alerta('No se pudo leer la imagen. Selecciónala de nuevo.');
+        };
+        lector.readAsDataURL(archivo);
     });
 
-    // Función auxiliar para renderizar alertas HTML de Bootstrap
-    function mostrarAlerta(mensajes, tipo) {
-        const alertDiv = document.createElement('div');
-        alertDiv.className = `alert alert-${tipo} alert-dismissible fade show my-3 rounded-3`;
-        alertDiv.setAttribute('role', 'alert');
-
-        let cuerpoAlerta = '';
-        if (mensajes.length > 1) {
-            cuerpoAlerta = `<strong class="d-block mb-1">Por favor corrige los siguientes errores:</strong><ul>`;
-            mensajes.forEach(msg => {
-                cuerpoAlerta += `<li>${msg}</li>`;
-            });
-            cuerpoAlerta += `</ul>`;
-        } else {
-            cuerpoAlerta = `<div>${mensajes[0]}</div>`;
-        }
-
-        alertDiv.innerHTML = `
-            ${cuerpoAlerta}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        `;
-
-    // Insertar la alerta al principio del formulario para que sea muy visible
-        form.insertBefore(alertDiv, form.firstChild);
-        
-    // Auto-scroll suave hacia la alerta
-        alertDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
+    form.addEventListener('submit', event => {
+        event.preventDefault();
+        if (!form.reportValidity() || !imagenLista) return;
+        const datos = { nombre: nombre.value, descripcion: descripcion.value, categoria: categoria.value,
+            precio: precio.value, stock: stock.value, imagen: vista.imagen.src };
+        try {
+            const guardado = original ? Mochi.productos.editar(idEditar, datos) : Mochi.productos.registrar(datos);
+            if (!guardado) return;
+            if (original) original = Mochi.productos.obtener(idEditar);
+            else form.reset();
+            alerta(original ? 'Cambios guardados en este navegador. El artículo mantiene el mismo ID en todas las vistas.' : 'Producto registrado en este navegador y disponible en el catálogo.', 'success');
+        } catch (error) { alerta(error.message); }
+    });
 });

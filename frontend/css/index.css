@@ -3,12 +3,12 @@
     --color-green: #3B6032;
     --color-orange: #FF972A;
     --color-purple: #703D57;
-    --color-bg-light: #BACAA9;
+    --color-bg-light: #F9F6EE; /* Fondo claro desde la primera carga, antes del footer. */
 }
 body {
     background-color: var(--color-bg-light);
     font-family: system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-    padding-top: 2rem;
+    padding-top: 0;
 }
 .bg-custom-green {
     background-color: var(--color-green);
@@ -142,4 +142,21 @@ body {
     color: white;
     transform: scale(1.08);
     box-shadow: 0 4px 10px rgba(255, 151, 42, 0.55);
+}
+
+/* El navbar conserva su posición fija. Su contenedor reserva el alto real y
+   un margen independiente: el hero nunca tiene que colocarse detrás de él. */
+html, body.pagina-inicio { background-color: #F9F6EE; }
+.pagina-inicio #mochiNav {
+    /* Tras medir usamos el alto exacto, sin sumar el mínimo inicial de 5 rem. */
+    min-height: var(--mochi-navbar-height, 5rem);
+    margin-bottom: .25rem; /* 4 px: el banner queda cerca sin tocar el navbar. */
+}
+.pagina-inicio .hero-outer-wrapper,
+.pagina-inicio .hero-content-container {
+    min-height: 480px;
+    height: auto;
+}
+@media (max-width: 575.98px) {
+    .pagina-inicio .hero-content-container .row { margin-inline: 0; }
 }

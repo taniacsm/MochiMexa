@@ -1851,3 +1851,117 @@ footer a {
     font-weight: 700;
     font-size: 0.9rem;
 }
+/* Ajustes de ancho compartidos: las tablas ya no fuerzan el ancho de toda la
+   página. Se conserva el beige del encabezado, blanco, radios y verde existentes. */
+main { min-width: 0; }
+main > section { width: 100%; min-width: 0; }
+.tablaProductos, .tablaPedidos, .historialClientes {
+    max-width: 100%;
+    overflow-x: auto;
+    background: #fff;
+    border: 1px solid #EBE9DF;
+    border-radius: 20px;
+}
+.tablaProductos table, .tablaPedidos table, .historialClientes table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: .875rem;
+}
+.tablaProductos table { min-width: 760px; table-layout: fixed; }
+.tablaPedidos table { min-width: 720px; }
+.historialClientes table { min-width: 660px; }
+.tablaProductos th, .tablaPedidos th, .historialClientes th {
+    background: #F2EDE3;
+    padding: .9rem 1rem;
+    color: #4b4b43;
+    font-size: .78rem;
+    font-weight: 600;
+    text-align: left;
+}
+.tablaProductos td, .tablaPedidos td, .historialClientes td {
+    padding: .9rem 1rem;
+    vertical-align: middle;
+    border-bottom: 1px solid #eee;
+    overflow-wrap: anywhere;
+}
+.historialClientes tbody tr:last-child td { border-bottom: 0; }
+.encabezadoClientes { padding: 1.3rem 1.5rem; }
+.encabezadoClientes h4 { margin: 0; font-size: 1.2rem; }
+.productoTexto strong, .productoTexto span { white-space: normal; overflow-wrap: anywhere; }
+.productoInfo { gap: .65rem; }
+.tablaProductos th:nth-child(1), .tablaProductos td:nth-child(1) { width: 5%; }
+.tablaProductos th:nth-child(2), .tablaProductos td:nth-child(2) { width: 28%; }
+.tablaProductos th:nth-child(3), .tablaProductos td:nth-child(3) { width: 15%; }
+.tablaProductos th:nth-child(4), .tablaProductos td:nth-child(4) { width: 15%; }
+.tablaProductos th:nth-child(5), .tablaProductos td:nth-child(5) { width: 10%; }
+.tablaProductos th:nth-child(6), .tablaProductos td:nth-child(6) { width: 14%; }
+.tablaProductos th:nth-child(7), .tablaProductos td:nth-child(7) { width: 13%; }
+.botonEditar {
+    display: inline-block;
+    border: 1px solid #b8d4a5;
+    border-radius: 30px;
+    padding: .4rem .8rem;
+    color: var(--color-green-dark);
+    background: #e2efd9;
+    text-decoration: none;
+    font-weight: 600;
+}
+.botonEditar:hover, .botonEditar:focus-visible { background: #d9e5ce; color: #29451c; }
+.categoria-otros-snacks { background: #e8e6e1; color: #555; }
+
+/* Configuración usa el mismo ancho útil, bordes y superficies que las tablas. */
+#configuracion .configuracionContenido { max-width: 1200px; margin-inline: auto; }
+#configuracion .perfilAdmin, #configuracion .configEnvios,
+#configuracion .metodosPago, #configuracion .notificacionesAdmin {
+    border-color: #EBE9DF;
+    border-radius: 20px;
+    padding: clamp(1rem, 2vw, 1.5rem);
+}
+#configuracion h1 { color: var(--color-green-dark); }
+#configuracion .perfilAdmin h4, #configuracion .configEnvios h4,
+#configuracion .metodosPago h4, #configuracion .notificacionesAdmin h4 {
+    font-size: 1.1rem;
+    padding-bottom: .9rem;
+    border-bottom: 1px solid #EBE9DF;
+}
+#configuracion .envio input { flex: 0 0 88px; max-width: 100%; }
+#configuracion .opcionPago > span, #configuracion .opcionNotificacion span { min-width: 0; }
+#configuracion .switchPago { flex-shrink: 0; }
+.adminNav { flex-wrap: wrap; gap: .75rem; padding-block: .8rem; }
+.adminNav input { width: min(300px, 100%); }
+.catalogoHeader, .pedidosHeader, .filtrosProductos, .paginacion, .paginacionPedidos, footer { flex-wrap: wrap; gap: 1rem; }
+/* Configuración comparte el fondo blanco de todos los botones. La sección
+   activa se distingue por peso y borde interior, sin cambiar su color base. */
+.botonesMenu a.activo {
+    background: white;
+    color: var(--color-texto);
+    font-weight: 600;
+    box-shadow: inset 3px 0 0 var(--primario);
+}
+.botonesMenu a:hover, .botonesMenu a:focus-visible { background: var(--primario); }
+
+/* Las mismas tarjetas del Dashboard vuelven a ser visibles. La tabla reciente
+   conserva sus columnas y puede desplazarse dentro de su tarjeta en móvil. */
+.pedidoReciente { overflow-x: auto; }
+.pedidoReciente table { min-width: 560px; }
+.pedidoRecienteTitle { gap: 1rem; }
+.estadoPedido[data-editar-pedido] { border: 0; cursor: pointer; font-family: inherit; }
+.estadoPedido[data-editar-pedido]:focus-visible, .accionesPedido:focus-visible {
+    outline: 2px solid var(--color-green-dark);
+    outline-offset: 2px;
+}
+.estadoPedido.estadoCancelado { background: #e9e9e4; color: #666; }
+.canceladoEnvio { color: #777; }
+.botonFiltrar[aria-pressed="true"] { box-shadow: inset 0 0 0 1px var(--color-green-dark); }
+
+@media (max-width: 767.98px) {
+    .columna1 { min-height: auto; }
+    .botonProducto a { margin-bottom: 1rem; }
+    .botonesMenu { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .botonesMenu a { margin: 0; }
+    .adminNav > div:first-of-type { flex: 1 1 100%; order: 3; }
+    .adminNav input { width: 100%; }
+    #configuracion { margin-top: 1.5rem; }
+    #configuracion .envio { flex-wrap: wrap; }
+    .catalogoHeader { align-items: flex-start; }
+}

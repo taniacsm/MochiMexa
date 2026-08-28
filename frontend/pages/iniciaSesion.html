@@ -26,7 +26,7 @@
 
       <!-- Header con Logo y Título -->
       <header class="form-header text-center">
-        <img src="/frontend/assets/imagenes/iconos/logos/LogoNegro.png" alt="MochiMexa Logo" class="brand-logo">
+        <img src="../assets/imagenes/iconos/logos/LogoNegro.png" alt="MochiMexa Logo" class="brand-logo">
         <h1 class="brand-title">MochiMexa</h1>
         <p class="subtitle">¡Hola de nuevo Mochiamigo! 🍡</p>
       </header>
@@ -38,7 +38,7 @@
           <label for="email">Mochi correo: </label>
           <div class="input-wrapper">
             <span class="input-icon" aria-hidden="true">
-              <img src="/frontend/assets/imagenes/iconos/envelope-solid.png" alt="icono mail">
+              <img src="../assets/imagenes/iconos/envelope-solid.png" alt="icono mail">
             </span>
             <input type="email" id="email" name="email" placeholder="hola@ejemplo.com" required>
           </div>
@@ -48,16 +48,16 @@
         <div class="form-group">
           <div class="label-row mochiContraseña fw-bold">
             <label for="password">Mochi contraseña: </label>
-            <a href="#" class="forgot-password fw-bold">¿Olvidaste tu clave?</a>
+            <a href="#recuperar-clave" id="abrirRecuperacion" class="forgot-password fw-bold">¿Olvidaste tu clave?</a>
           </div>
           <div class="input-wrapper">
             <span class="input-icon" aria-hidden="true">
-              <img src="/frontend/assets/imagenes/iconos/lock-solid.png" alt="icono candado">
+              <img src="../assets/imagenes/iconos/lock-solid.png" alt="icono candado">
             </span>
             <input type="password" id="password" name="password" placeholder="••••••••" required>
             <button type="button" class="toggle-password" onclick="togglePasswordVista()"
               aria-label="Mostrar contraseña">
-              <img id="ojo" src="/frontend/assets/imagenes/iconos/eye-slash-solid.png" alt="icono ojo">
+              <img id="ojo" src="../assets/imagenes/iconos/eye-slash-solid.png" alt="icono ojo">
             </button>
           </div>
         </div>
@@ -72,6 +72,25 @@
         </div>
 
       </form>
+
+      <!-- Recuperación dentro de la misma tarjeta; no se anidan formularios. -->
+      <section id="recuperar-clave" class="recuperacion-panel" aria-labelledby="tituloRecuperacion" hidden>
+        <h2 id="tituloRecuperacion">Recuperar contraseña</h2>
+        <p class="recuperacion-ayuda">Escribe el correo con el que te registraste. Por seguridad, el cambio de contraseña requiere verificar un enlace enviado a tu correo.</p>
+        <form id="recuperarForm" novalidate>
+          <label for="correoRecuperacion" class="fw-bold mb-2">Correo de tu cuenta</label>
+          <div class="input-wrapper">
+            <span class="input-icon" aria-hidden="true"><img src="../assets/imagenes/iconos/envelope-solid.png" alt=""></span>
+            <input type="email" id="correoRecuperacion" name="email" placeholder="hola@ejemplo.com" autocomplete="email" required>
+          </div>
+          <p id="estadoRecuperacion" class="recuperacion-estado" role="status" aria-live="polite" hidden></p>
+          <button type="submit" class="btn-submit">Solicitar enlace</button>
+        </form>
+        <div class="form-footer recuperacion-enlaces">
+          <a href="#login-form" id="volverLogin" class="register-link">Volver a iniciar sesión</a>
+          <a href="contactanos.html?asunto=recuperar#formTeam" class="register-link" target="_blank" rel="noopener">Necesito ayuda</a>
+        </div>
+      </section>
     </div>
   </main>
   <footer class="footerInicio">
@@ -79,7 +98,8 @@
     </p>
   </footer>
 
-  <script src="/frontend/js/inicioSesion1.js"></script>
+  <script src="../js/mochi.js"></script>
+  <script src="../js/inicioSesion1.js"></script>
 </body>
 
 </html>

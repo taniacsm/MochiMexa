@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de producto · MochiMexa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/navbar.css"><link rel="stylesheet" href="../css/despliegueCarrito.css"><link rel="stylesheet" href="../css/footer.css"><link rel="stylesheet" href="../css/tienda.css">
+</head>
+<body class="pagina-tienda">
+    <div id="mochiNav"></div>
+    <main class="tienda-contenido">
+        <nav class="producto-migas" aria-label="Ruta del producto"><a href="index.html">Inicio</a><span aria-hidden="true">/</span><a href="catalogo.html">Catálogo</a><span aria-hidden="true">/</span><span id="productoMiga">Producto</span></nav>
+        <div id="productoContenido" hidden>
+            <section class="producto-principal" aria-labelledby="productoNombre">
+                <div>
+                    <button id="abrirFotoProducto" class="producto-foto-boton" type="button" aria-label="Ampliar imagen del producto"><img id="productoImagen" class="producto-foto" src="../assets/imagenes/iconos/logos/LogoNegro.png" alt=""></button>
+                    <div id="productoMiniaturas" class="producto-miniaturas" aria-label="Imágenes del producto"></div>
+                </div>
+                <div class="producto-info">
+                    <span id="productoCategoria" class="tienda-etiqueta"></span>
+                    <h1 id="productoNombre"></h1><p id="productoPrecio" class="producto-precio"></p>
+                    <p id="productoDescripcion" class="producto-descripcion"></p>
+                    <p id="productoStock" class="tienda-nota"></p>
+                    <div class="producto-compra">
+                        <div class="producto-cantidad"><button id="menosProducto" type="button" aria-label="Reducir cantidad">−</button><label class="visually-hidden" for="cantidadProducto">Cantidad</label><input id="cantidadProducto" type="number" min="1" max="999" value="1" inputmode="numeric"><button id="masProducto" type="button" aria-label="Aumentar cantidad">＋</button></div>
+                        <button id="comprarProducto" class="tienda-boton tienda-boton-ciruela" type="button"><i class="bi bi-cart" aria-hidden="true"></i>Comprar ahora</button>
+                    </div>
+                    <button id="agregarProducto" class="tienda-enlace" type="button">Agregar al carrito y seguir viendo</button>
+                    <p id="estadoProducto" class="tienda-aviso" role="status" hidden></p>
+                    <div class="tienda-tarjeta producto-envio"><i class="bi bi-geo-alt-fill" aria-hidden="true"></i><div><strong>Un dulce viaje hasta tu puerta</strong><p>Consulta el costo estimado al seleccionar tu dirección. Disponibilidad y tiempos de entrega sujetos a confirmación de la tienda.</p><a href="contactanos.html?asunto=envios#formTeam" class="tienda-enlace">Consultar envíos</a></div></div>
+                </div>
+            </section>
+            <div class="producto-separador"></div>
+            <section aria-labelledby="tituloRelacionados">
+                <div class="tienda-titulo-fila"><div><h2 id="tituloRelacionados">Productos Relacionados</h2><p class="tienda-nota mb-0 mt-2">Más delicias que te encantarán</p></div><div class="producto-flechas"><button id="relacionadosAnterior" type="button" aria-label="Productos relacionados anteriores">‹</button><button id="relacionadosSiguiente" type="button" aria-label="Más productos relacionados">›</button></div></div>
+                <div id="productosRelacionados" class="producto-relacionados"></div>
+            </section>
+            <section id="resenasProducto" class="producto-resenas">
+                <div class="tienda-titulo-fila"><div><h2>Reseñas de nuestros clientes</h2><p id="promedioResenas" class="mb-0 mt-2"></p></div><button id="escribirResena" class="tienda-boton" type="button">Escribir reseña</button></div>
+                <p class="tienda-nota">Opiniones guardadas en este navegador. No se presentan como compras verificadas.</p>
+                <form id="formResena" class="tienda-tarjeta" hidden>
+                    <div class="tienda-campos"><label class="tienda-campo">Tu calificación<select id="estrellasResena" required><option value="">Selecciona las estrellas</option><option value="5">★★★★★ · 5</option><option value="4">★★★★☆ · 4</option><option value="3">★★★☆☆ · 3</option><option value="2">★★☆☆☆ · 2</option><option value="1">★☆☆☆☆ · 1</option></select></label><label class="tienda-campo tienda-campo-ancho">Tu experiencia<textarea id="comentarioResena" minlength="10" maxlength="1000" required placeholder="Cuéntanos qué te pareció…"></textarea></label></div>
+                    <p id="estadoResena" class="tienda-aviso" role="status" hidden></p>
+                    <div class="tienda-acciones"><button id="cancelarResena" class="tienda-boton tienda-boton-suave" type="button">Cancelar</button><button class="tienda-boton" type="submit">Guardar reseña</button></div>
+                </form>
+                <div id="listaResenas" class="resenas-grid"></div>
+            </section>
+        </div>
+        <section id="productoNoExiste" class="producto-error" hidden><h1>Este producto no está disponible</h1><p>Vuelve al catálogo para elegir otra delicia.</p><a class="tienda-boton" href="catalogo.html">Ir al catálogo</a></section>
+    </main>
+    <dialog id="dialogoFotoProducto" class="tienda-dialogo" aria-label="Imagen ampliada del producto"><button id="cerrarFotoProducto" class="tienda-dialogo-cerrar" type="button" aria-label="Cerrar imagen">×</button><img id="fotoProductoAmpliada" class="producto-zoom" src="../assets/imagenes/iconos/logos/LogoNegro.png" alt=""></dialog>
+    <div id="mochiFooter"></div>
+    <script src="../js/mochi.js"></script><script src="../js/productos.js"></script><script src="../js/tienda.js"></script><script src="../js/script.js"></script><script src="../js/producto.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

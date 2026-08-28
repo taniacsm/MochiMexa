@@ -14,7 +14,15 @@ body {
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
-    padding-top: 3rem;
+    padding-top: 0;
+}
+
+/* El navbar fijo ocupa su altura real y deja 16 px antes del contenido,
+   con espacio para la esquina de la imagen que conserva su giro de 3 grados.
+   No sumamos los antiguos 3 rem del body y 2 rem de la primera sección. */
+.pagina-contacto #mochiNav {
+    min-height: var(--mochi-navbar-height, 5rem);
+    margin-bottom: 1rem;
 }
 
 /*-------Descripcion del contacto------*/
@@ -28,7 +36,7 @@ body {
 }
 
 #descripcionContacto {
-    margin-top: 2rem;
+    margin-top: 0;
 }
 
 #descripcionContacto h1 {
@@ -140,4 +148,3 @@ body {
     border: 1px solid #40682e85;
     padding: 10px;
 }
-

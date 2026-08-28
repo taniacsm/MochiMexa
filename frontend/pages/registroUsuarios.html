@@ -25,7 +25,7 @@
                 <!-- Columna Izquierda: Branding y Bienvenida -->
                 <section class="col-brand">
                     <div class="brand-circle">
-                        <img src="/frontend/assets/imagenes/iconos/logos/LogoBlanco.png" alt="MochiMexa Logo"
+                        <img src="../assets/imagenes/iconos/logos/LogoBlanco.png" alt="MochiMexa Logo"
                             class="brand-logo">
                     </div>
                     <h2 class="brand-title">¡Únete a la familia!</h2>
@@ -48,7 +48,7 @@
                             <label for="name">Nombre completo</label>
                             <div class="input-wrapper">
                                 <span class="input-icon" aria-hidden="true">
-                                    <img src="/frontend/assets/imagenes/iconos/user-solid.png" alt="icono mail">
+                                    <img src="../assets/imagenes/iconos/user-solid.png" alt="icono mail">
                                 </span>
                                 <input type="text" id="name" name="name" placeholder="Ej. Sakura Garcia" required>
                             </div>
@@ -59,7 +59,7 @@
                             <label for="email">Correo electrónico</label>
                             <div class="input-wrapper">
                                 <span class="input-icon" aria-hidden="true">
-                                    <img src="/frontend/assets/imagenes/iconos/envelope-solid.png" alt="icono email">
+                                    <img src="../assets/imagenes/iconos/envelope-solid.png" alt="icono email">
                                 </span>
                                 <input type="email" id="email" name="email" placeholder="hola@ejemplo.com" required>
                             </div>
@@ -70,7 +70,7 @@
                             <label for="phone">Numero de teléfono</label>
                             <div class="input-wrapper">
                                 <span class="input-icon" aria-hidden="true"> 
-                                    <img src="/frontend/assets/imagenes/iconos/phone-solid.png" alt="icono telefono">
+                                    <img src="../assets/imagenes/iconos/phone-solid.png" alt="icono telefono">
                                 </span>
                                 <input type="tel" id="phone" name="phone" placeholder="55 5555 5555" required>
                             </div>
@@ -81,28 +81,28 @@
                             <label for="password">Contraseña</label>
                             <div class="input-wrapper">
                                 <span class="input-icon" aria-hidden="true">
-                                    <img src="/frontend/assets/imagenes/iconos/lock-solid.png" alt="icono candado">
+                                    <img src="../assets/imagenes/iconos/lock-solid.png" alt="icono candado">
                                 </span>
-                                <input type="password" id="password" name="password" placeholder="••••••••" required>
+                                <input type="password" id="password" name="password" minlength="8" autocomplete="new-password" placeholder="••••••••" required>
                                 <button type="button" class="toggle-password" onclick="togglePasswordVista()"
                                     aria-label="Mostrar u ocultar contraseña">
                                     <img id="ojo" src="../assets/imagenes/iconos/eye-slash-solid.png"
-                                        atl="icono de vision">
+                                        alt="icono de visión">
                                 </button>
                             </div>
                         </div>
                         <!-- Campo: Confirmar Contraseña -->
                             <div class="form-group">
-                            <label for="password">Confirmar Contraseña</label>
+                            <label for="passwordConfirm">Confirmar Contraseña</label>
                             <div class="input-wrapper">
                                 <span class="input-icon" aria-hidden="true">
-                                    <img src="/frontend/assets/imagenes/iconos/lock-solid.png" alt="icono candado">
+                                    <img src="../assets/imagenes/iconos/lock-solid.png" alt="icono candado">
                                 </span>
-                                <input type="password" id="passwordConfirm" name="password" placeholder="••••••••" required>
+                                <input type="password" id="passwordConfirm" name="passwordConfirm" placeholder="••••••••" required>
                                 <button type="button" class="toggle-password" onclick="toggleConfirmPasswordVista()"
                                     aria-label="Mostrar u ocultar contraseña">
                                     <img id="ojoConfirm" src="../assets/imagenes/iconos/eye-slash-solid.png"
-                                        atl="icono de vision">
+                                        alt="icono de visión">
                                 </button>
                             </div>
                         </div>                       
@@ -112,7 +112,7 @@
                             <input type="checkbox" id="terms" name="terms" required>
                             <label for="terms">
                                 Acepto los <span class="highlight-text">
-                                    <a href="">Terminos y Condiciones</a></span>
+                                    <a href="contactanos.html?asunto=terminos#formTeam" target="_blank" rel="noopener">Terminos y Condiciones</a></span>
                             </label>
                         </div>
 
@@ -123,7 +123,8 @@
 
             </div>
         </main>
-        <script src="/frontend/js/registroUsu.js"></script>
+        <script src="../js/mochi.js"></script>
+        <script src="../js/registroUsu.js"></script>
 </body>
 
 </html>

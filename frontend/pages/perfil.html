@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi perfil · MochiMexa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/despliegueCarrito.css">
+    <link rel="stylesheet" href="../css/tienda.css">
+</head>
+<body class="pagina-tienda">
+    <div id="mochiNav"></div>
+    <p id="perfilCarga" class="tienda-contenido tienda-nota" role="status">Comprobando tu sesión…</p>
+    <!-- No se muestra información personal antes de comprobar la sesión. -->
+    <main id="perfilContenido" class="tienda-contenido perfil-grid" hidden>
+        <aside class="tienda-tarjeta perfil-lateral">
+            <img id="perfilFoto" class="perfil-avatar" src="../assets/imagenes/iconos/logos/LogoNegro.png" alt="Foto de perfil">
+            <h1 id="perfilNombre">Mi perfil</h1>
+            <p id="perfilAntiguedad" class="tienda-nota"></p>
+            <label for="fotoPerfil" class="tienda-enlace">Cambiar foto</label>
+            <input id="fotoPerfil" class="visually-hidden" type="file" accept="image/png,image/jpeg,image/webp">
+            <button id="quitarFoto" class="tienda-enlace" type="button">Quitar foto</button>
+            <p class="tienda-nota">JPG, PNG o WebP · Hasta 2 MB</p>
+            <nav aria-label="Secciones de mi perfil">
+                <a href="#informacionPersonal" aria-current="location"><i class="bi bi-person" aria-hidden="true"></i>Información personal</a>
+                <a href="#misDirecciones"><i class="bi bi-geo-alt" aria-hidden="true"></i>Mis direcciones</a>
+                <a href="#misPedidos"><i class="bi bi-receipt" aria-hidden="true"></i>Mis pedidos</a>
+                <a href="#ajustesPerfil"><i class="bi bi-gear" aria-hidden="true"></i>Configuración</a>
+            </nav>
+        </aside>
+        <div class="perfil-paneles">
+            <section id="informacionPersonal" class="tienda-tarjeta">
+                <h2>Información Personal</h2>
+                <form id="formPerfil">
+                    <div class="tienda-campos">
+                        <label class="tienda-campo">Nombre completo<input id="perfilNombreInput" name="nombre" autocomplete="name" minlength="2" maxlength="80" required></label>
+                        <label class="tienda-campo">Correo electrónico<input id="perfilEmail" name="email" type="email" autocomplete="email" maxlength="254" required></label>
+                        <label class="tienda-campo">Número de teléfono<input id="perfilTelefono" name="telefono" type="tel" autocomplete="tel-national" inputmode="tel" maxlength="18" required></label>
+                    </div>
+                    <p id="estadoPerfil" class="tienda-aviso" role="status" hidden></p>
+                    <div class="tienda-acciones"><button id="guardarPerfil" class="tienda-boton" type="submit">Guardar cambios</button></div>
+                </form>
+            </section>
+            <section id="misDirecciones" class="tienda-tarjeta">
+                <div class="tienda-titulo-fila"><h2>Mis Direcciones</h2><button id="nuevaDireccion" class="tienda-enlace" type="button">＋ Nueva</button></div>
+                <div id="listaDirecciones" class="perfil-direcciones"></div>
+            </section>
+            <section id="misPedidos" class="tienda-tarjeta">
+                <div class="tienda-titulo-fila"><h2>Pedidos Recientes</h2><button id="verTodosPedidos" class="tienda-enlace" type="button">Ver todos</button></div>
+                <div id="listaPedidosPerfil"></div>
+                <p class="tienda-nota">Los pedidos de esta versión son pruebas locales, sin cobro ni envío real.</p>
+            </section>
+            <section id="ajustesPerfil" class="tienda-tarjeta">
+                <h2>Configuración</h2>
+                <p class="tienda-nota">Esta cuenta se guarda en este navegador. Usa datos de prueba; aún no hay autenticación de servidor.</p>
+                <form id="formClavePerfil">
+                    <div class="tienda-campos">
+                        <label class="tienda-campo tienda-campo-ancho">Contraseña actual<input id="claveActualPerfil" type="password" autocomplete="current-password" required></label>
+                        <label class="tienda-campo">Nueva contraseña<input id="claveNuevaPerfil" type="password" autocomplete="new-password" minlength="8" maxlength="128" required></label>
+                        <label class="tienda-campo">Confirmar contraseña<input id="claveConfirmarPerfil" type="password" autocomplete="new-password" minlength="8" maxlength="128" required></label>
+                    </div>
+                    <p id="estadoClavePerfil" class="tienda-aviso" role="status" hidden></p>
+                    <div class="tienda-acciones"><button class="tienda-boton" type="submit">Actualizar contraseña</button><button id="cerrarSesionPerfil" class="tienda-boton tienda-boton-suave" type="button">Cerrar sesión</button></div>
+                </form>
+            </section>
+        </div>
+    </main>
+    <dialog id="dialogoDireccion" class="tienda-dialogo" aria-labelledby="tituloDireccion">
+        <button id="cerrarDireccion" class="tienda-dialogo-cerrar" type="button" aria-label="Cerrar formulario de dirección">×</button>
+        <h2 id="tituloDireccion">Nueva dirección</h2>
+        <form id="formDireccionPerfil">
+            <div class="tienda-campos">
+                <label class="tienda-campo tienda-campo-ancho">Nombre de la dirección<input name="alias" placeholder="Casa, oficina…" minlength="2" maxlength="120" required></label>
+                <label class="tienda-campo tienda-campo-ancho">Calle y número<input name="calle" autocomplete="address-line1" minlength="2" maxlength="120" required></label>
+                <label class="tienda-campo">Colonia<input name="colonia" autocomplete="address-line2" minlength="2" maxlength="120" required></label>
+                <label class="tienda-campo">Alcaldía o municipio<input name="ciudad" autocomplete="address-level2" minlength="2" maxlength="120" required></label>
+                <label class="tienda-campo">Estado<select name="estado" autocomplete="address-level1" required></select></label>
+                <label class="tienda-campo">Código postal<input name="cp" autocomplete="postal-code" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" required></label>
+            </div>
+            <label class="tienda-check"><input name="principal" type="checkbox">Usar como dirección principal</label>
+            <p id="estadoDireccionPerfil" class="tienda-aviso" role="status" hidden></p>
+            <div class="tienda-acciones"><button class="tienda-boton" type="submit">Guardar dirección</button></div>
+        </form>
+    </dialog>
+    <footer class="tienda-footer"><p>© MochiMexa. Dulzura Japonesa con Corazón Mexicano.</p><nav aria-label="Ayuda"><a href="contactanos.html?asunto=soporte#formTeam">Soporte</a><a href="contactanos.html?asunto=privacidad#formTeam">Consultar privacidad</a><a href="contactanos.html?asunto=terminos#formTeam">Consultar términos</a></nav></footer>
+    <noscript><p>Activa JavaScript para iniciar sesión y consultar tu perfil.</p></noscript>
+    <script src="../js/mochi.js"></script>
+    <script src="../js/productos.js"></script>
+    <script src="../js/tienda.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/perfil.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

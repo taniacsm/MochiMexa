@@ -97,6 +97,28 @@
     transform: scale(1.12);
     opacity: 0.85;
 }
+/* El contador se superpone al icono sin cambiar la distribución del navbar. */
+.custom-navbar .carrito-contador {
+    position: absolute;
+    top: -5px;
+    right: -7px;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--neutral, #FDF9F2);
+    border-radius: 999px;
+    background: var(--badge-brown);
+    color: #fff;
+    font-size: 10px;
+    line-height: 1;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    pointer-events: none;
+}
+.custom-navbar .carrito-contador[hidden] { display: none; }
 /* Dropdown Sesión */
 .custom-navbar .custom-dropdown {
     border: none;
